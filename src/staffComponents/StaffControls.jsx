@@ -1,6 +1,6 @@
 import { distancia } from "../staffHandlers/distances";
 
-export const StaffControls = () => {
+export const StaffControls = ({ setVisibleNote, showNextMiddleNote, setOneOctavePressed }) => {
   let showedNote = "";
   let nIntervId;
   let speed = 2000;
@@ -8,7 +8,7 @@ export const StaffControls = () => {
   let oneOctaveTogglePressed = false;
 
   const showNote = (index) => {
-    if (index < 0 || index > 26) {
+    /*  if (index < 0 || index > 26) {
       console.log("el número debe estar entre 0 y 26");
       return;
     }
@@ -18,73 +18,73 @@ export const StaffControls = () => {
       case "la5":
       case "si5":
         [".la5"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "do6":
       case "re6":
         [".la5", ".do6"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "mi6":
       case "fa6":
         [".la5", ".do6", ".mi6"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "sol6":
       case "la6":
         [".la5", ".do6", ".mi6", ".sol6"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "do4":
       case "si3":
         [".do4"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "la3":
       case "sol3":
         [".do4", ".la3"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "fa3":
       case "mi3":
         [".do4", ".la3", ".fa3"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
 
       case "re3":
       case "do3":
         [".do4", ".la3", ".fa3", ".re3"].forEach((note) => {
-          document.querySelector(note).style.visibility = "visible";
+          document.querySelector(note)?.style.visibility = "visible";
         });
         break;
       default:
     }
-    document.querySelector(".nota").style.top = distancia[note];
+    document.querySelector(".nota")?.style.top = distancia[note]; */
   };
 
   const resetLines = () => {
-    [".sol6", ".mi6", ".do6", ".la5", ".do4", ".la3", ".fa3", ".re3"].forEach((note) => {
-      document.querySelector(note).style.visibility = "hidden";
+    /*    [".sol6", ".mi6", ".do6", ".la5", ".do4", ".la3", ".fa3", ".re3"].forEach((note) => {
+      document.querySelector(note)?.style.visibility = "hidden";
     });
-    document.querySelector(".answer").textContent = "vacío";
-    document.querySelector(".answer").style.visibility = "hidden";
+    document.querySelector(".answer")?.textContent = "vacío";
+    document.querySelector(".answer")?.style.visibility = "hidden"; */
   };
 
   const handlerClick = (min, max) => {
-    resetLines();
+    /*  resetLines();
 
     let randomNote;
     let isTheSameNote = false;
@@ -102,32 +102,33 @@ export const StaffControls = () => {
 
     currentNote = randomNote;
 
-    showNote(randomNote); //0-26
+    showNote(randomNote); //0-26 */
   };
 
   const handlerAnswer = () => {
-    const answerNode = document.querySelector(".answer");
+    console.log("funciona");
+    /* const answerNode = document.querySelector(".answer");
     answerNode.textContent = showedNote;
-    answerNode.style.visibility === "hidden" ? (answerNode.style.visibility = "visible") : (answerNode.style.visibility = "hidden");
+    answerNode.style.visibility === "hidden" ? (answerNode.style.visibility = "visible") : (answerNode.style.visibility = "hidden"); */
   };
 
   const handlerTime = (min, max) => {
-    if (!nIntervId) {
+    /*   if (!nIntervId) {
       nIntervId = setInterval(() => handlerClick(min, max), speed);
     } else {
       clearInterval(nIntervId);
       nIntervId = null;
-    }
+    } */
   };
 
   const setSpeed = (newSpeed) => {
-    clearInterval(nIntervId);
+    /*    clearInterval(nIntervId);
     nIntervId = null;
-    speed = newSpeed;
+    speed = newSpeed; */
   };
 
   const handleOneOctaveToggle = () => {
-    const buttonOneOctaveToggle = document.querySelector(".one-octave-toggle");
+    /*   const buttonOneOctaveToggle = document.querySelector(".one-octave-toggle");
     if (oneOctaveTogglePressed) {
       buttonOneOctaveToggle.style.backgroundColor = "lightgrey";
       buttonOneOctaveToggle.style.color = "black";
@@ -135,8 +136,9 @@ export const StaffControls = () => {
       buttonOneOctaveToggle.style.backgroundColor = "#555";
       buttonOneOctaveToggle.style.color = "white";
     }
-    oneOctaveTogglePressed = !oneOctaveTogglePressed;
+    oneOctaveTogglePressed = !oneOctaveTogglePressed; */
     // if (oneOctaveTogglePressed) {console.log("pulsado")} else {console.log("no pulsado")}
+    setOneOctavePressed((prevState) => !prevState);
   };
 
   showNote(currentNote);
@@ -148,10 +150,18 @@ export const StaffControls = () => {
         <button className="one-octave-toggle" onClick={handleOneOctaveToggle}>
           less than 8
         </button>
+
         <span>from</span>
-        <input value="0"></input>
+        <select name="miSelect">
+          <option value="0">mi3</option>
+          <option value="1">fa3</option>
+        </select>
+
         <span>to</span>
-        <input value="26"></input>
+        <select name="miSelect">
+          <option value="0">mi3</option>
+          <option value="1">fa3</option>
+        </select>
 
         <div className="speedBox">
           <button className="speedButton500" onClick={() => setSpeed(500)}>
@@ -178,7 +188,8 @@ export const StaffControls = () => {
         </div>
 
         <div>
-          <button className="buttonNextMiddle" onClick={() => handlerClick(4, 23)}>
+          {/* <button className="buttonNextMiddle" onClick={() => handlerClick(4, 23)}> */}
+          <button className="buttonNextMiddle" onClick={showNextMiddleNote}>
             MIDDLE
           </button>
           <button className="buttonNextMiddleTime" onClick={() => handlerTime(4, 23)}>
@@ -204,7 +215,8 @@ export const StaffControls = () => {
           </button>
         </div>
         <div>
-          <button className="buttonAnswer" onClick={handlerAnswer}>
+          {/* <button className="buttonAnswer" onClick={handlerAnswer}> */}
+          <button className="buttonAnswer" onClick={setVisibleNote}>
             ?
           </button>
           <p className="answer"></p>

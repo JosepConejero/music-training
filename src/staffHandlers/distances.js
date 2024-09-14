@@ -20,7 +20,7 @@ export const distancia = {
   fa4: `${9.65}em`,
   mi4: `${10.2}em`,
   re4: `${10.75}em`,
-  do4: `${11.35}em`,
+  do4: `${11.3}em`,
 
   si3: `${11.9}em`,
   la3: `${12.45}em`,

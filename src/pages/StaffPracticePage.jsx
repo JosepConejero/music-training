@@ -6,15 +6,13 @@ import { distancia } from "../staffHandlers/distances";
 
 export const StaffPracticePage = () => {
   const notaInicial = "do4"; //19
-  const [visibleNote, setVisibleNote] = useState(true);
+  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const [activeNote, setActiveNote] = useState(notaInicial);
-  const [oneOctavePressed, setOneOctavePressed] = useState(false);
   const activeNoteRef = useRef(notaInicial);
-  // const oneOctaveTogglePressed = false; //TO-DO: crear estado para esta funcionalidad
-
-  const handleClick = () => {
-    setVisibleNote((prevState) => !prevState);
-  };
+  const [isOneOctavePressed, setIsOneOctavePressed] = useState(false);
+  const [currentSpeed, setCurrentSpeed] = useState(2000);
+  const speed = useRef(2000);
+  const nIntervId = useRef();
 
   const getNote = (min, max) => {
     let randomNote;
@@ -28,7 +26,7 @@ export const StaffPracticePage = () => {
     do {
       randomNote = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
       const resta = Math.abs(Math.abs(randomNote) - Math.abs(currentNote));
-      moreThanOneOctave = setOneOctavePressed && resta > 7; //si está pulsado el botón
+      moreThanOneOctave = isOneOctavePressed && resta > 7; //si está pulsado el botón
       isTheSameNote = randomNote === currentNote;
     } while (isTheSameNote || moreThanOneOctave);
 
@@ -40,17 +38,49 @@ export const StaffPracticePage = () => {
     activeNoteRef.current = newNote;
   };
 
-  const showNextMiddleNote = () => {
-    updateNote(getNote(4, 23));
+  const showNextNote = (min, max) => {
+    updateNote(getNote(min, max));
+  };
+
+  const timeHandler = (min, max) => {
+    if (!nIntervId.current) {
+      nIntervId.current = setInterval(() => updateNote(getNote(min, max)), speed.current);
+    } else {
+      clearInterval(nIntervId.current);
+      nIntervId.current = null;
+    }
+  };
+
+  const setSpeed = (newSpeed) => {
+    clearInterval(nIntervId.current);
+    nIntervId.current = null;
+    setCurrentSpeed(newSpeed);
+    speed.current = newSpeed;
+  };
+
+  const showAnswer = () => {
+    setIsAnswerVisible((prevState) => !prevState);
+  };
+
+  const buttonHandlers = {
+    isOneOctavePressed: isOneOctavePressed,
+    setIsOneOctavePressed: setIsOneOctavePressed,
+    showNextNote: showNextNote,
+    setSpeed: setSpeed,
+    timeHandler: timeHandler,
+    showAnswer: showAnswer,
+    isAnswerVisible: isAnswerVisible,
+    currentSpeed: currentSpeed,
   };
 
   return (
     <>
       <Navbar />
       <main className="staff-practice">
-        <span>Staff Practice</span>
-        <Staff visible={visibleNote} activeNote={activeNote} />
-        <StaffControls setVisibleNote={handleClick} showNextMiddleNote={showNextMiddleNote} setOneOctavePressed={setOneOctavePressed} />
+        <span className="title">STAFF PRACTICE</span>
+        <Staff activeNote={activeNote} />
+        <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{activeNote}</span>
+        <StaffControls buttonHandlers={buttonHandlers} />
       </main>
     </>
   );

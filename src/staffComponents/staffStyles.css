@@ -46,47 +46,88 @@
   visibility: hidden;
 }
   
-  .buttonNext, .buttonAnswer, .buttonNextShort, .buttonNextMiddle, .buttonNextShortTime,
-  .buttonNextMiddleTime,
-  .buttonNextTime, .buttonNextVoice, .buttonNextVoiceTime {
-    width: 80px;
-    margin-left: 20px;
-    margin-top: 5px;
-  /*   background-color: #555;
-    color: white; */
-  }
+.buttonNext, .buttonAnswer, .buttonNextShort, .buttonNextMiddle, .buttonNextShortTime,
+.buttonNextMiddleTime,
+.buttonNextTime, .buttonNextVoice, .buttonNextVoiceTime, .buttonNextSelection, .buttonNextSelectionTime {
+  width: 6.7em;
+  margin-left: 20px;
+  margin-top: 5px;
+  background-color: #003838;
+  color: yellow;
+  border-radius: 0.3em;
+  /* overflow: hidden; */
+}
+
+.selectedButtonAnswer {
+  width: 80px;
+  margin-left: 20px;
+  margin-top: 5px;
+  background-color: #689292;
+  border-radius: 0.3em;
+  color: black;
+}
+
+.one-octave-toggle {
+  width: 90px;
+  margin-left: 20px;
+  margin-top: 5px;
+  border-radius: 0.3em;
+  background-color: #003838;
+  color: yellow;
+}
   
-  .one-octave-toggle {
-    width: 100px;
-    margin-left: 20px;
-    margin-top: 5px;
-  }
+.pressed-one-octave-toggle {
+  width: 90px;
+  margin-left: 20px;
+  margin-top: 5px;
+  background-color: #689292;
+  border-radius: 0.3em;
+  color: black;
+}
+
+.answer {
+  visibility: visible;
+  font-weight: bold;
+  color: #003838;
+  font-size: 1.5em;
+}
   
-  .answer {
-    visibility: hidden;
-    margin-left: 70px;
-    margin-top: 5px;
-  }
-  
+.hidden-answer {
+  font-size: 1.5em;
+  visibility: hidden;
+}
+
   .speedBox {
     margin-left: 20px;
   }
   
-.speedButton500,
-.speedButton1000,
-.speedButton1500,
-.speedButton2000 {
-    width: 60px;
-    margin: 5px;
+.speed-button {
+  width: 60px;
+  margin: 5px;
+  border-radius: 0.3em;
+  background-color: #003838;
+  color: yellow;
 }
+
+.pressed-speed-button {
+  width: 60px;
+  margin: 5px;
+  background-color: #689292;
+  border-radius: 0.3em;
+  color: black;
+}
+
   
 input {
     width: 20px;
 }
    
 .controls{
-  border: 1px solid black;
-  width: 350px;
+  border: 0.1em solid black;
+  width: 20em;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  padding-bottom: 0.7em;
 }
 
 .staff-practice {
@@ -96,6 +137,25 @@ input {
   align-items: center;
   border: 0.1em solid black;
   justify-content: center;
-  gap: 3em;
+  gap: 1em;
 }
 
+.title {
+  font-weight: bold;
+  color: #003838;
+  font-size: 1.5em;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+  color: yellow;
+  width: 1.1em;
+  
+}
+
+.fromTo {
+  margin-left: 2em;
+  /* display: flex;
+  flex-direction: row; */
+}

@@ -3,13 +3,7 @@ import { distancia } from "../staffHandlers/distances";
 import { StaffLine } from "./StaffLine";
 import "./staffStyles.css";
 
-export const Staff = ({ visible, activeNote }) => {
-  // console.log(distancia[activeNote], activeNote);
-  /*  const setClassName = (note) => {
-    // return visible ? `nota ${activeNote}` : "hidden-note";
-    return visible ? `nota` : "hidden-note";
-  }; */
-
+export const Staff = ({ activeNote }) => {
   return (
     <>
       <div className="general">
@@ -19,7 +13,7 @@ export const Staff = ({ visible, activeNote }) => {
           ))}
         </div>
 
-        <div className={visible ? "nota" : "hidden-note"} style={{ position: "absolute", top: distancia[activeNote] }}></div>
+        <div className="nota" style={{ position: "absolute", top: distancia[activeNote] }}></div>
       </div>
     </>
   );

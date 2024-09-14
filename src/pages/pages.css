@@ -1,0 +1,12 @@
+.main-screen {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3em;
+    /* background-color: rgb(31, 90, 90); */
+}
+
+.main-screen > p {
+    font-size: 2em;
+    color: rgb(0, 49, 68);
+}

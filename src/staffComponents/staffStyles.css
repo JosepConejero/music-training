@@ -1,14 +1,28 @@
-.general {
+:root {
+  --alto: 270px;
+  --ancho: 80px;
+/*   --posicion-nota: 2; */
+}
+
+/* .general {
     position: relative;
     height: 270px;
     width: 80px;
-  }
-  
-  .caja {
-    position: absolute;
+    } */
+    
+    .caja {
+    border: 0.1em solid black;
+    /* position: absolute; */
+ /*    position: relative;
     height: 270px;
     width: 80px;
-    top: 10px;
+    top: 10px; */
+
+    height: var(--alto);
+    width: var(--ancho);
+    border: 0.1em solid black;
+    position: relative;
+    /* margin: 1em; */
   }
   
   .fa5, .re5, .si4, .sol4, .mi4 {

@@ -4,13 +4,13 @@
 /*   --posicion-nota: 2; */
 }
 
-/* .general {
+ .general {
     position: relative;
-    height: 270px;
-    width: 80px;
-    } */
+    /* height: 270px;
+    width: 80px; */
+    } 
     
-    .caja {
+  .caja {
     border: 0.1em solid black;
     /* position: absolute; */
  /*    position: relative;

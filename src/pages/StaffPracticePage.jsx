@@ -3,6 +3,7 @@ import { Navbar } from "../components/Navbar";
 import { Staff } from "../staffComponents/Staff";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { distancia } from "../staffHandlers/distances";
+import "../lit-elements/my-staff";
 
 export const StaffPracticePage = () => {
   const notaInicial = "do4"; //19
@@ -78,7 +79,8 @@ export const StaffPracticePage = () => {
       <Navbar />
       <main className="staff-practice">
         <span className="title">STAFF PRACTICE</span>
-        <Staff activeNote={activeNote} />
+        {/*  <Staff activeNote={activeNote} /> */}
+        <my-staff nota1={activeNote}></my-staff>
         <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{activeNote}</span>
         <StaffControls buttonHandlers={buttonHandlers} />
       </main>

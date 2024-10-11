@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
-import { Staff } from "../staffComponents/Staff";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { distancia } from "../staffHandlers/distances";
 import "../lit-elements/my-staff";

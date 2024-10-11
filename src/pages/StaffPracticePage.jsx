@@ -3,6 +3,7 @@ import { Navbar } from "../components/Navbar";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { distancia } from "../staffHandlers/distances";
 import "../lit-elements/my-staff";
+import "../staffComponents/staffStyles.css";
 
 export const StaffPracticePage = () => {
   const notaInicial = "do4"; //19

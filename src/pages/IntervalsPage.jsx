@@ -4,6 +4,7 @@ import { intervals } from "../pagesHelpers/intervals";
 import { uniqueKey } from "../helpers/uniqueKey";
 import { randomElementFromObject } from "../pagesHelpers/randomElementFromObject";
 import "./pages.css";
+import "../lit-elements/my-intervals"
 
 export const IntervalsPage = () => {
   const [pressedAnswerButton, setPressedAnswerButton] = useState(false);
@@ -32,10 +33,14 @@ export const IntervalsPage = () => {
 
         <div className="bloque-vertical">
           <div className="interval-view-container">
-            <div className="interval-view-ask-box">
+            {/*<div className="interval-view-ask-box">
               <p className="interval-view-ask-text" onClick={showAnswer}>
                 {currentInterval[0]}
               </p>
+            </div>*/}
+            <div onClick={showAnswer}>
+              <my-intervals nota1={currentInterval[0].split(" ")[0]} nota2={currentInterval[0].split(" ")[1]}></my-intervals>
+              
             </div>
             <div className="interval-view-answer-box">
               <p className="interval-view-answer-text" onClick={showAnswer}>
@@ -59,12 +64,12 @@ export const IntervalsPage = () => {
 
           <div className={pressedShowTableButton ? "interval-table-container" : "hidden-interval-table-container"}>
             <div className="interval-table-box">
-              <div className="interval-table-column">{Object.entries(intervals).map((interval, index) => index < 22 && <span key={uniqueKey()}> {`${interval[0]}`}</span>)}</div>
-              <div className="interval-table-column">{Object.entries(intervals).map((interval, index) => index < 22 && <span key={uniqueKey()}> {`${interval[1]}`}</span>)}</div>
+              <div className="interval-table-column">{Object.entries(intervals).map((interval, index, intervals) => index < (intervals.length/2) && <span key={uniqueKey()}> {`${interval[0]}`}</span>)}</div>
+              <div className="interval-table-column">{Object.entries(intervals).map((interval, index, intervals) => index < (intervals.length/2) && <span key={uniqueKey()}> {`${interval[1]}`}</span>)}</div>
             </div>
             <div className="interval-table-box">
-              <div className="interval-table-column">{Object.entries(intervals).map((interval, index) => index >= 22 && <span key={uniqueKey()}> {`${interval[0]}`}</span>)}</div>
-              <div className="interval-table-column">{Object.entries(intervals).map((interval, index) => index >= 22 && <span key={uniqueKey()}> {`${interval[1]}`}</span>)}</div>
+              <div className="interval-table-column">{Object.entries(intervals).map((interval, index, intervals) => index >= (intervals.length/2) && <span key={uniqueKey()}> {`${interval[0]}`}</span>)}</div>
+              <div className="interval-table-column">{Object.entries(intervals).map((interval, index, intervals) => index >= (intervals.length/2) && <span key={uniqueKey()}> {`${interval[1]}`}</span>)}</div>
             </div>
           </div>
         </div>

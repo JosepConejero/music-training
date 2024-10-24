@@ -7,17 +7,14 @@
 - botón para mostrar / ocultar una información
 - poner bien la info de los intervalos
 - borrar clases de los elementos que he anulado
+- eliminar componente Staff y todos los de dentro (cuidado con el archivo .css correspondiente)
 
 ## Errores para corregir
 
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
 - quitar tabla intervalos
-
-
-
-
-
+- altura de la pantalla se sale un poco
 
 # TAREAS SIGUIENTES
 - arreglar lo del temporizador

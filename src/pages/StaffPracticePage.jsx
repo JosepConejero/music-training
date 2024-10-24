@@ -44,20 +44,29 @@ export const StaffPracticePage = () => {
   };
 
   const timeHandler = (min, max) => {
+    //console.log("pasa por el timeHandler")
     if (!nIntervId.current) {
       nIntervId.current = setInterval(() => updateNote(getNote(min, max)), speed.current);
     } else {
-      clearInterval(nIntervId.current);
-      nIntervId.current = null;
+      /* clearInterval(nIntervId.current);
+      nIntervId.current = null; */
+      resetInterval();
     }
   };
 
   const setSpeed = (newSpeed) => {
-    clearInterval(nIntervId.current);
-    nIntervId.current = null;
+    //console.log("pasa por el setSpeed")
+/*     clearInterval(nIntervId.current);
+    nIntervId.current = null; */
+    resetInterval();
     setCurrentSpeed(newSpeed);
     speed.current = newSpeed;
   };
+
+const resetInterval = ()=>{
+  clearInterval(nIntervId.current);
+  nIntervId.current = null;
+}
 
   const showAnswer = () => {
     setIsAnswerVisible((prevState) => !prevState);
@@ -72,6 +81,7 @@ export const StaffPracticePage = () => {
     showAnswer: showAnswer,
     isAnswerVisible: isAnswerVisible,
     currentSpeed: currentSpeed,
+    resetInterval: resetInterval,
   };
 
   return (

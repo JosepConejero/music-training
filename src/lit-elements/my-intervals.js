@@ -6,23 +6,25 @@ export class MyIntervals extends LitElement {
     /* nota1: { type: String, state: true, attribute: 'nota1' }, */
     nota1: {},
     nota2: {},
+    width: {},
+    heigth: {},
   };
 
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     :host {
-      --alto: 250px;
-      --ancho: 100px;
       margin: 0;
       padding: 0;
+  /*  --alto: 250px;
+      --ancho: 100px;  */
     }
 
     .container {
       position: relative;
-      height: var(--alto);
-      width: var(--ancho);
-       /*border: 1px solid black; */
       margin: 1em;
+  /*  height: var(--alto);
+      width: var(--ancho); 
+      border: 1px solid black;  */
     }
 
     .linea {
@@ -222,12 +224,21 @@ export class MyIntervals extends LitElement {
     //this.clave = '';
     this.nota1 = "";
     this.nota2 = '';
+    this.height = '250px';
+    this.width = '100px';
   }
 
   // Render the UI as a function of component state
   render() {
+    const sizeValues = html`<style> 
+      .size {
+        height: ${this.height};
+        width: ${this.width};  
+      }
+    </style>`;
     return html`
-      <div class="container">
+      ${sizeValues}
+      <div class="container size">
         <div class="linea linea-corta1 element1 ${["sol6", "la6"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
         <div class="linea linea-corta1 element2 ${["sol6", "la6", "mi6", "fa6"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
         <div class="linea linea-corta1 element3 ${["sol6", "la6", "mi6", "fa6", "re6", "do6"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>

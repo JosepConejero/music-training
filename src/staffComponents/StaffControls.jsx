@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { uniqueKey } from "../helpers/uniqueKey";
-import { distancia } from "../staffHandlers/distances";
+import { useRef, useState } from "react";
+//import { uniqueKey } from "../helpers/uniqueKey";
+//import { distancia } from "../staffHandlers/distances";
 import "../lit-elements/my-buttons"
 import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
 
 export const StaffControls = ({ buttonHandlers }) => {
   const [togglePlay, setTogglePlay] = useState(false);
-  const { showNextNote, isOneOctavePressed, setIsOneOctavePressed, setSpeed, timeHandler, showAnswer, isAnswerVisible, currentSpeed, resetInterval } = buttonHandlers;
+  const { showNextNote, isOneOctavePressed, setIsOneOctavePressed, setSpeed, timeHandler, showAnswer, isAnswerVisible, /* currentSpeed,  */resetInterval } = buttonHandlers;
   const fromSelection = useRef(0);
   const toSelection = useRef(0);
 
@@ -19,7 +19,7 @@ export const StaffControls = ({ buttonHandlers }) => {
     setIsOneOctavePressed((prevState) => !prevState);
   };
 
-  const onFromSelectChange = ({ target }) => {
+ /*  const onFromSelectChange = ({ target }) => {
     // fromSelection.current = Object.keys(distancia)[target.value];
     fromSelection.current = target.value;
     target.value = toSelection.current;
@@ -34,7 +34,7 @@ export const StaffControls = ({ buttonHandlers }) => {
     // console.log("to: ", toSelection.current);
     // console.log(target.value);
     // target.value = 19; //
-  };
+  }; */
 
   const updateItemIndex = (num)=>{
     setSelectedItemIndex(num);

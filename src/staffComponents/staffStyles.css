@@ -175,3 +175,11 @@ img {
   /* display: flex;
   flex-direction: row; */
 }
+
+.container-span {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}

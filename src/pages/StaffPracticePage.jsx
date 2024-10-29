@@ -3,7 +3,9 @@ import { Navbar } from "../components/Navbar";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { distancia } from "../staffHandlers/distances";
 import "../lit-elements/my-staff";
+import "../lit-elements/my-trumpet-pistons";
 import "../staffComponents/staffStyles.css";
+
 
 export const StaffPracticePage = () => {
   const notaInicial = "do4"; //19
@@ -91,7 +93,10 @@ const resetInterval = ()=>{
         <span className="title">STAFF PRACTICE</span>
         {/*  <Staff activeNote={activeNote} /> */}
         <my-staff nota1={activeNote}></my-staff>
-        <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{activeNote}</span>
+        <div className="container-span">
+          <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{activeNote}</span>
+          <my-trumpet-pistons></my-trumpet-pistons>
+        </div>
         <StaffControls buttonHandlers={buttonHandlers} />
       </main>
     </>

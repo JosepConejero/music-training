@@ -36,11 +36,34 @@ export class MyButtons extends LitElement {
     }
 
     .up-button {
-
+      height: 0;
+      border-bottom: 20px solid black; 
+      border-right: 40px solid transparent;
+      border-left: 40px solid transparent;
     }
 
-    .up-button {
+    .up-button-disabled {
+      height: 0;
+      border-bottom: 20px solid lightgrey; 
+      border-right: 40px solid transparent;
+      border-left: 40px solid transparent;
+    }
 
+
+    .down-button {
+      height: 0;
+      border-top: 20px solid black;
+      border-right: 40px solid transparent;
+      border-left: 40px solid transparent;
+      
+    }
+
+    .down-button-disabled {
+      height: 0;
+      border-top: 20px solid lightgrey;
+      border-right: 40px solid transparent;
+      border-left: 40px solid transparent;
+      
     }
 
     .main-button {
@@ -98,9 +121,11 @@ export class MyButtons extends LitElement {
     return html`
       ${sizeValues}
       <div class="container size">
-        <button class="up-down-button" @click="${()=>this.decreaseIndex()}" ?disabled=${this.selectedItemIndex===0} >UP</button>
+        <button class="up-down-button" @click="${()=>this.decreaseIndex()}" ?disabled=${this.selectedItemIndex===0} >
+            <div class="up-button ${this.selectedItemIndex===0 ? "up-button-disabled" : ""}"></div></button>
         <button class="main-button" @click="${this.activateAction}">${this.textItems[this.selectedItemIndex]}</button>
-        <button class="up-down-button" @click="${()=>this.increaseIndex()}" ?disabled=${this.selectedItemIndex===this.textItems.length-1}>DOWN</button>
+        <button class="up-down-button" @click="${()=>this.increaseIndex()}" ?disabled=${this.selectedItemIndex===this.textItems.length-1}>
+            <div class="down-button ${this.selectedItemIndex===this.textItems.length-1 ? "down-button-disabled" : ""}"></div></button>
         <!-- <img src="prueba.png" alt="x" /> -->
       </div>
     `;

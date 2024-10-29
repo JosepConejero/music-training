@@ -10,7 +10,7 @@ export const StaffControls = ({ buttonHandlers }) => {
   const fromSelection = useRef(0);
   const toSelection = useRef(0);
 
-  const optionsRange = ["5 + 8 líneas", "5 + 4 líneas", "5 líneas", "Voice", "Selection" ];
+  const optionsRange = ["5 + 8 líneas", "5 + 4 líneas", "trumpet", "5 líneas", "Voice", "Selection" ];
   const [selectedItemIndex, setSelectedItemIndex] = useState(1);
   const timeRange = ["0.5 s.", "1 s.", "1.5 s.", "2 s." ];
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(2);
@@ -48,9 +48,10 @@ export const StaffControls = ({ buttonHandlers }) => {
   const showNoteAction = {
     0: ()=>showNextNote(0, 27),
     1: ()=>showNextNote(4, 23),
-    2: ()=>showNextNote(8, 19),
-    3: ()=>showNextNote(4, 23),
-    4: ()=>showNextNote(fromSelection.current, toSelection.current),
+    2: ()=>showNextNote(4, 24), //trumpet
+    3: ()=>showNextNote(8, 19),
+    4: ()=>showNextNote(4, 23),
+    5: ()=>showNextNote(fromSelection.current, toSelection.current),
   };
 
   const setSpeedAction = {
@@ -63,9 +64,10 @@ export const StaffControls = ({ buttonHandlers }) => {
   const setTimeHandlerAction = {
     0: ()=>timeHandler(0, 27),
     1: ()=>timeHandler(4, 23),
-    2: ()=>timeHandler(8, 19),
-    3: ()=>timeHandler(4, 23),
-    4: ()=>timeHandler(fromSelection.current, toSelection.current),
+    2: ()=>timeHandler(4, 24), //trumpet
+    3: ()=>timeHandler(8, 19),
+    4: ()=>timeHandler(4, 23),
+    5: ()=>timeHandler(fromSelection.current, toSelection.current),
   }
 
   const showTimedNoteAction = (speed, timeHandler) =>{

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { StaffControls } from "../staffComponents/StaffControls";
-import { distancia } from "../staffHandlers/distances";
+import { complete_notes_distances } from "../staffHandlers/complete-notes-distances";
 import "../lit-elements/my-staff";
 import "../lit-elements/my-trumpet-pistons";
 import "../staffComponents/staffStyles.css";
@@ -21,19 +21,28 @@ export const StaffPracticePage = () => {
     let randomNote;
     let isTheSameNote = false;
     let moreThanOneOctave = false;
-    let currentNote = Object.keys(distancia).indexOf(activeNoteRef.current);
+    let currentNote = Object.keys(complete_notes_distances).indexOf(activeNoteRef.current);
 
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
 
     do {
       randomNote = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
-      const resta = Math.abs(Math.abs(randomNote) - Math.abs(currentNote));
-      moreThanOneOctave = isOneOctavePressed && resta > 7; //si está pulsado el botón
+      //aquí empieza la comprobación de más de una octava
+      // se restan los valores de las notas (valor numérico asignado a cada propiedad/nota) 
+      // NO se resta el índice del array de keys 
+      // es decir, sols5 y lab5 serían la misma nota y tendrían el mismo valor asociado en el objeto de complete_notes_distances
+      
+      const randomNoteValue = Object.values(complete_notes_distances)[randomNote];
+      const currentNoteValue = Object.values(complete_notes_distances)[currentNote];
+
+      const resta = Math.abs(Math.abs(randomNoteValue) - Math.abs(currentNoteValue));
+      moreThanOneOctave = isOneOctavePressed && resta > 13; //si está pulsado el botón
+      //aquí acaba la comprobación de más de una octava
       isTheSameNote = randomNote === currentNote;
     } while (isTheSameNote || moreThanOneOctave);
 
-    return Object.keys(distancia)[randomNote];
+    return Object.keys(complete_notes_distances)[randomNote];
   };
 
   const updateNote = (newNote) => {
@@ -46,7 +55,6 @@ export const StaffPracticePage = () => {
   };
 
   const timeHandler = (min, max) => {
-    //console.log("pasa por el timeHandler")
     if (!nIntervId.current) {
       nIntervId.current = setInterval(() => updateNote(getNote(min, max)), speed.current);
     } else {
@@ -57,7 +65,6 @@ export const StaffPracticePage = () => {
   };
 
   const setSpeed = (newSpeed) => {
-    //console.log("pasa por el setSpeed")
 /*     clearInterval(nIntervId.current);
     nIntervId.current = null; */
     resetInterval();
@@ -85,6 +92,8 @@ const resetInterval = ()=>{
     currentSpeed: currentSpeed,
     resetInterval: resetInterval,
   };
+
+
 
   return (
     <>

@@ -38,7 +38,7 @@ export class MyTrumpetPistons extends LitElement {
   justify-content: space-around;
   align-items: center;
 /*   border: 1px solid black; */
-   font-size: var(--text-size); /*para que el hijo herede este tamaño y pueda usar porcentajes; si no, los porcentajes eno van*/
+   font-size: var(--text-size); /*para que el hijo herede este tamaño y pueda usar porcentajes; si no, los porcentajes no van*/
 }
 
 .number1, .number2, .number3 {
@@ -65,10 +65,6 @@ export class MyTrumpetPistons extends LitElement {
   border-radius: 50%;
 }
   `;
-
-
-
-
   
   constructor() {
     super();

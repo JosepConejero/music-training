@@ -17,11 +17,10 @@
 - altura de la pantalla se sale un poco
 
 # TAREAS SIGUIENTES
-- crear los componentes de sostenidos y bemoles
-- añadir los sostenidos y bemoles al pentagrama y los arrays con valores
 - añadir a la pestaña staff que muestre los agujeros trompeta y los dedos (12, 2, 13, etc.)
+- refactorizar sostenidos y bemoles: crear los componentes de sostenidos y bemoles / cambiar nombres de clases
 - crear el componente agujeros trompeta
-- arreglar lo del temporizador con un toggle de play
+- arreglar lo del temporizador con un toggle de play / que todos los botones se ensombrezcan cuando esté pulsado el play / que el play se ensombrezca
 - incluir en el componente my-buttons un icono para play y otro para stop (y añadirlo como atributo del componente, p.e. icons="play/stop")
 - solucionar la anchura de los triángulos en los botones de up y down
 - arreglar los botones y subirlo a producción
@@ -30,4 +29,7 @@
 - dibujar la clave de sol, las armaduras y el compás
 - cambiar líneas inferiores para trompeta
 - añadir a la pestaña staff un botón que muestre trompeta
-- cambiar las css compartidas de my-intervals y my-staff en un archivo externo y usar []
+
+# VSC
+- autocorrección CSS
+- 

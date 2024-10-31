@@ -1,4 +1,6 @@
 import { LitElement, css, html } from "lit";
+import { lines_spaces_measures } from "./lines-spaces-measures-css";
+import { line_10_notes, line_11_notes, line_12_notes, line_13_notes, line_1_notes, line_2_notes, line_3_notes, line_4_notes } from "../staffHandlers/lines-notes";
 
 export class MyIntervals extends LitElement {
   static properties = {
@@ -11,7 +13,11 @@ export class MyIntervals extends LitElement {
   };
 
   // Define scoped styles right with your component, in plain CSS
-  static styles = css`
+  static styles = [
+    
+    lines_spaces_measures, 
+    
+    css`
     :host {
       margin: 0;
       padding: 0;
@@ -55,46 +61,6 @@ export class MyIntervals extends LitElement {
       visibility: hidden;
     }
 
-    .element1 {
-      top: 7.14285714285714%;
-    }
-    .element2 {
-      top: calc(7.14285714285714% * 2);
-    }
-    .element3 {
-      top: calc(7.14285714285714% * 3);
-    }
-    .element4 {
-      top: calc(7.14285714285714% * 4);
-    }
-    .element5 {
-      top: calc(7.14285714285714% * 5);
-    }
-    .element6 {
-      top: calc(7.14285714285714% * 6);
-    }
-    .element7 {
-      top: calc(7.14285714285714% * 7);
-    }
-    .element8 {
-      top: calc(7.14285714285714% * 8);
-    }
-    .element9 {
-      top: calc(7.14285714285714% * 9);
-    }
-    .element10 {
-      top: calc(7.14285714285714% * 10);
-    }
-    .element11 {
-      top: calc(7.14285714285714% * 11);
-    }
-    .element12 {
-      top: calc(7.14285714285714% * 12);
-    }
-    .element13 {
-      top: calc(7.14285714285714% * 13);
-    }
-
     .nota1 {
       position: absolute;
       width: 20%;
@@ -132,97 +98,13 @@ export class MyIntervals extends LitElement {
       left: calc(50% + 5%);
       visibility: hidden;
     }
-
-    .la6 {
-      top: calc(0% + 1px);
-    }
-    .sol6 {
-      top: calc(7.14% - 3.57% + 1px);
-    }
-    .fa6 {
-      top: calc(7.14% + 1px);
-    }
-    .mi6 {
-      top: calc(14.28% - 3.57% + 1px);
-    }
-    .re6 {
-      top: calc(14.28% + 1px);
-    }
-    .do6 {
-      top: calc(21.42% - 3.57% + 1px);
-    }
-    .si5 {
-      top: calc(21.42% + 1px);
-    }
-    .la5 {
-      top: calc(28.57% - 3.57% + 1px);
-    }
-
-    .sol5 {
-      top: calc(28.57% + 1px);
-    }
-    .fa5 {
-      top: calc(35.71% - 3.57% + 1px);
-    }
-    .mi5 {
-      top: calc(35.71% + 1px);
-    }
-    .re5 {
-      top: calc(42.85% - 3.57% + 1px);
-    }
-    .do5 {
-      top: calc(42.85% + 1px);
-    }
-    .si4 {
-      top: calc(50% - 3.57% + 1px);
-    }
-    .la4 {
-      top: calc(50% + 1px);
-    }
-    .sol4 {
-      top: calc(57.14% - 3.57% + 1px);
-    }
-    .fa4 {
-      top: calc(57.14% + 1px);
-    }
-    .mi4 {
-      top: calc(64.28% - 3.57% + 1px);
-    }
-    .re4 {
-      top: calc(64.28% + 1px);
-    }
-
-    .do4 {
-      top: calc(71.42% - 3.57% + 1px);
-    }
-    .si3 {
-      top: calc(71.42% + 1px);
-    }
-    .la3 {
-      top: calc(78.57% - 3.57% + 1px);
-    }
-    .sol3 {
-      top: calc(78.57% + 1px);
-    }
-    .fa3 {
-      top: calc(85.71% - 3.57% + 1px);
-    }
-    .mi3 {
-      top: calc(85.71% + 1px);
-    }
-    .re3 {
-      top: calc(92.85% - 3.57% + 1px);
-    }
-    .do3 {
-      top: calc(92.85% + 1px);
-    }
-  `;
+     `];
 
   constructor() {
     super();
     // Declare reactive properties
     //this.clave = '';
-    this.nota1 = "";
+    this.nota1 = '';
     this.nota2 = '';
     this.height = '250px';
     this.width = '100px';
@@ -239,15 +121,15 @@ export class MyIntervals extends LitElement {
     return html`
       ${sizeValues}
       <div class="container size">
-        <div class="linea linea-corta1 element1 ${["sol6", "la6"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta1 element2 ${["sol6", "la6", "mi6", "fa6"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta1 element3 ${["sol6", "la6", "mi6", "fa6", "re6", "do6"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta1 element4 ${["sol6", "la6", "mi6", "fa6", "re6", "do6", "la5", "si5"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element1 ${line_1_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element2 ${line_2_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element3 ${line_3_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element4 ${line_4_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
 
-        <div class="linea linea-corta2 element1 ${["sol6", "la6"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element2 ${["sol6", "la6", "mi6", "fa6"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element3 ${["sol6", "la6", "mi6", "fa6", "re6", "do6"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element4 ${["sol6", "la6", "mi6", "fa6", "re6", "do6", "la5", "si5"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element1 ${line_1_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element2 ${line_2_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element3 ${line_3_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element4 ${line_4_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
 
         <div class="linea linea-larga element5"></div>
         <div class="linea linea-larga element6"></div>
@@ -255,15 +137,15 @@ export class MyIntervals extends LitElement {
         <div class="linea linea-larga element8"></div>
         <div class="linea linea-larga element9"></div>
 
-        <div class="linea linea-corta1 element10 ${["do4", "si3", "la3", "sol3", "fa3", "mi3", "re3", "do3"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta1 element11 ${["la3", "sol3", "fa3", "mi3", "re3", "do3"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta1 element12 ${["fa3", "mi3", "re3", "do3"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta1 element13 ${["re3", "do3"].includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element10 ${line_10_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element11 ${line_11_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element12 ${line_12_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta1 element13 ${line_13_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
 
-        <div class="linea linea-corta2 element10 ${["do4", "si3", "la3", "sol3", "fa3", "mi3", "re3", "do3"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element11 ${["la3", "sol3", "fa3", "mi3", "re3", "do3"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element12 ${["fa3", "mi3", "re3", "do3"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element13 ${["re3", "do3"].includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element10 ${line_10_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element11 ${line_11_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element12 ${line_12_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+        <div class="linea linea-corta2 element13 ${line_13_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
 
         <div class="nota1 ${this.nota1}"></div>
         <div class="nota2 ${this.nota2}"></div>

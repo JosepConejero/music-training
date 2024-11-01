@@ -3,10 +3,13 @@ import { lines_spaces_measures } from "./lines-spaces-measures-css";
 import { line_10_notes, line_11_notes, line_12_notes, line_13_notes, line_1_notes, line_2_notes, line_3_notes, line_4_notes } from "../staffHandlers/lines-notes";
 import { isSharp } from "../staffHandlers/isSharp";
 import { isFlat } from "../staffHandlers/isFlat";
+import "./my-alteration";
+import { noteTop } from "../staffHandlers/notes-tops";
 
 export class MyStaff extends LitElement {
   
-  
+  // "\u{266f}"; // sostenido - sharp
+  // "\u{266d}"; // bemol - flat
 
   static properties = {
     clave: {},
@@ -27,16 +30,11 @@ export class MyStaff extends LitElement {
     :host {
       margin: 0;
       padding: 0;
-  /*  --alto: 250px;
-      --ancho: 100px;  */
     }
 
     .container {
       position: relative;
       margin: 1em;
-  /*  height: var(--alto);
-      width: var(--ancho); 
-      border: 1px solid black;  */
     }
 
     .linea {
@@ -71,20 +69,6 @@ export class MyStaff extends LitElement {
       left: calc(50% - 11%);
     }
 
-    .alteration {
-      position: absolute;
-      width: 20%;
-      left: calc(50% - 30%);
-    }
-
-    .sharp {
-      font-size: 2.2em;
-    }
-
-    .flat {
-      font-size: 3.2em;
-    }
-
      `];
 
   constructor() {
@@ -97,28 +81,16 @@ export class MyStaff extends LitElement {
 
   }
 
-  alteration (){
-    if (isSharp(this.nota1)) return "\u{266f}"; // sostenido
-    if (isFlat(this.nota1)) return "\u{266d}"; // bemol
-    return "";
+  typeAlteration (){
+    if (isSharp(this.nota1)) return `sharp`; // sostenido
+    if (isFlat(this.nota1)) return `flat`; // bemol
+    return "none"; 
   }
-
-  alterationSize (){
-     if (isSharp(this.nota1)) return `sharp ${this.nota1}s`; // sostenido
-    if (isFlat(this.nota1)) return `flat ${this.nota1}f`; // bemol
-    return "hidden"; 
-
-    /* let merdaputa = "hidden";
-    if (isSharp(this.nota1)) merdaputa= `sharp ${this.nota1}s`; // sostenido
-    if (isFlat(this.nota1)) merdaputa= `flat ${this.nota1}f`; // bemol
-    console.log(merdaputa);
-    
-    return merdaputa; */
-
-  }
+  
 
   // Render the UI as a function of component state
   render() {
+    console.log(this.typeAlteration());
     const sizeValues = html`<style> 
       .size {
         height: ${this.height};
@@ -145,7 +117,8 @@ export class MyStaff extends LitElement {
         <div class="linea linea-corta element13 ${line_13_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
 
         <div class="nota ${this.nota1}"></div>
-        <div class="alteration ${this.alterationSize()}">${this.alteration()}</div>         
+  
+        <my-alteration typeAlteration="${this.typeAlteration()}" topDistance="${noteTop[this.nota1]}"></my-alteration>
 
         </div>
     `;
@@ -153,3 +126,4 @@ export class MyStaff extends LitElement {
 }
 customElements.define("my-staff", MyStaff);
 
+//<!--  <div class="alteration ${this.alterationSize()}">${this.alteration()}</div> -->

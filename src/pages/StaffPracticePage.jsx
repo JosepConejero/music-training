@@ -58,15 +58,11 @@ export const StaffPracticePage = () => {
     if (!nIntervId.current) {
       nIntervId.current = setInterval(() => updateNote(getNote(min, max)), speed.current);
     } else {
-      /* clearInterval(nIntervId.current);
-      nIntervId.current = null; */
       resetInterval();
     }
   };
 
   const setSpeed = (newSpeed) => {
-/*     clearInterval(nIntervId.current);
-    nIntervId.current = null; */
     resetInterval();
     setCurrentSpeed(newSpeed);
     speed.current = newSpeed;
@@ -100,7 +96,6 @@ const resetInterval = ()=>{
       <Navbar />
       <main className="staff-practice">
         <span className="title">STAFF PRACTICE</span>
-        {/*  <Staff activeNote={activeNote} /> */}
         <my-staff nota1={activeNote}></my-staff>
         <div className="container-span">
           <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{activeNote}</span>

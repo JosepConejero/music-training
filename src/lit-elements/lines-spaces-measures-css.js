@@ -111,67 +111,6 @@ export const lines_spaces_measures = css`
 .dob3    { top: calc(92.85% + 1px); }
 
 
-
-
-.las6s    { top: -4.5%; }
-.sols6s   { top: -0.93%; }
-.fas6s    { top: 2.64%; }
-.mis6s    { top: 6.21%; }
-.res6s    { top: 9.78%; }
-.dos6s    { top: 13.35%; }
-.sis5s    { top: 16.92%; }
-.las5s    { top: 20.5%; }
-.sols5s   { top: 24.07%; }
-.fas5s    { top: 27.64%; }
-.mis5s    { top: 31.21%; }
-.res5s    { top: 34.78%; }
-.dos5s    { top: 38.35%; }
-.sis4s    { top: 41.93%; }
-.las4s    { top: 45.5%; }
-.sols4s   { top: 49.07%; }
-.fas4s    { top: 52.64%; }
-.mis4s    { top: 56.21%; }
-.res4s    { top: 59.78%; }
-.dos4s    { top: 63.35%; }
-.sis3s    { top: 66.92%; }
-.las3s    { top: 70.5%; }
-.sols3s   { top: 74.07%; }
-.fas3s    { top: 77.64%; }
-.mis3s    { top: 81.21%; }
-.res3s    { top: 84.78%; }
-.dos3s    { top: 88.35%; }
-
-
-
- .lab6f { top: -16%; }
-.solb6f { top: -12.43%; }
- .fab6f { top: -8.86%; }
- .mib6f { top: -5.29%; }
- .reb6f { top: -1.72%; }
- .dob6f { top: 1.85%; }
- .sib5f { top: 5.42%; }
- .lab5f { top: 9%; }
-.solb5f { top: 12.57%; }
- .fab5f { top: 16.14%; }
- .mib5f { top: 19.71%; }
- .reb5f { top: 23.28%; }
- .dob5f { top: 26.85%; }
- .sib4f { top: 30.43%; }
- .lab4f { top: 34%; }
-.solb4f { top: 37.57%; }
- .fab4f { top: 41.14%; }
- .mib4f { top: 44.71%; }
- .reb4f { top: 48.28%; }
- .dob4f { top: 51.85%; }
- .sib3f { top: 55.42%; }
- .lab3f { top: 59%; }
-.solb3f { top: 62.57%; }
- .fab3f { top: 66.14%; }
- .mib3f { top: 69.71%; }
- .reb3f { top: 73.28%; }
- .dob3f { top: 76.85%; }
-
-
 `;
 
 

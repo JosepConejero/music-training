@@ -5,6 +5,7 @@ export class MyTrumpetPistons extends LitElement {
     pistons: {},
     width: {},
     heigth: {},
+//    isTrumpet: {},
   };
 
   // Define scoped styles right with your component, in plain CSS
@@ -12,23 +13,16 @@ export class MyTrumpetPistons extends LitElement {
     :host {
       margin: 0;
       padding: 0;
+      --proportion: 60px;
+      --text-size: calc(var(--proportion) * 1.5);
     }
 
-/*     .container {
-      position: relative;
-      margin: 1em;
-      display: flex;
-      flex-direction: row;
-    } */
-
- .pistons {
+.pistons {
   display: flex;
   flex-direction: column; 
-  --proportion: 60px;
   height: var(--proportion);
-  --text-size: calc(var(--proportion) * 1.5);
   width: var(--text-size);
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .numbers {
@@ -37,19 +31,23 @@ export class MyTrumpetPistons extends LitElement {
   width: 100%;
   justify-content: space-around;
   align-items: center;
-/*   border: 1px solid black; */
-   font-size: var(--text-size); /*para que el hijo herede este tamaño y pueda usar porcentajes; si no, los porcentajes no van*/
+  font-size: var(--text-size); /*para que el hijo herede este tamaño y pueda usar porcentajes; si no, los porcentajes no van*/
 }
 
-.number1, .number2, .number3 {
+.visible-number {
   height: 100%;
   width: 100%;
   text-align: center;
   font-weight: bold;
   font-size: 27%; /*hereda del padre*/
-  color: transparent;
-/*   border: 1px solid black; */
+  /* color: transparent; */
+  /* border: 1px solid black;  */
 }
+
+.no-number {
+  color: transparent;
+}
+
 .circles {
   display: flex;
   height: 50%;
@@ -58,12 +56,19 @@ export class MyTrumpetPistons extends LitElement {
   align-items: center;
 }
 
-.circle1, .circle2, .circle3 {
+.empty-circle {
   height: 88%;
   width: 29%;
   border: 1px solid black;
   border-radius: 50%;
 }
+
+.full-circle {
+  background-color: black;
+}
+
+
+
   `;
   
   constructor() {
@@ -72,31 +77,35 @@ export class MyTrumpetPistons extends LitElement {
     this.pistons = "";
     this.height = '250px';
     this.width = '100px';
+//    this.isTrumpet = false;
   }
 
   // Render the UI as a function of component state
   render() {
     const sizeValues = html`<style> 
-      .size {
+      .measures {
         height: ${this.height};
         width: ${this.width};  
       }
     </style>`;
-    return html`
-      ${sizeValues}
-      <div class="pistons">
+
+    const trumpetNotes = html`
+          ${sizeValues}
+      <div class="pistons measures">
         <div class="numbers">
-            <div class="number1">1</div>
-            <div class="number2">2</div>
-            <div class="number3">3</div>
+            <div class="visible-number ${this.pistons?.includes(1) ? "" : "no-number"}">1</div>
+            <div class="visible-number ${this.pistons?.includes(2) ? "" : "no-number"}">2</div>
+            <div class="visible-number ${this.pistons?.includes(3) ? "" : "no-number"}">3</div>
         </div>
         <div class="circles">
-            <div class="circle1"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
+            <div class="empty-circle ${this.pistons?.includes(1) ? "full-circle" : ""}"></div>
+            <div class="empty-circle ${this.pistons?.includes(2) ? "full-circle" : ""}"></div>
+            <div class="empty-circle ${this.pistons?.includes(3) ? "full-circle" : ""}"></div>
         </div>
     </div>
-    `;
+    `
+return trumpetNotes;
+    
   }
 }
 customElements.define("my-trumpet-pistons", MyTrumpetPistons);

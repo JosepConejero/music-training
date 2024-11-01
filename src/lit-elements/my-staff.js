@@ -90,7 +90,6 @@ export class MyStaff extends LitElement {
 
   // Render the UI as a function of component state
   render() {
-    console.log(this.typeAlteration());
     const sizeValues = html`<style> 
       .size {
         height: ${this.height};
@@ -126,4 +125,3 @@ export class MyStaff extends LitElement {
 }
 customElements.define("my-staff", MyStaff);
 
-//<!--  <div class="alteration ${this.alterationSize()}">${this.alteration()}</div> -->

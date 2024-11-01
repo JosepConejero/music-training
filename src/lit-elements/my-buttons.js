@@ -21,8 +21,6 @@ export class MyButtons extends LitElement {
 
     .container {
       position: relative;
-      /* border: 1px solid black; */
-      margin: 1em;
       display: flex;
       flex-direction:column;
     }

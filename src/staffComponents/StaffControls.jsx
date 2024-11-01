@@ -90,6 +90,7 @@ export const StaffControls = ({ buttonHandlers }) => {
   return (
     <>
       <div className="controls">
+
         <div>
           <MyThreeButtons
               activateAction={showNoteAction[selectedItemIndex]} 
@@ -114,11 +115,25 @@ export const StaffControls = ({ buttonHandlers }) => {
           />
         </div>
 
-        <div></div>
-        <button className={isOneOctavePressed ? "pressed-one-octave-toggle" : "one-octave-toggle"} onClick={handleOneOctaveToggle}>
+        <div className="vertical-buttons">
+          <button className={isOneOctavePressed ? "pressed-one-octave-toggle" : "one-octave-toggle"} onClick={handleOneOctaveToggle}>
           less than 8
-        </button>
-        {/* <span className="fromTo">
+          </button>
+
+          <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
+            answer
+          </button>
+        </div>
+
+      </div>
+    </>
+  );
+};
+
+
+
+
+/* <span className="fromTo">
           <span> from</span>
           <select name="fromSelect" onChange={onFromSelectChange}>
             {Object.keys(distancia).map((note, index) => (
@@ -136,9 +151,9 @@ export const StaffControls = ({ buttonHandlers }) => {
               </option>
             ))}
           </select>
-        </span> */}
+        </span>
 
-       {/*  <div className="speedBox">
+         <div className="speedBox">
           <button className={currentSpeed === 500 ? "pressed-speed-button" : "speed-button"} onClick={() => setSpeed(500)}>
             0.5 s.
           </button>
@@ -151,9 +166,9 @@ export const StaffControls = ({ buttonHandlers }) => {
           <button className={currentSpeed === 2000 ? "pressed-speed-button" : "speed-button"} onClick={() => setSpeed(2000)}>
             2 s.
           </button>
-        </div> */}
+        </div> 
 
-    {/*     <div>
+         <div>
           <button className="buttonNext" onClick={() => showNextNote(0, 27)}>
             5 + 8 lines
           </button>
@@ -197,18 +212,10 @@ export const StaffControls = ({ buttonHandlers }) => {
           <button className="buttonNextSelectionTime" onClick={() => timeHandler(fromSelection.current, toSelection.current)}>
             Timed sel
           </button>
-        </div> */}
+        </div> 
+        
+         <img src="/assets/play.ico" alt="logo de play"></img> 
+         <p>Lo que hay es: {optionsRange[selectedItemIndex]}</p> 
 
-        <div>
-          <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
-            ?
-          </button>
-        </div>
-
-
-{/* <img src="/assets/play.ico" alt="logo de play"></img> */}
-      {/*   <p>Lo que hay es: {optionsRange[selectedItemIndex]}</p> */}
-      </div>
-    </>
-  );
-};
+        
+        */

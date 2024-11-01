@@ -5,10 +5,12 @@ import { complete_notes_distances } from "../staffHandlers/complete-notes-distan
 import "../lit-elements/my-staff";
 import "../lit-elements/my-trumpet-pistons";
 import "../staffComponents/staffStyles.css";
+import { pistons } from "../staffHandlers/pistons";
+import { graphicNotes } from "../staffHandlers/graphic-notes";
 
 
 export const StaffPracticePage = () => {
-  const notaInicial = "do4"; //19
+  const notaInicial = "do4"; 
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const [activeNote, setActiveNote] = useState(notaInicial);
   const activeNoteRef = useRef(notaInicial);
@@ -89,6 +91,10 @@ const resetInterval = ()=>{
     resetInterval: resetInterval,
   };
 
+const isTrumpet = (note)=>{
+  if (Object.keys(complete_notes_distances).indexOf(note) < 16 || Object.keys(complete_notes_distances).indexOf(note) > 69) return false;
+  return true;
+}
 
 
   return (
@@ -98,10 +104,10 @@ const resetInterval = ()=>{
         <span className="title">STAFF PRACTICE</span>
         <my-staff nota1={activeNote}></my-staff>
         <div className="container-span">
-          <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{activeNote}</span>
-          <my-trumpet-pistons></my-trumpet-pistons>
+          <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{graphicNotes[activeNote]}</span>
+          {isAnswerVisible && isTrumpet(activeNote) && <my-trumpet-pistons pistons={pistons[activeNote]}></my-trumpet-pistons> }
         </div>
-        <StaffControls buttonHandlers={buttonHandlers} />
+        <StaffControls buttonHandlers={buttonHandlers}/>
       </main>
     </>
   );

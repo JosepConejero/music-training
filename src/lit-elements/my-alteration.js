@@ -17,10 +17,9 @@ export class MyAlteration extends LitElement {
         padding: 0;
     }
 
-    .sharp {
+    .sharp, .flat {
         background-color: transparent;
         position: relative;
-        /* border: 1px solid black; */
     }
 
     .vertic1 {
@@ -59,13 +58,8 @@ export class MyAlteration extends LitElement {
         transform: skewY(-25deg);
     }
 
-    .none, {
+    .none {
         visibility: hidden;
-    }
-
-    .flat {
-        background-color: transparent;
-        position: relative;
     }
 
 
@@ -81,7 +75,6 @@ export class MyAlteration extends LitElement {
   }
 
   render() {
-    console.log(this.typeAlteration);
 
     const sizeValues = html`<style> 
       .measures {

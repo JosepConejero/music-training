@@ -95,7 +95,22 @@ span {
   width: var(--button-wide);
 }
 
-.vertical-buttons button {
+/* .vertical-buttons button {
   height: 40%;
+} */
 
+.vertical-buttons div {
+  height: 40%;
+}
+
+.staff-practice-page-container {
+  position: relative; /* lo dejo para el botón de ayuda posterior*/
+}
+
+.container-row-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
 }

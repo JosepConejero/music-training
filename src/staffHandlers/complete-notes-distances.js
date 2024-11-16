@@ -91,7 +91,7 @@ export const complete_notes_distances = {
   reb4: 34, // 56 -> 5 líneas
   dos4: 34,
   
-  do4: 35,
+  do4: 35, // 58
   sis3: 35,
   
   dob4: 36,

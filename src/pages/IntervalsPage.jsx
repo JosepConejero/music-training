@@ -5,6 +5,7 @@ import { uniqueKey } from "../helpers/uniqueKey";
 import { randomElementFromObject } from "../pagesHelpers/randomElementFromObject";
 import "./pages.css";
 import "../lit-elements/my-intervals"
+import { MyButton } from "../lit-react-components/MyButton";
 
 export const IntervalsPage = () => {
   const [pressedAnswerButton, setPressedAnswerButton] = useState(false);
@@ -50,15 +51,19 @@ export const IntervalsPage = () => {
           </div>
 
           <div className="interval-buttons-container">
-            <div className="interval-next-button-box">
-              <button className="interval-next-button" onClick={showNextIntervalAnswer}>
+            {/* <div className="interval-next-button-box"> */}
+            <div className="interval-buttons">
+              {/* <button className="interval-next-button" onClick={showNextIntervalAnswer}>
                 NEXT
-              </button>
+              </button> */}
+              <MyButton width="120px" height="40px" actionOnClick={showNextIntervalAnswer} text="NEXT"></MyButton>
             </div>
-            <div className="interval-show-table-box">
-              <button className="interval-show-table-button" onClick={showIntervalTable}>
+            {/* <div className="interval-show-table-box"> */}
+            <div className="interval-buttons">
+              {/* <button className="interval-show-table-button" onClick={showIntervalTable}>
                 SHOW TABLE
-              </button>
+              </button> */}
+              <MyButton width="120px" height="40px" toggle actionOnClick={showIntervalTable} text="SHOW TABLE"></MyButton>
             </div>
           </div>
 

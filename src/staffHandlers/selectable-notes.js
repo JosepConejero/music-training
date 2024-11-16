@@ -1,0 +1,118 @@
+export const siSharpNotesKind = [
+
+    "mis6",
+    "sis5",
+    "mis5",
+    "sis4",
+    "mis4",
+    "sis3",
+    "mis3",
+
+    "fab6",
+    "dob6",
+    "fab5",
+    "dob5",
+    "fab4",
+    "dob4",
+    "fab3",
+    "dob3",
+
+]; //15 notas
+
+export const sharpNotes = [
+
+    "las6",
+    "sols6",
+    "fas6",
+//    "mis6",
+    "res6",
+    "dos6",
+//    "sis5",
+    "las5",
+    "sols5",
+    "fas5",
+//    "mis5",
+    "res5",
+    "dos5",
+//    "sis4",
+    "las4",
+    "sols4",
+    "fas4",
+//    "mis4",
+    "res4",
+    "dos4",
+//    "sis3",
+    "las3",
+    "sols3",
+    "fas3",
+//    "mis3",
+    "res3",
+    "dos3",
+
+]; //20 notas
+
+export const flatNotes = [
+
+    "lab6",
+    "solb6",
+//    "fab6",
+    "mib6",
+    "reb6",
+//    "dob6",
+    "sib5",
+    "lab5",
+    "solb5",
+//    "fab5",
+    "mib5",
+    "reb5",
+//    "dob5",
+    "sib4",
+    "lab4",
+    "solb4",
+//    "fab4",
+    "mib4",
+    "reb4",
+//    "dob4",
+    "sib3",
+    "lab3",
+    "solb3",
+//    "fab3",
+    "mib3",
+    "reb3",
+//    "dob3",
+
+]; //19 notas
+
+export const normalNotes = [
+
+    "la6",
+    "sol6",
+    "fa6",
+    "mi6",
+    "re6",
+    "do6",
+    "si5",
+    "la5",
+    "sol5",
+    "fa5",
+    "mi5",
+    "re5",
+    "do5",
+    "si4",
+    "la4",
+    "sol4",
+    "fa4",
+    "mi4",
+    "re4",
+    "do4",
+    "si3",
+    "la3",
+    "sol3",
+    "fa3",
+    "mi3",
+    "re3",
+    "do3",
+
+]; //27 notas
+
+// 27 + 19 + 20 + 15 = 26 + 20 + 35 = 46 + 35 = 81

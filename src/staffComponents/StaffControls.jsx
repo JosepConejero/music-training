@@ -1,14 +1,17 @@
 import { useRef, useState } from "react";
 //import { uniqueKey } from "../helpers/uniqueKey";
 //import { distancia } from "../staffHandlers/distances";
-import "../lit-elements/my-buttons"
+import "../lit-elements/my-buttons";
+import "../lit-elements/my-button";
 import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
+import { MyButton } from "../lit-react-components/MyButton";
 
 export const StaffControls = ({ buttonHandlers }) => {
   const [togglePlay, setTogglePlay] = useState(false);
-  const { showNextNote, isOneOctavePressed, setIsOneOctavePressed, setSpeed, timeHandler, showAnswer, isAnswerVisible, /* currentSpeed,  */resetInterval } = buttonHandlers;
+  const { showNextNote, /* isOneOctavePressed,*/ setIsOneOctavePressed, setSpeed, timeHandler, showAnswer, 
+         /* isAnswerVisible,  *//* currentSpeed,  */resetInterval } = buttonHandlers;
   const fromSelection = useRef(0);
-  const toSelection = useRef(0);
+  const toSelection = useRef(80);
 
   const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines", "Voice", "Selection" ];
   const [selectedItemIndex, setSelectedItemIndex] = useState(1);
@@ -116,16 +119,25 @@ export const StaffControls = ({ buttonHandlers }) => {
         </div>
 
         <div className="vertical-buttons">
-          <button className={isOneOctavePressed ? "pressed-one-octave-toggle" : "one-octave-toggle"} onClick={handleOneOctaveToggle}>
+          {/* <button className={isOneOctavePressed ? "pressed-one-octave-toggle" : "one-octave-toggle"} onClick={handleOneOctaveToggle}>
           less than 8
-          </button>
+          </button> */}
+          <div>
+            <MyButton toggle actionOnClick={handleOneOctaveToggle} text="less than 8"></MyButton>
+          </div>
 
-          <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
+         {/*  <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
             answer
-          </button>
+          </button> */}
+          <div>
+            <MyButton toggle actionOnClick={showAnswer} text="answer"></MyButton>
+          </div>
         </div>
 
+      
       </div>
+      
+      
     </>
   );
 };

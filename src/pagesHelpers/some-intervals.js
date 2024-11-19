@@ -1,4 +1,4 @@
-export const intervals = {
+export const someIntervals = {
   //hay 43
   "si3 do4": "0 - 2ª",
   "do4 si3": "0 - 2ª",
@@ -98,3 +98,4 @@ export const intervals = {
   "do4 do5": "11 - 8ª",
   "do5 do4": "11 - 8ª",
 };
+

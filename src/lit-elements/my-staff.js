@@ -16,7 +16,7 @@ export class MyStaff extends LitElement {
     /* nota1: { type: String, state: true, attribute: 'nota1' }, */
     nota1: {},
     nota2: {},
-    notas: {},
+    //notas: {},
     width: {},
     heigth: {},
   };
@@ -69,6 +69,11 @@ export class MyStaff extends LitElement {
       left: calc(50% - 11%);
     }
 
+    .alteration {
+       position: absolute; 
+    }
+
+
      `];
 
   constructor() {
@@ -95,6 +100,12 @@ export class MyStaff extends LitElement {
         height: ${this.height};
         width: ${this.width};  
       }
+
+      .position-note1 {
+        top: ${noteTop[this.nota1]};
+        left: 25%;
+      }
+
     </style>`;
     return html`
       ${sizeValues}
@@ -116,12 +127,15 @@ export class MyStaff extends LitElement {
         <div class="linea linea-corta element13 ${line_13_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
 
         <div class="nota ${this.nota1}"></div>
-  
-        <my-alteration typeAlteration="${this.typeAlteration()}" topDistance="${noteTop[this.nota1]}"></my-alteration>
 
-        </div>
-    `;
-  }
-}
-customElements.define("my-staff", MyStaff);
+        <my-alteration class="alteration position-note1" typeAlteration="${this.typeAlteration()}" ></my-alteration>
 
+      </div>
+        `;
+      }
+    }
+    customElements.define("my-staff", MyStaff);
+    
+    
+    //<my-alteration typeAlteration="${this.typeAlteration()}" topDistance="${noteTop[this.nota1]}"></my-alteration>
+    //topDistance="${noteTop[this.nota1]}"

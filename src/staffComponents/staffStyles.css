@@ -1,7 +1,7 @@
-:root {
+/* :root {
   --button-wide: 80px;
 }
-
+ */
 .buttonAnswer {
   width: 100%; /* 6.7em; */
   background-color: #003838;
@@ -92,7 +92,7 @@ span {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: var(--button-wide);
+  /* width: var(--button-wide); */
 }
 
 /* .vertical-buttons button {

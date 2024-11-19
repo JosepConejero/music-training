@@ -4,8 +4,8 @@ export class MyAlteration extends LitElement {
   static properties = {
     width: {},
     height: {},
-    leftDistance: {},
-    topDistance: {},
+    /* leftDistance: {},
+    topDistance: {}, */
     typeAlteration: {},
   };
 
@@ -15,6 +15,7 @@ export class MyAlteration extends LitElement {
     :host {
         margin: 0;
         padding: 0;
+        
     }
 
     .sharp, .flat {
@@ -59,6 +60,7 @@ export class MyAlteration extends LitElement {
     }
 
     .none {
+        
         visibility: hidden;
     }
 
@@ -69,19 +71,18 @@ export class MyAlteration extends LitElement {
     super();
     this.height = '20px';
     this.width = '12px';
-    this.leftDistance = "25%";
-    this.topDistance = "25px";
+    //this.leftDistance = "25%";
+    //this.topDistance = "0%";
     this.typeAlteration = "sharp";
   }
-
+  /*       top: ${this.topDistance};
+        left: ${this.leftDistance}; */
   render() {
-
     const sizeValues = html`<style> 
       .measures {
         height: ${this.height};
         width: ${this.width};
-        top: ${this.topDistance};
-        left: ${this.leftDistance};
+
       }
     </style>`;
 

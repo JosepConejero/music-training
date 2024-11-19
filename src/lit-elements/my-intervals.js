@@ -1,6 +1,10 @@
 import { LitElement, css, html } from "lit";
 import { lines_spaces_measures } from "./lines-spaces-measures-css";
 import { line_10_notes, line_11_notes, line_12_notes, line_13_notes, line_1_notes, line_2_notes, line_3_notes, line_4_notes } from "../staffHandlers/lines-notes";
+import { noteTop } from "../staffHandlers/notes-tops";
+import { isSharp } from "../staffHandlers/isSharp";
+import { isFlat } from "../staffHandlers/isFlat";
+import "./my-alteration";
 
 export class MyIntervals extends LitElement {
   static properties = {
@@ -21,16 +25,11 @@ export class MyIntervals extends LitElement {
     :host {
       margin: 0;
       padding: 0;
-  /*  --alto: 250px;
-      --ancho: 100px;  */
     }
 
     .container {
       position: relative;
       margin: 1em;
-  /*  height: var(--alto);
-      width: var(--ancho); 
-      border: 1px solid black;  */
     }
 
     .linea {
@@ -79,7 +78,7 @@ export class MyIntervals extends LitElement {
       left: calc(50% + 15%);
     }
 
-    .sostenido1 {
+ /*    .sostenido1 {
       position: absolute;
       width: 20%;
       height: calc(7.14% - 1px);
@@ -97,7 +96,12 @@ export class MyIntervals extends LitElement {
       border: 1px solid black;
       left: calc(50% + 5%);
       visibility: hidden;
+    } */
+
+    .alteration {
+       position: absolute; 
     }
+
      `];
 
   constructor() {
@@ -110,13 +114,31 @@ export class MyIntervals extends LitElement {
     this.width = '100px';
   }
 
+  typeAlteration (note){
+    if (isSharp(note)) return `sharp`; // sostenido
+    if (isFlat(note)) return `flat`; // bemol
+    return "none"; 
+  }
+
   // Render the UI as a function of component state
   render() {
+   //console.log(noteTop[this.nota1], noteTop[this.nota2])
     const sizeValues = html`<style> 
       .size {
         height: ${this.height};
         width: ${this.width};  
       }
+
+      .position-note1 {
+        top: ${noteTop[this.nota1]};
+        left: calc(50% - 44%);
+      }
+
+      .position-note2 {
+        top: ${noteTop[this.nota2]};
+        left: calc(50% + 1%);
+      }
+
     </style>`;
     return html`
       ${sizeValues}
@@ -149,10 +171,22 @@ export class MyIntervals extends LitElement {
 
         <div class="nota1 ${this.nota1}"></div>
         <div class="nota2 ${this.nota2}"></div>
-        <div class="sostenido1 ${this.nota1}"></div>
-        <div class="sostenido2 ${this.nota2}"></div>
+
+        <my-alteration class="alteration position-note1" typeAlteration="${this.typeAlteration(this.nota1)}"></my-alteration>
+        <my-alteration class="alteration position-note2" typeAlteration="${this.typeAlteration(this.nota2)}"></my-alteration>
+              
       </div>
     `;
-  }
-}
-customElements.define("my-intervals", MyIntervals);
+   }
+  };
+
+  customElements.define("my-intervals", MyIntervals);
+  
+  
+
+//  topDistance="${noteTop[this.nota1]}"
+//  topDistance="${noteTop[this.nota2]}"
+
+
+//leftDistance="calc(50% - 45%)" 
+// leftDistance="calc(50% + 1%)"

@@ -34,12 +34,6 @@ export const StaffPracticePage = () => {
     if (!isFlatShowed) notes = [...notes, ...flatNotes];
     if (!isNormalNotesShowed) notes = [...notes, ...normalNotes];
 
-/*     const notesWithDuplicates = new Set(notes);
-
-    let notesWithoutDuplicates = [...notesWithDuplicates];
-    
-    console.log(notesWithoutDuplicates);
-    return notesWithoutDuplicates; */
     return notes;
   }
 
@@ -57,23 +51,22 @@ export const StaffPracticePage = () => {
     const maxFloored = Math.floor(max);
 
     if (forbiddenNotes.length >= max_number_of_notes) {
-      randomNote = 58;
-      console.log("no hay notas que mostrar");
+      randomNote = 58; //cuando no hay notas q mostrar, q muestre el do4
     }
     else {
       do {
         randomNote = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+
         //aquí empieza la comprobación de más de una octava
         // se restan los valores de las notas (valor numérico asignado a cada propiedad/nota) 
         // NO se resta el índice del array de keys 
         // es decir, sols5 y lab5 serían la misma nota y tendrían el mismo valor asociado en el objeto de complete_notes_distances
-        
         const randomNoteValue = Object.values(complete_notes_distances)[randomNote];
         const currentNoteValue = Object.values(complete_notes_distances)[currentNote];
-        
         const resta = Math.abs(Math.abs(randomNoteValue) - Math.abs(currentNoteValue));
         moreThanOneOctave = isOneOctavePressed && resta > 13; //si está pulsado el botón
         //aquí acaba la comprobación de más de una octava
+
         isTheSameNote = randomNote === currentNote;
         isAforbiddenNote = forbiddenNotes.includes(Object.keys(complete_notes_distances)[randomNote]);
       } while (isTheSameNote || moreThanOneOctave || isAforbiddenNote);

@@ -54,10 +54,7 @@ export class MySharpFlatShowedButtons extends LitElement {
           width: ${this.width};  
         }
       </style>`;
-   /*     console.log(this.isSiSharpKindShowed);
-      console.log(this.isSharpShowed);
-      console.log(this.isFlatShowed);  */
-//actionOnClick=${this.isSiSharpKindShowedAction
+
       return html`
         ${sizeValues} 
         <div class="container size">

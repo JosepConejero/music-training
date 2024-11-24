@@ -14,6 +14,8 @@ export class MyIntervals extends LitElement {
     nota2: {},
     width: {},
     heigth: {},
+    showingMode: {type: Boolean, converter: (value)=>value.toString()},
+    showingModeText: {},
   };
 
   // Define scoped styles right with your component, in plain CSS
@@ -102,6 +104,19 @@ export class MyIntervals extends LitElement {
        position: absolute; 
     }
 
+    .showing-mode {
+       position: absolute; 
+       left: 55%;
+       top: 44%;
+       font-size: 1.5em;
+       font-weight: bold;
+       color: yellow;
+       
+       border-radius: 3px;
+       padding: 2px;
+       background: grey;
+    }
+
      `];
 
   constructor() {
@@ -112,6 +127,8 @@ export class MyIntervals extends LitElement {
     this.nota2 = '';
     this.height = '250px';
     this.width = '100px';
+    //this.showingMode = true;
+    this.showingModeText = "+3";
   }
 
   typeAlteration (note){
@@ -120,9 +137,32 @@ export class MyIntervals extends LitElement {
     return "none"; 
   }
 
+  setUserMode (){
+    if (this.showingMode) {
+      return html`
+        <span class="showing-mode">${this.showingModeText}</span>
+      `;
+    } else {
+        return html`
+          <div class="linea linea-corta2 element1 ${line_1_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+          <div class="linea linea-corta2 element2 ${line_2_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+          <div class="linea linea-corta2 element3 ${line_3_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+          <div class="linea linea-corta2 element4 ${line_4_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+
+          <div class="linea linea-corta2 element10 ${line_10_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+          <div class="linea linea-corta2 element11 ${line_11_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+          <div class="linea linea-corta2 element12 ${line_12_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+          <div class="linea linea-corta2 element13 ${line_13_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
+
+          <div class="nota2 ${this.nota2}"></div>    
+          <my-alteration class="alteration position-note2" typeAlteration="${this.typeAlteration(this.nota2)}"></my-alteration>
+        `; 
+    }
+}
+
   // Render the UI as a function of component state
   render() {
-   //console.log(noteTop[this.nota1], noteTop[this.nota2])
+    console.log(this.showingMode, "por aquí");  
     const sizeValues = html`<style> 
       .size {
         height: ${this.height};
@@ -148,10 +188,6 @@ export class MyIntervals extends LitElement {
         <div class="linea linea-corta1 element3 ${line_3_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
         <div class="linea linea-corta1 element4 ${line_4_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
 
-        <div class="linea linea-corta2 element1 ${line_1_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element2 ${line_2_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element3 ${line_3_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element4 ${line_4_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
 
         <div class="linea linea-larga element5"></div>
         <div class="linea linea-larga element6"></div>
@@ -164,16 +200,11 @@ export class MyIntervals extends LitElement {
         <div class="linea linea-corta1 element12 ${line_12_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
         <div class="linea linea-corta1 element13 ${line_13_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
 
-        <div class="linea linea-corta2 element10 ${line_10_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element11 ${line_11_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element12 ${line_12_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
-        <div class="linea linea-corta2 element13 ${line_13_notes.includes(this.nota2) ? "linea-visible" : "linea-oculta"}"></div>
 
         <div class="nota1 ${this.nota1}"></div>
-        <div class="nota2 ${this.nota2}"></div>
-
         <my-alteration class="alteration position-note1" typeAlteration="${this.typeAlteration(this.nota1)}"></my-alteration>
-        <my-alteration class="alteration position-note2" typeAlteration="${this.typeAlteration(this.nota2)}"></my-alteration>
+
+        ${this.setUserMode()}        
               
       </div>
     `;
@@ -182,6 +213,7 @@ export class MyIntervals extends LitElement {
 
   customElements.define("my-intervals", MyIntervals);
   
+//  <div class="nota2 ${this.nota2}"></div>
   
 
 //  topDistance="${noteTop[this.nota1]}"

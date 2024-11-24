@@ -1,29 +1,41 @@
 import { useState } from "react";
 import { Navbar } from "../components/Navbar";
-//import { someIntervals } from "../pagesHelpers/some-intervals";
-//import { uniqueKey } from "../helpers/uniqueKey";
-import { randomElementFromArray } from "../pagesHelpers/randomElementFromArray";
 import "./pages.css";
-import "../lit-elements/my-intervals"
-import { MyButton } from "../lit-react-components/MyButton";
 import { completeIntervals } from "../pagesHelpers/complete-intervals";
+import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
+import { randomInterval } from "../pagesHelpers/random-Interval";
+import { MyIntervals } from "../lit-react-components/MyIntervals";
 
 export const IntervalsPage = () => {
+  const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
   const [pressedAnswerButton, setPressedAnswerButton] = useState(false);
- // const [pressedShowTableButton, setPressedShowTableButton] = useState(false);
-  const [currentInterval, setCurrentInterval] = useState(randomElementFromArray(completeIntervals));
+  const [isSharpShowed, setIsSharpShowed]=useState(true);
+  const [isFlatShowed, setIsFlatShowed]=useState(true);
+  const [isLessThan8Showed, setIsLessThan8Showed]=useState(true);
+  const [isShowingModePressed, setIsShowingModePressed]=useState(false);
 
   const showAnswer = () => {
     setPressedAnswerButton((prevState) => !prevState);
   };
 
-/*   const showIntervalTable = () => {
-    setPressedShowTableButton((prevState) => !prevState);
-  }; */
-
   const showNextIntervalAnswer = () => {
-    setCurrentInterval(randomElementFromArray(completeIntervals));
+    setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isLessThan8Showed));
   };
+
+  const updateIsSharpShowed = () => {
+    setIsSharpShowed((prevState)=> !prevState);    
+  }
+
+  const updateIsFlatShowed = () => {
+    setIsFlatShowed((prevState)=> !prevState);    
+  }
+  const updateIsLessThan8Showed = () => {
+    setIsLessThan8Showed((prevState)=> !prevState);    
+  }
+
+  const updateIsShowingModePressed = () => {
+    setIsShowingModePressed((prevState)=> !prevState);    
+  }
 
   return (
     <>
@@ -36,12 +48,17 @@ export const IntervalsPage = () => {
         <div className="bloque-vertical">
           {/* <div className="interval-view-container"> */}
             <div onClick={showAnswer}>
-              <my-intervals nota1={currentInterval.note1} nota2={currentInterval.note2}></my-intervals>
-              
+              <MyIntervals showingMode={isShowingModePressed} showingModeText={currentInterval.direction + currentInterval.keysInBetween} nota1={currentInterval.note1} nota2={currentInterval.note2}/>
             </div>
             <div className="interval-view-ask-box">
-              <p className="interval-view-ask-text" onClick={showAnswer}>
+              <p className="interval-view-ask-text" /* onClick={showAnswer} */>
                 {pressedAnswerButton ? currentInterval.name : ""}
+              </p>
+              <p className="interval-view-ask-text" /* onClick={showAnswer} */>
+                {pressedAnswerButton ? currentInterval.keysInBetween+" piano keys in between" : ""}
+              </p>
+              <p className="interval-view-ask-text" /* onClick={showAnswer} */>
+                {pressedAnswerButton ? currentInterval.semitones+" semitones" : ""}
               </p>
             </div>
             {/* <div className="interval-view-answer-box">
@@ -57,15 +74,29 @@ export const IntervalsPage = () => {
               {/* <button className="interval-next-button" onClick={showNextIntervalAnswer}>
                 NEXT
               </button> */}
-              <MyButton width="120px" height="40px" actionOnClick={showNextIntervalAnswer} text="NEXT"></MyButton>
+              {/* <MyButton width="120px" height="40px" actionOnClick={showNextIntervalAnswer} text="NEXT"></MyButton> */}
+              <MyIntervalButtons 
+                    height="80px" 
+                    width="350px" 
+                    showNext={showNextIntervalAnswer}
+                    isSharpShowed={isSharpShowed}
+                    isFlatShowed={isFlatShowed}
+                    isLessThan8Showed={isLessThan8Showed}
+                    isShowingModePressed={isShowingModePressed}
+                    isSharpShowedAction={updateIsSharpShowed}
+                    isFlatShowedAction={updateIsFlatShowed}
+                    isLessThan8ShowedAction={updateIsLessThan8Showed}
+                    isShowingModePressedAction={updateIsShowingModePressed}
+              />
+              
             </div>
             {/* <div className="interval-show-table-box"> */}
-            <div className="interval-buttons">
+           {/*  <div className="interval-buttons"> */}
               {/* <button className="interval-show-table-button" onClick={showIntervalTable}>
                 SHOW TABLE
               </button> */}
              {/*  <MyButton width="120px" height="40px" toggle actionOnClick={showIntervalTable} text="SHOW TABLE"></MyButton> */}
-            </div>
+           {/*  </div> */}
           </div>
 
           {/* <div className={pressedShowTableButton ? "interval-table-container" : "hidden-interval-table-container"}>

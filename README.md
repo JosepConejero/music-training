@@ -3,14 +3,14 @@
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
-- quitar tabla intervalos
 - altura de la pantalla se sale un poco por abajo
 
 
 # TAREAS SIGUIENTES
-- añadir en los intervalos un '+6' o '-3', etc. y al pulsar q se vea qué 2ª nota es
+- probar a quitar lo del converter
+- retocar detalles de los botones de los intervalos
+- hilera de botones genérica horizontal o vertical para crear los que queramos
 - añadir audio, mp3 de las notas para dictados
-- sostenidos y bemoles para los intervalos
 - añadir sombras a los botones
 - arreglar lo del temporizador con un toggle de play / que todos los botones se ensombrezcan cuando esté pulsado el play / que el play se ensombrezca
 - incluir en el componente my-buttons un icono para play y otro para stop (y añadirlo como atributo del componente, p.e. icons="play/stop")

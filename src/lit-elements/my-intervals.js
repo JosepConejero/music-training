@@ -162,7 +162,6 @@ export class MyIntervals extends LitElement {
 
   // Render the UI as a function of component state
   render() {
-    console.log(this.showingMode, "por aquí");  
     const sizeValues = html`<style> 
       .size {
         height: ${this.height};

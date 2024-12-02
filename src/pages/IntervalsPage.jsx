@@ -5,6 +5,8 @@ import { completeIntervals } from "../pagesHelpers/complete-intervals";
 import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
 import { randomInterval } from "../pagesHelpers/random-Interval";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
+//import "../lit-elements/my-keyboard.js";
+import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 
 export const IntervalsPage = () => {
   const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
@@ -98,6 +100,9 @@ export const IntervalsPage = () => {
              {/*  <MyButton width="120px" height="40px" toggle actionOnClick={showIntervalTable} text="SHOW TABLE"></MyButton> */}
            {/*  </div> */}
           </div>
+
+          {/* <my-keyboard></my-keyboard> */}
+          <MyKeyboard notes={[currentInterval.note1, currentInterval.note2]}></MyKeyboard>
 
           {/* <div className={pressedShowTableButton ? "interval-table-container" : "hidden-interval-table-container"}>
             <div className="interval-table-box">

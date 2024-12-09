@@ -11,10 +11,11 @@ import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 export const IntervalsPage = () => {
   const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
   const [pressedAnswerButton, setPressedAnswerButton] = useState(false);
-  const [isSharpShowed, setIsSharpShowed]=useState(true);
-  const [isFlatShowed, setIsFlatShowed]=useState(true);
-  const [isLessThan8Showed, setIsLessThan8Showed]=useState(true);
-  const [isShowingModePressed, setIsShowingModePressed]=useState(false);
+  const [isSharpShowed, setIsSharpShowed] = useState(true);
+  const [isFlatShowed, setIsFlatShowed] = useState(true);
+  const [isLessThan8Showed, setIsLessThan8Showed] = useState(true);
+  const [isShowingModePressed, setIsShowingModePressed] = useState(false);
+  const [isSemitonesToggleSelected, setIsSemitonesToggleSelected] = useState(true);
 
   const showAnswer = () => {
     setPressedAnswerButton((prevState) => !prevState);
@@ -39,6 +40,10 @@ export const IntervalsPage = () => {
     setIsShowingModePressed((prevState)=> !prevState);    
   }
 
+  const updateIsSemitonesToggleSelected = () => {
+    setIsSemitonesToggleSelected((prevState)=> !prevState);    
+  }
+
   return (
     <>
       <Navbar />
@@ -57,10 +62,11 @@ export const IntervalsPage = () => {
                 {pressedAnswerButton ? currentInterval.name : ""}
               </p>
               <p className="interval-view-ask-text" /* onClick={showAnswer} */>
-                {pressedAnswerButton ? currentInterval.keysInBetween+" piano keys in between" : ""}
-              </p>
-              <p className="interval-view-ask-text" /* onClick={showAnswer} */>
-                {pressedAnswerButton ? currentInterval.semitones+" semitones" : ""}
+                {pressedAnswerButton 
+                    ? (isSemitonesToggleSelected 
+                          ? currentInterval.semitones + " semitones"
+                          : currentInterval.keysInBetween + " piano keys in between" )
+                    : ""}
               </p>
             </div>
             {/* <div className="interval-view-answer-box">

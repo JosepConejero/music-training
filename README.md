@@ -10,7 +10,6 @@
 - probar a quitar lo del converter
 - retocar detalles de los botones de los intervalos
 - que se pueda mover con el dedo de una opción del menú principal a otra
-- ocultar/mostrar el teclado en la página de intervalos
 - hilera de botones genérica horizontal o vertical para crear los que queramos
 - añadir audio, mp3 de las notas para dictados
 - añadir sombras a los botones
@@ -23,10 +22,8 @@
 - dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
 - favicon
 - botón para mostrar / ocultar una información
-- poner bien la info de los intervalos
 - borrar clases de los elementos que he anulado
 - eliminar componente Staff y todos los de dentro (cuidado con el archivo .css correspondiente)
-- para el click en my-staff he de crear un componente react del lit component
 
 
 # VSC

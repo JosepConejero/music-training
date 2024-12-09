@@ -94,7 +94,6 @@ export class MyKeyboard extends LitElement {
 
   // Render the UI as a function of component state
   render() {
-    console.log(this.showSelectedNotes);
     const sizeValues = html`<style> 
         .keyboard {
            --fixed-value: ${this.width};

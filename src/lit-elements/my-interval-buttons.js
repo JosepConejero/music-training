@@ -5,15 +5,17 @@ export class MyIntervalButtons extends LitElement {
     static properties = {
       height: {type: Number},
       width: {type: Number}, 
-      isSharpShowed: {type: Boolean},
-      isFlatShowed: {type: Boolean},
-      isLessThan8Showed: {type: Boolean},
-      isShowingModePressed: {type: Boolean},
       showNext: {type: Function},
+      isSharpShowed: {type: Boolean},
       isSharpShowedAction: {type: Function},
+      isFlatShowed: {type: Boolean},
       isFlatShowedAction: {type: Function},
-      isLessThan8ShowedAction: {type: Function},
-      isShowingModePressedAction: {type: Function},
+      isNormalShowed: {type: Boolean},
+      isNormalShowedAction: {type: Boolean},
+     // isLessThan8Showed: {type: Boolean},
+     // isShowingModePressed: {type: Boolean},
+     // isLessThan8ShowedAction: {type: Function},
+     // isShowingModePressedAction: {type: Function},
     };
   
     // Define scoped styles right with your component, in plain CSS
@@ -44,8 +46,9 @@ export class MyIntervalButtons extends LitElement {
       this.width = "300px";
       this.isSharpShowed = true;
       this.isFlatShowed = true;
-      this.isLessThan8Showed = true;
-      this.isShowingModePressed = true;
+      this.isNormalShowed = true;
+     // this.isLessThan8Showed = true;
+      //this.isShowingModePressed = true;
     } 
   
     // Render the UI as a function of component state
@@ -70,14 +73,21 @@ export class MyIntervalButtons extends LitElement {
                 <my-button ?pressedButton=${this.isFlatShowed} toggle text="flat" @click=${this.isFlatShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isLessThan8Showed} toggle text="less than 8" @click=${this.isLessThan8ShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isNormalShowed} toggle text="normal" @click=${this.isNormalShowedAction}></my-button>
             </div>
-            <div class="div-button">
-                <my-button ?pressedButton=${this.isShowingModePressed} toggle text="mode" @click=${this.isShowingModePressedAction}></my-button>
-            </div>
+            
         </div>
       `;
     }
   }
   customElements.define("my-interval-buttons", MyIntervalButtons);
   
+/* <div class="div-button">
+                <my-button ?pressedButton=${this.isShowingModePressed} toggle text="mode" @click=${this.isShowingModePressedAction}></my-button>
+            </div> */
+
+
+/*             <div class="div-button">
+            <my-button ?pressedButton=${this.isLessThan8Showed} toggle text="less than 8" @click=${this.isLessThan8ShowedAction}></my-button>
+        </div>
+ */

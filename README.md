@@ -9,6 +9,8 @@
 # TAREAS SIGUIENTES
 - probar a quitar lo del converter
 - retocar detalles de los botones de los intervalos
+- que se pueda mover con el dedo de una opción del menú principal a otra
+- ocultar/mostrar el teclado en la página de intervalos
 - hilera de botones genérica horizontal o vertical para crear los que queramos
 - añadir audio, mp3 de las notas para dictados
 - añadir sombras a los botones

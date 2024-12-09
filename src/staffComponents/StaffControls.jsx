@@ -14,7 +14,7 @@ export const StaffControls = ({ buttonHandlers }) => {
   const toSelection = useRef(80);
 
   const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines", "Voice", "Selection" ];
-  const [selectedItemIndex, setSelectedItemIndex] = useState(1);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(2);
   const timeRange = ["0.5 s.", "1 s.", "1.5 s.", "2 s." ];
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(2);
 

@@ -15,7 +15,7 @@ export class MyStaff extends LitElement {
     clave: {},
     /* nota1: { type: String, state: true, attribute: 'nota1' }, */
     nota1: {},
-    nota2: {},
+    //nota2: {},
     //notas: {},
     width: {},
     heigth: {},

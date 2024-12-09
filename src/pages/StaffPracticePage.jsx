@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { complete_notes_distances } from "../staffHandlers/complete-notes-distances";
-import "../lit-elements/my-staff";
+//import "../lit-elements/my-staff";
 import "../lit-elements/my-trumpet-pistons";
 import "../staffComponents/staffStyles.css";
 import "../lit-elements/my-sharp-flat-showed-buttons";
@@ -10,6 +10,7 @@ import { pistons } from "../staffHandlers/pistons";
 import { graphicNotes } from "../staffHandlers/graphic-notes";
 import { MySharpFlatShowedButtons } from "../lit-react-components/MySharpFlatShowedButtons";
 import { siSharpNotesKind, flatNotes, sharpNotes, normalNotes } from "../staffHandlers/selectable-notes";
+import { MyStaff } from "../lit-react-components/MyStaff";
 
 
 export const StaffPracticePage = () => {
@@ -152,7 +153,8 @@ const isTrumpet = (note)=>{
       <main className="staff-practice">
         <span className="title">STAFF PRACTICE</span>
         <div className="container-row-center">
-          <my-staff nota1={activeNote}></my-staff>
+          {/* <my-staff nota1={activeNote} ></my-staff> */}
+          <MyStaff nota1={activeNote} onClick={showAnswer}/>
           <MySharpFlatShowedButtons 
             isSiSharpKindShowed={isSiSharpKindShowed} 
             isSharpShowed={isSharpShowed} 

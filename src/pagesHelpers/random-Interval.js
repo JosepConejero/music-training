@@ -1,7 +1,7 @@
 import { isFlat } from "../staffHandlers/isFlat";
 import { isSharp } from "../staffHandlers/isSharp";
 
-export const randomInterval = (intervals, isSharpShowed, isFlatShowed, isLessThan8Showed) => {
+export const randomInterval = (intervals, isSharpShowed, isFlatShowed, isLessThan8Showed, isNormalShowed) => {
     let randomElement;
     let hasSharpNotes, hasFlatNotes, IsMoreThan8Notes;
     const min = 0;
@@ -10,6 +10,8 @@ export const randomInterval = (intervals, isSharpShowed, isFlatShowed, isLessTha
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
   
+//aquí comprueba si isSharpShowed, isFlatShowed y isNormalShowed están las tres a true, y entonces no entra en el do y devuelve algo por defecto
+
     do {
       randomElement = Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
       hasSharpNotes = isSharp(intervals[randomElement].note1) || isSharp(intervals[randomElement].note2);

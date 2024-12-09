@@ -84,7 +84,7 @@ export class MyKeyboard extends LitElement {
         this.notes = [];
         this.width = '360px';
         //this.color = "red";
-        this.showSelectedNotes = false;
+        this.showSelectedNotes = true;
     }
 
     toggleSelectedNotes (){

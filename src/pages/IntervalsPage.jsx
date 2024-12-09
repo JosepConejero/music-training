@@ -24,7 +24,7 @@ export const IntervalsPage = () => {
   };
 
   const showNextIntervalAnswer = () => {
-    setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isLessThan8Showed)); // <----- isNormalShowed
+    setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isLessThan8Showed, isNormalShowed)); 
   };
 
   const updateIsSharpShowed = () => {

@@ -7,19 +7,19 @@
 
 
 # TAREAS SIGUIENTES
-- probar a quitar lo del converter
-- retocar detalles de los botones de los intervalos
-- que se pueda mover con el dedo de una opción del menú principal a otra
-- hilera de botones genérica horizontal o vertical para crear los que queramos
-- añadir audio, mp3 de las notas para dictados
-- añadir sombras a los botones
+- botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
+- dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
+- dibujar el play, stop y flechas de la pestaña staff y añadirlos
+- solucionar la anchura de los triángulos en los botones de up y down
 - arreglar lo del temporizador con un toggle de play / que todos los botones se ensombrezcan cuando esté pulsado el play / que el play se ensombrezca
 - incluir en el componente my-buttons un icono para play y otro para stop (y añadirlo como atributo del componente, p.e. icons="play/stop")
-- solucionar la anchura de los triángulos en los botones de up y down
-- dibujar el play, stop y flechas de la pestaña staff y añadirlos
+- añadir audio, mp3 de las notas para dictados
+- probar a quitar lo del converter
+- que se pueda mover con el dedo de una opción del menú principal a otra
+- hilera de botones genérica horizontal o vertical para crear los que queramos
+- añadir sombras a los botones
 - crear componente lit con el botón de mostrar
-- dibujar la clave de sol, las armaduras y el compás
-- dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
+- dibujar las armaduras y el compás en svg
 - favicon
 - botón para mostrar / ocultar una información
 - borrar clases de los elementos que he anulado

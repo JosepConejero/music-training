@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { /* useRef,  */useState } from "react";
 //import { uniqueKey } from "../helpers/uniqueKey";
 //import { distancia } from "../staffHandlers/distances";
 import "../lit-elements/my-buttons";
@@ -10,11 +10,12 @@ export const StaffControls = ({ buttonHandlers }) => {
   const [togglePlay, setTogglePlay] = useState(false);
   const { showNextNote, /* isOneOctavePressed,*/ setIsOneOctavePressed, setSpeed, timeHandler, showAnswer, 
          /* isAnswerVisible,  *//* currentSpeed,  */resetInterval } = buttonHandlers;
-  const fromSelection = useRef(0);
-  const toSelection = useRef(80);
+  //const fromSelection = useRef(0);
+  //const toSelection = useRef(80);
 
-  const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines", "Voice", "Selection" ];
-  const [selectedItemIndex, setSelectedItemIndex] = useState(1);
+  //const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines", "Voice", "Selection" ];
+  const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines" ];
+  const [selectedItemIndex, setSelectedItemIndex] = useState(2);
   const timeRange = ["0.5 s.", "1 s.", "1.5 s.", "2 s." ];
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(2);
 
@@ -53,8 +54,8 @@ export const StaffControls = ({ buttonHandlers }) => {
     1: ()=>showNextNote(12, 68),
     2: ()=>showNextNote(16, 69), //trumpet
     3: ()=>showNextNote(24, 56), // 5 líneas
-    4: ()=>showNextNote(12, 68), //voice
-    5: ()=>showNextNote(fromSelection.current, toSelection.current),
+    /* 4: ()=>showNextNote(12, 68), //voice
+    5: ()=>showNextNote(fromSelection.current, toSelection.current), */
   };
 
   const setSpeedAction = {
@@ -69,8 +70,8 @@ export const StaffControls = ({ buttonHandlers }) => {
     1: ()=>timeHandler(12, 68),
     2: ()=>timeHandler(16, 69), //trumpet
     3: ()=>timeHandler(24, 56), // 5 líneas
-    4: ()=>timeHandler(12, 68), //voice
-    5: ()=>timeHandler(fromSelection.current, toSelection.current),
+    /* 4: ()=>timeHandler(12, 68), //voice
+    5: ()=>timeHandler(fromSelection.current, toSelection.current), */
   }
 
   const showTimedNoteAction = (speed, timeHandler) =>{

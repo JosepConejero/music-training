@@ -83,7 +83,7 @@ export const flatNotes = [
 
 ]; //19 notas
 
-export const normalNotes = [
+export const naturalNotes = [
 
     "la6",
     "sol6",

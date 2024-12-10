@@ -1,10 +1,11 @@
 import { Navbar } from "../components/Navbar";
 
-export const DictationPage = () => {
+export const ChordsPage = () => {
   return (
     <>
       <Navbar />
-      <div>Dictation</div>
+      <div>CHORDS PAGE</div>
+      <div>UNDER CONSTRUCTION</div>
     </>
   );
 };

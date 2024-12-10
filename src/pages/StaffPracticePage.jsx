@@ -2,14 +2,15 @@ import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { complete_notes_distances } from "../staffHandlers/complete-notes-distances";
-import "../lit-elements/my-staff";
+//import "../lit-elements/my-staff";
 import "../lit-elements/my-trumpet-pistons";
 import "../staffComponents/staffStyles.css";
 import "../lit-elements/my-sharp-flat-showed-buttons";
 import { pistons } from "../staffHandlers/pistons";
 import { graphicNotes } from "../staffHandlers/graphic-notes";
 import { MySharpFlatShowedButtons } from "../lit-react-components/MySharpFlatShowedButtons";
-import { siSharpNotesKind, flatNotes, sharpNotes, normalNotes } from "../staffHandlers/selectable-notes";
+import { siSharpNotesKind, flatNotes, sharpNotes, naturalNotes } from "../staffHandlers/selectable-notes";
+import { MyStaff } from "../lit-react-components/MyStaff";
 
 
 export const StaffPracticePage = () => {
@@ -24,7 +25,7 @@ export const StaffPracticePage = () => {
   const [isSiSharpKindShowed, setIsSiSharpKindShowed] = useState(false);
   const [isSharpShowed, setIsSharpShowed] = useState(true);
   const [isFlatShowed, setIsFlatShowed] = useState(true);
-  const [isNormalNotesShowed, setIsNormalNotesShowed] = useState(true);
+  const [isNaturalNotesShowed, setIsNaturalNotesShowed] = useState(true);
   
 
   const getForbiddenNotes = () => {
@@ -32,7 +33,7 @@ export const StaffPracticePage = () => {
     if (!isSiSharpKindShowed) notes = [...notes, ...siSharpNotesKind];
     if (!isSharpShowed) notes = [...notes, ...sharpNotes];
     if (!isFlatShowed) notes = [...notes, ...flatNotes];
-    if (!isNormalNotesShowed) notes = [...notes, ...normalNotes];
+    if (!isNaturalNotesShowed) notes = [...notes, ...naturalNotes];
 
     return notes;
   }
@@ -122,11 +123,10 @@ export const StaffPracticePage = () => {
     
   }
 
-  const updateIsNormalNotesShowed = () => {
-    setIsNormalNotesShowed((prevState)=> !prevState);
+  const updateIsNaturalNotesShowed = () => {
+    setIsNaturalNotesShowed((prevState)=> !prevState);
     
   }
-
 
   const buttonHandlers = {
     isOneOctavePressed: isOneOctavePressed,
@@ -152,16 +152,17 @@ const isTrumpet = (note)=>{
       <main className="staff-practice">
         <span className="title">STAFF PRACTICE</span>
         <div className="container-row-center">
-          <my-staff nota1={activeNote}></my-staff>
+          {/* <my-staff nota1={activeNote} ></my-staff> */}
+          <MyStaff nota1={activeNote} onClick={showAnswer}/>
           <MySharpFlatShowedButtons 
             isSiSharpKindShowed={isSiSharpKindShowed} 
             isSharpShowed={isSharpShowed} 
             isFlatShowed={isFlatShowed} 
-            isNormalNotesShowed={isNormalNotesShowed}
+            isNaturalNotesShowed={isNaturalNotesShowed}
             isSiSharpKindShowedAction={updateIsSiSharpKindShowed}
             isSharpShowedAction={updateIsSharpShowed}
             isFlatShowedAction={updateIsFlatShowed}
-            isNormalNotesShowedAction={updateIsNormalNotesShowed}
+            isNaturalNotesShowedAction={updateIsNaturalNotesShowed}
           />
         </div>
         <div className="container-span">

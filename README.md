@@ -7,7 +7,7 @@
 
 
 # TAREAS SIGUIENTES
-- ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS
+- ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y cuando se pulsen las flechas, que se actualice
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
 - dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
 - dibujar el play, stop y flechas de la pestaña staff y añadirlos

@@ -27,6 +27,7 @@
 - sustituir \u{266f} por su svg y \u{266d} por su svg
 - isFlat, isSharp, isNatural están repetidos de algún modo (hay q arreglarlo)
 - convertir funcionalidades de intervalspage y staffpracticepage en hooks
+- clave de sol también para los intervalos
 
 
 # VSC

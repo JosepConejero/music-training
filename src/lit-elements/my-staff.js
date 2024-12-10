@@ -4,6 +4,7 @@ import { line_10_notes, line_11_notes, line_12_notes, line_13_notes, line_1_note
 import { isSharp } from "../staffHandlers/isSharp";
 import { isFlat } from "../staffHandlers/isFlat";
 import "./my-alteration";
+import "./my-treble-clef";
 import { noteTop } from "../staffHandlers/notes-tops";
 
 export class MyStaff extends LitElement {
@@ -48,8 +49,8 @@ export class MyStaff extends LitElement {
     }
 
     .linea-corta {
-      width: 30%;
-      left: calc(50% - 15%);
+      width: 20%;
+      left: 65%;
     }
 
     .linea-visible {
@@ -62,17 +63,22 @@ export class MyStaff extends LitElement {
 
     .nota {
       position: absolute;
-      width: 20%;
+      width: 14%;
       height: calc(7.14% - 1px);
       border-radius: 50% 50%;
       background-color: black;
-      left: calc(50% - 11%);
+      left: 68%;
     }
 
     .alteration {
        position: absolute; 
     }
 
+    my-treble-clef {
+       position: absolute;
+       top: 26%;
+       left: 8%;
+    }
 
      `];
 
@@ -82,7 +88,7 @@ export class MyStaff extends LitElement {
     //this.clave = '';
     this.nota1 = '';
     this.height = '250px';
-    this.width = '100px';
+    this.width = '150px';
 
   }
 
@@ -103,13 +109,16 @@ export class MyStaff extends LitElement {
 
       .position-note1 {
         top: ${noteTop[this.nota1]};
-        left: 25%;
+        left: 58%;
       }
 
     </style>`;
     return html`
       ${sizeValues}
       <div class="container size">
+
+        <my-treble-clef></my-treble-clef>  
+
         <div class="linea linea-corta element1 ${line_1_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
         <div class="linea linea-corta element2 ${line_2_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>
         <div class="linea linea-corta element3 ${line_3_notes.includes(this.nota1) ? "linea-visible" : "linea-oculta"}"></div>

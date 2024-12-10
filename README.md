@@ -7,6 +7,7 @@
 
 
 # TAREAS SIGUIENTES
+- ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
 - dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
 - dibujar el play, stop y flechas de la pestaña staff y añadirlos
@@ -14,6 +15,7 @@
 - arreglar lo del temporizador con un toggle de play / que todos los botones se ensombrezcan cuando esté pulsado el play / que el play se ensombrezca
 - incluir en el componente my-buttons un icono para play y otro para stop (y añadirlo como atributo del componente, p.e. icons="play/stop")
 - añadir audio, mp3 de las notas para dictados
+- botón de 'la' en página staff
 - probar a quitar lo del converter
 - que se pueda mover con el dedo de una opción del menú principal a otra
 - hilera de botones genérica horizontal o vertical para crear los que queramos
@@ -28,6 +30,7 @@
 - isFlat, isSharp, isNatural están repetidos de algún modo (hay q arreglarlo)
 - convertir funcionalidades de intervalspage y staffpracticepage en hooks
 - clave de sol también para los intervalos
+- modificar el complete-intervals para que con map y filter genere arrays con menos valores
 
 
 # VSC

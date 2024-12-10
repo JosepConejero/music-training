@@ -5,9 +5,9 @@ import { completeIntervals } from "../pagesHelpers/complete-intervals";
 import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
 import { randomInterval } from "../pagesHelpers/random-Interval";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
-//import "../lit-elements/my-keyboard.js";
 import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 import { MyIntervalButtons2 } from "../lit-react-components/MyIntervalButtons2";
+import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
 
 export const IntervalsPage = () => {
   const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
@@ -18,13 +18,22 @@ export const IntervalsPage = () => {
   const [isLessThan8Showed, setIsLessThan8Showed] = useState(true);
   const [isShowingModePressed, setIsShowingModePressed] = useState(false);
   const [isSemitonesToggleSelected, setIsSemitonesToggleSelected] = useState(true);
+  const [intervalsSelection, setIntervalsSelection] = useState(completeIntervals);
+
+  const optionsRange = ["all", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+
+  const updateItemIndex = (num)=>{
+    setSelectedItemIndex(num);
+  }
 
   const showAnswer = () => {
     setPressedAnswerButton((prevState) => !prevState);
   };
 
   const showNextIntervalAnswer = () => {
-    setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isNaturalShowed, isLessThan8Showed)); 
+    //setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isNaturalShowed, isLessThan8Showed)); 
+    setCurrentInterval(randomInterval(intervalsSelection, isSharpShowed, isFlatShowed, isNaturalShowed, isLessThan8Showed)); 
   };
 
   const updateIsSharpShowed = () => {
@@ -51,8 +60,23 @@ export const IntervalsPage = () => {
     setIsSemitonesToggleSelected((prevState)=> !prevState);    
   }
 
-  const setNumberInterval = ()=> isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
+  const setNumberInterval = () => isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
 
+const getIntervalsBySemitones = (allIntervals, semitones) => {
+  const result = allIntervals.filter((note) => note.semitones === +semitones);
+/*   const result = "mierda";
+  console.log(result); */
+  return result;
+}
+
+  const updateIntervalsSelection = (allintervals, item)=>{
+    if (optionsRange[item]==="all") {
+      setIntervalsSelection(allintervals);
+      return;
+    }
+   setIntervalsSelection(getIntervalsBySemitones(allintervals, optionsRange[item])) ;
+
+  }
 
   return (
     <>
@@ -63,10 +87,20 @@ export const IntervalsPage = () => {
         </div>
 
         <div className="bloque-vertical">
-          {/* <div className="interval-view-container"> */}
-            <div onClick={showAnswer}>
-              <MyIntervals showingMode={isShowingModePressed} showingModeText={currentInterval.direction + setNumberInterval()} nota1={currentInterval.note1} nota2={currentInterval.note2}/>
+            <div className="interval-view-container"> 
+                <div onClick={showAnswer}>
+                  <MyIntervals showingMode={isShowingModePressed} showingModeText={currentInterval.direction + setNumberInterval()} nota1={currentInterval.note1} nota2={currentInterval.note2}/>
+                </div>
+                <MyThreeButtons
+                  activateAction={()=>updateIntervalsSelection(completeIntervals, selectedItemIndex)} 
+                  updateItemIndex={updateItemIndex} 
+                  textItems={optionsRange} 
+                  selectedItemIndex={selectedItemIndex}
+                  height="180px"
+                  width="100px"            
+                />                
             </div>
+            
             <div className="interval-view-ask-box">
               <p className="interval-view-ask-text" /* onClick={showAnswer} */>
                 {pressedAnswerButton ? currentInterval.name : ""}

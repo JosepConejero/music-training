@@ -16,6 +16,8 @@ export class MyIntervalButtons2 extends LitElement {
       isSemitonesToggleSelectedAction: {type: Function},
       isLessThan8Showed: {type: Boolean},
       isLessThan8ShowedAction: {type: Function},
+      inputText: {type: String},
+      inputTextAction: {type: Function},
     };
   
     // Define scoped styles right with your component, in plain CSS
@@ -37,6 +39,11 @@ export class MyIntervalButtons2 extends LitElement {
         width: 25%;
       }
 
+      button { /* ESTE BUTTON ES PARA BORRAR DESPUÉS */
+        width: 100%;
+        visibility: hidden;
+      }
+
       `;
   
      constructor() {
@@ -51,6 +58,11 @@ export class MyIntervalButtons2 extends LitElement {
       this.isLessThan8Showed = true;
     } 
   
+actuar (){
+  console.log(this.inputText);
+ if (this.inputTextAction) this.inputTextAction();
+}
+
     // Render the UI as a function of component state
     render() {
       const sizeValues = html`<style> 
@@ -73,6 +85,10 @@ export class MyIntervalButtons2 extends LitElement {
  
             <div class="div-button">
                 <my-button ?pressedButton=${this.isLessThan8Showed} toggle text="less than 8" @click=${this.isLessThan8ShowedAction}></my-button>
+            </div>
+
+            <div class="div-button">
+               <button></button> <!-- ESTE BUTTON ES PARA BORRAR DESPUÉS -->
             </div>
 
         </div>

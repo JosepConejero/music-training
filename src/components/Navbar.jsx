@@ -8,8 +8,8 @@ export const Navbar = () => {
         <Link to="/">MAIN</Link>
         <Link to="/staff-practice">STAFF</Link>
         <Link to="/intervals">INTERVALS</Link>
-        <Link to="/singing">SINGING</Link>
-        <Link to="/dictation">DICTATION</Link>
+        <Link to="/rythms">RYTHMS</Link>
+        <Link to="/chords">CHORDS</Link>
       </main>
     </>
   );

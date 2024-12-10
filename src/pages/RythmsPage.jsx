@@ -6,11 +6,12 @@ import { Corchea } from "../noteComponents/Corchea";
 import { Semicorchea } from "../noteComponents/Semicorchea";
 import { Linea } from "../noteComponents/Linea";
 
-export const SingingPage = () => {
+export const RythmsPage = () => {
   return (
     <>
       <Navbar />
-      <p>Singing</p>
+      <div>RYTHMS</div>
+      <div>UNDER CONSTRUCTION</div>
       <main className="fraseo">
         <Redonda />
         <Blanca />

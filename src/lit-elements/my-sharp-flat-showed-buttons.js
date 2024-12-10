@@ -8,11 +8,11 @@ export class MyInternalButtons extends LitElement {
       isSiSharpKindShowed: {type: Boolean}, 
       isSharpShowed: {type: Boolean},
       isFlatShowed: {type: Boolean},
-      isNormalNotesShowed: {type: Boolean},
+      isNaturalNotesShowed: {type: Boolean},
       isSiSharpKindShowedAction: {type: Function},
       isSharpShowedAction: {type: Function},
       isFlatShowedAction: {type: Function},
-      isNormalNotesShowedAction: {type: Function},
+      isNaturalNotesShowedAction: {type: Function},
     };
   
     // Define scoped styles right with your component, in plain CSS
@@ -43,7 +43,7 @@ export class MyInternalButtons extends LitElement {
       this.isSiSharpKindShowed = false;
       this.isSharpShowed = true;
       this.isFlatShowed = true;
-      this.isNormalNotesShowed = true;
+      this.isNaturalNotesShowed = true;
     } 
   
     // Render the UI as a function of component state
@@ -62,13 +62,13 @@ export class MyInternalButtons extends LitElement {
                 <my-button ?pressedButton=${this.isSiSharpKindShowed} toggle text="si# kind" @click=${this.isSiSharpKindShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isSharpShowed} toggle text="sharp" @click=${this.isSharpShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isSharpShowed} toggle text="\u{266f}" @click=${this.isSharpShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isFlatShowed} toggle text="flat" @click=${this.isFlatShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isFlatShowed} toggle text="\u{266d}" @click=${this.isFlatShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isNormalNotesShowed} toggle text="normal" @click=${this.isNormalNotesShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isNaturalNotesShowed} toggle text="natural" @click=${this.isNaturalNotesShowedAction}></my-button>
             </div>
         </div>
       `;

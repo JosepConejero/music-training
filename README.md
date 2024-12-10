@@ -24,6 +24,8 @@
 - botón para mostrar / ocultar una información
 - borrar clases de los elementos que he anulado
 - eliminar componente Staff y todos los de dentro (cuidado con el archivo .css correspondiente)
+- sustituir \u{266f} por su svg y \u{266d} por su svg
+- isFlat, isSharp, isNatural están repetidos de algún modo (hay q arreglarlo)
 
 
 # VSC

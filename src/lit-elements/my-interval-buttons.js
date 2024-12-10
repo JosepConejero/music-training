@@ -10,8 +10,8 @@ export class MyIntervalButtons extends LitElement {
       isSharpShowedAction: {type: Function},
       isFlatShowed: {type: Boolean},
       isFlatShowedAction: {type: Function},
-      isNormalShowed: {type: Boolean},
-      isNormalShowedAction: {type: Boolean},
+      isNaturalShowed: {type: Boolean},
+      isNaturalShowedAction: {type: Boolean},
      // isLessThan8Showed: {type: Boolean},
      // isShowingModePressed: {type: Boolean},
      // isLessThan8ShowedAction: {type: Function},
@@ -46,7 +46,7 @@ export class MyIntervalButtons extends LitElement {
       this.width = "300px";
       this.isSharpShowed = true;
       this.isFlatShowed = true;
-      this.isNormalShowed = true;
+      this.isNaturalShowed = true;
      // this.isLessThan8Showed = true;
       //this.isShowingModePressed = true;
     } 
@@ -67,13 +67,13 @@ export class MyIntervalButtons extends LitElement {
                 <my-button text="NEXT" @click=${this.showNext}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isSharpShowed} toggle text="sharp" @click=${this.isSharpShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isSharpShowed} toggle text="\u{266f}" @click=${this.isSharpShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isFlatShowed} toggle text="flat" @click=${this.isFlatShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isFlatShowed} toggle text="\u{266d}" @click=${this.isFlatShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${this.isNormalShowed} toggle text="normal" @click=${this.isNormalShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isNaturalShowed} toggle text="natural" @click=${this.isNaturalShowedAction}></my-button>
             </div>
             
         </div>

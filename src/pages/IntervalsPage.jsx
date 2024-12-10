@@ -14,7 +14,7 @@ export const IntervalsPage = () => {
   const [pressedAnswerButton, setPressedAnswerButton] = useState(false);
   const [isSharpShowed, setIsSharpShowed] = useState(true);
   const [isFlatShowed, setIsFlatShowed] = useState(true);
-  const [isNormalShowed, setIsNormalShowed] = useState(true);
+  const [isNaturalShowed, setIsNaturalShowed] = useState(true);
   const [isLessThan8Showed, setIsLessThan8Showed] = useState(true);
   const [isShowingModePressed, setIsShowingModePressed] = useState(false);
   const [isSemitonesToggleSelected, setIsSemitonesToggleSelected] = useState(true);
@@ -24,7 +24,7 @@ export const IntervalsPage = () => {
   };
 
   const showNextIntervalAnswer = () => {
-    setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isLessThan8Showed, isNormalShowed)); 
+    setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isNaturalShowed, isLessThan8Showed)); 
   };
 
   const updateIsSharpShowed = () => {
@@ -35,8 +35,8 @@ export const IntervalsPage = () => {
     setIsFlatShowed((prevState)=> !prevState);    
   }
 
-  const updateIsNormalShowed = () => {
-    setIsNormalShowed((prevState)=> !prevState);    
+  const updateIsNaturalShowed = () => {
+    setIsNaturalShowed((prevState)=> !prevState);    
   }
   
   const updateIsLessThan8Showed = () => {
@@ -101,8 +101,8 @@ export const IntervalsPage = () => {
                     isSharpShowedAction={updateIsSharpShowed}
                     isFlatShowed={isFlatShowed}
                     isFlatShowedAction={updateIsFlatShowed}
-                    isNormalShowed={isNormalShowed}
-                    isNormalShowedAction={updateIsNormalShowed}
+                    isNaturalShowed={isNaturalShowed}
+                    isNaturalShowedAction={updateIsNaturalShowed}
 /*                    isLessThan8Showed={isLessThan8Showed}
                     isShowingModePressed={isShowingModePressed}
                      isLessThan8ShowedAction={updateIsLessThan8Showed}

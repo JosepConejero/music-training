@@ -22,11 +22,14 @@ export const IntervalsPage = () => {
   const {value: isShowingModePressed, updateToggleValue: updateIsShowingModePressed} = useToggleValue(false);
   const {value: isSemitonesToggleSelected, updateToggleValue: updateIsSemitonesToggleSelected} = useToggleValue(true);
 
-  const optionsRange = ["all", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+  const optionsRange = isSemitonesToggleSelected 
+            ? ["all", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] 
+            : ["all", "0", "1", "2", "3", "4", "5", "6", "7", "8",  "9", "10", "11"];
   const [selectedItemIndex, setSelectedItemIndex] = useState(0);
 
   const updateItemIndex = (num)=>{
     setSelectedItemIndex(num);
+    updateIntervalsSelection(completeIntervals, num);
   }
 
   const showNextIntervalAnswer = () => {
@@ -36,9 +39,14 @@ export const IntervalsPage = () => {
 
   const setNumberInterval = () => isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
 
+/* const getIntervalsBySharpFlatNaturalLessThan8 = (allIntervals, sharp, flat, natural, lessThan8)=>{
+
+  return allIntervals.filter((note)=>isFlat(note.note1))
+}
+ */
   const getIntervalsBySemitones = (allIntervals, semitones) => {
-    const result = allIntervals.filter((note) => note.semitones === +semitones);
-    return result;
+    //const result = allIntervals.filter((note) => note.semitones === +semitones);
+    return allIntervals.filter((note) => note.semitones === +semitones);
   }
 
   const updateIntervalsSelection = (allintervals, item)=>{
@@ -63,7 +71,8 @@ export const IntervalsPage = () => {
                   <MyIntervals showingMode={isShowingModePressed} showingModeText={currentInterval.direction + setNumberInterval()} nota1={currentInterval.note1} nota2={currentInterval.note2}/>
                 </div>
                 <MyThreeButtons
-                  activateAction={()=>updateIntervalsSelection(completeIntervals, selectedItemIndex)} 
+                  /* activateAction={()=>updateIntervalsSelection(completeIntervals, selectedItemIndex)}  */
+                  activateAction={()=>{}}
                   updateItemIndex={updateItemIndex} 
                   textItems={optionsRange} 
                   selectedItemIndex={selectedItemIndex}

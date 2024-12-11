@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { StaffControls } from "../staffComponents/StaffControls";
 import { complete_notes_distances } from "../staffHandlers/complete-notes-distances";
-//import "../lit-elements/my-staff";
 import "../lit-elements/my-trumpet-pistons";
 import "../staffComponents/staffStyles.css";
 import "../lit-elements/my-sharp-flat-showed-buttons";
@@ -11,22 +10,24 @@ import { graphicNotes } from "../staffHandlers/graphic-notes";
 import { MySharpFlatShowedButtons } from "../lit-react-components/MySharpFlatShowedButtons";
 import { siSharpNotesKind, flatNotes, sharpNotes, naturalNotes } from "../staffHandlers/selectable-notes";
 import { MyStaff } from "../lit-react-components/MyStaff";
+import { useToggleValue } from "../hooks/useToggleValue";
 
 
 export const StaffPracticePage = () => {
   const notaInicial = "do4"; 
-  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
+
   const [activeNote, setActiveNote] = useState(notaInicial);
   const activeNoteRef = useRef(notaInicial);
-  const [isOneOctavePressed, setIsOneOctavePressed] = useState(false);
   const [currentSpeed, setCurrentSpeed] = useState(2000);
   const speed = useRef(2000);
   const nIntervId = useRef();
-  const [isSiSharpKindShowed, setIsSiSharpKindShowed] = useState(false);
-  const [isSharpShowed, setIsSharpShowed] = useState(true);
-  const [isFlatShowed, setIsFlatShowed] = useState(true);
-  const [isNaturalNotesShowed, setIsNaturalNotesShowed] = useState(true);
   
+  const {value: isSolutionShowed, updateToggleValue: showSolution} = useToggleValue(false);
+  const {value: isOneOctavePressed, updateToggleValue: updateIsOneOctavePressed} = useToggleValue(false);
+  const {value: isSiSharpKindShowed, updateToggleValue: updateIsSiSharpKindShowed} = useToggleValue(false);
+  const {value: isSharpShowed, updateToggleValue: updateIsSharpShowed} = useToggleValue(true);
+  const {value: isFlatShowed, updateToggleValue: updateIsFlatShowed} = useToggleValue(true);
+  const {value: isNaturalNotesShowed, updateToggleValue: updateIsNaturalNotesShowed} = useToggleValue(true);
 
   const getForbiddenNotes = () => {
     let notes = [];
@@ -104,38 +105,15 @@ export const StaffPracticePage = () => {
     nIntervId.current = null;
   }
 
-  const showAnswer = () => {
-    setIsAnswerVisible((prevState) => !prevState);
-  };
-
-  const updateIsSiSharpKindShowed = () => {
-    setIsSiSharpKindShowed((prevState)=> !prevState);
-    
-  }
-
-  const updateIsSharpShowed = () => {
-    setIsSharpShowed((prevState)=> !prevState);
-    
-  }
-
-  const updateIsFlatShowed = () => {
-    setIsFlatShowed((prevState)=> !prevState);
-    
-  }
-
-  const updateIsNaturalNotesShowed = () => {
-    setIsNaturalNotesShowed((prevState)=> !prevState);
-    
-  }
-
   const buttonHandlers = {
     isOneOctavePressed: isOneOctavePressed,
-    setIsOneOctavePressed: setIsOneOctavePressed,
+    //setIsOneOctavePressed: setIsOneOctavePressed,
+    updateIsOneOctavePressed: updateIsOneOctavePressed,
     showNextNote: showNextNote,
     setSpeed: setSpeed,
     timeHandler: timeHandler,
-    showAnswer: showAnswer,
-    isAnswerVisible: isAnswerVisible,
+    showSolution: showSolution,
+    isSolutionShowed: isSolutionShowed,
     currentSpeed: currentSpeed,
     resetInterval: resetInterval,
   };
@@ -153,7 +131,7 @@ const isTrumpet = (note)=>{
         <span className="title">STAFF PRACTICE</span>
         <div className="container-row-center">
           {/* <my-staff nota1={activeNote} ></my-staff> */}
-          <MyStaff nota1={activeNote} onClick={showAnswer}/>
+          <MyStaff nota1={activeNote} onClick={showSolution}/>
           <MySharpFlatShowedButtons 
             isSiSharpKindShowed={isSiSharpKindShowed} 
             isSharpShowed={isSharpShowed} 
@@ -166,8 +144,8 @@ const isTrumpet = (note)=>{
           />
         </div>
         <div className="container-span">
-          <span className={isAnswerVisible ? "answer" : "hidden-answer"}>{graphicNotes[activeNote]}</span>
-          {isAnswerVisible && isTrumpet(activeNote) && <my-trumpet-pistons pistons={pistons[activeNote]}></my-trumpet-pistons> }
+          <span className={isSolutionShowed ? "answer" : "hidden-answer"}>{graphicNotes[activeNote]}</span>
+          {isSolutionShowed && isTrumpet(activeNote) && <my-trumpet-pistons pistons={pistons[activeNote]}></my-trumpet-pistons> }
         </div>
         <StaffControls buttonHandlers={buttonHandlers}/>
       </main>
@@ -175,3 +153,38 @@ const isTrumpet = (note)=>{
     </div>
   );
 };
+
+
+
+  /* const [isSolutionShowed, setIsAnswerVisible] = useState(false);*/
+ // const [isOneOctavePressed, setIsOneOctavePressed] = useState(false);
+  /*const [isSiSharpKindShowed, setIsSiSharpKindShowed] = useState(false);
+  const [isSharpShowed, setIsSharpShowed] = useState(true);
+  const [isFlatShowed, setIsFlatShowed] = useState(true);
+  const [isNaturalNotesShowed, setIsNaturalNotesShowed] = useState(true);
+ */
+
+  
+/*   const showSolution = () => {
+    setIsAnswerVisible((prevState) => !prevState);
+  }; */
+
+/*   const updateIsSiSharpKindShowed = () => {
+    setIsSiSharpKindShowed((prevState)=> !prevState);
+    
+  } */
+
+/*   const updateIsSharpShowed = () => {
+    setIsSharpShowed((prevState)=> !prevState);
+    
+  }
+
+  const updateIsFlatShowed = () => {
+    setIsFlatShowed((prevState)=> !prevState);
+    
+  } */
+
+/*   const updateIsNaturalNotesShowed = () => {
+    setIsNaturalNotesShowed((prevState)=> !prevState);
+    
+  } */

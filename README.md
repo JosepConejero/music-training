@@ -4,6 +4,7 @@
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
 - altura de la pantalla se sale un poco por abajo
+- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro como fuera del componente
 
 
 # TAREAS SIGUIENTES
@@ -35,6 +36,7 @@
 
 # VSC
 - autocorrección CSS
+- que muestre la branch en la terminal
  
 
 # Funcionalidades para añadir

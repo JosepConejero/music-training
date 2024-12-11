@@ -4,7 +4,8 @@
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
 - altura de la pantalla se sale un poco por abajo
-- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro como fuera del componente
+- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente 
+  en react con useState
 
 
 # TAREAS SIGUIENTES

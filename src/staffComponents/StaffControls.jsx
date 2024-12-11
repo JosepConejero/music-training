@@ -8,8 +8,8 @@ import { MyButton } from "../lit-react-components/MyButton";
 
 export const StaffControls = ({ buttonHandlers }) => {
   const [togglePlay, setTogglePlay] = useState(false);
-  const { showNextNote, /* isOneOctavePressed,*/ setIsOneOctavePressed, setSpeed, timeHandler, showAnswer, 
-         /* isAnswerVisible,  *//* currentSpeed,  */resetInterval } = buttonHandlers;
+  const { showNextNote, /* isOneOctavePressed,*/ updateIsOneOctavePressed, setSpeed, timeHandler, showSolution, 
+         /* isSolutionShowed,  *//* currentSpeed,  */resetInterval } = buttonHandlers;
   //const fromSelection = useRef(0);
   //const toSelection = useRef(80);
 
@@ -19,9 +19,9 @@ export const StaffControls = ({ buttonHandlers }) => {
   const timeRange = ["0.5 s.", "1 s.", "1.5 s.", "2 s." ];
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(2);
 
-  const handleOneOctaveToggle = () => {
+  /* const handleOneOctaveToggle = () => {
     setIsOneOctavePressed((prevState) => !prevState);
-  };
+  }; */
 
  /*  const onFromSelectChange = ({ target }) => {
     // fromSelection.current = Object.keys(distancia)[target.value];
@@ -124,14 +124,14 @@ export const StaffControls = ({ buttonHandlers }) => {
           less than 8
           </button> */}
           <div>
-            <MyButton toggle actionOnClick={handleOneOctaveToggle} text="less than 8"></MyButton>
+            <MyButton toggle actionOnClick={updateIsOneOctavePressed} text="less than 8"></MyButton>
           </div>
 
          {/*  <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
             answer
           </button> */}
           <div>
-            <MyButton toggle actionOnClick={showAnswer} text="answer"></MyButton>
+            <MyButton toggle actionOnClick={showSolution} text="answer"></MyButton>
           </div>
         </div>
 

@@ -33,7 +33,6 @@ export const IntervalsPage = () => {
   }
 
   const showNextIntervalAnswer = () => {
-    //setCurrentInterval(randomInterval(completeIntervals, isSharpShowed, isFlatShowed, isNaturalShowed, isLessThan8Showed)); 
     setCurrentInterval(randomInterval(intervalsSelection, isSharpShowed, isFlatShowed, isNaturalShowed, isLessThan8Showed)); 
   };
 
@@ -44,8 +43,8 @@ export const IntervalsPage = () => {
   return allIntervals.filter((note)=>isFlat(note.note1))
 }
  */
+
   const getIntervalsBySemitones = (allIntervals, semitones) => {
-    //const result = allIntervals.filter((note) => note.semitones === +semitones);
     return allIntervals.filter((note) => note.semitones === +semitones);
   }
 
@@ -93,20 +92,9 @@ export const IntervalsPage = () => {
                     : ""}
               </p>
             </div>
-            {/* <div className="interval-view-answer-box">
-              <p className="interval-view-answer-text" onClick={showAnswer}>
-                {pressedAnswerButton ? currentInterval.name : "?"}
-              </p>
-            </div> */}
-          {/* </div> */}
 
           <div className="interval-buttons-container">
-            {/* <div className="interval-next-button-box"> */}
             <div className="interval-buttons">
-              {/* <button className="interval-next-button" onClick={showNextIntervalAnswer}>
-                NEXT
-              </button> */}
-              {/* <MyButton width="120px" height="40px" actionOnClick={showNextIntervalAnswer} text="NEXT"></MyButton> */}
               <MyIntervalButtons 
                     height="80px" 
                     width="350px" 
@@ -129,30 +117,11 @@ export const IntervalsPage = () => {
                     isSemitonesToggleSelected={isSemitonesToggleSelected}
                     isSemitonesToggleSelectedAction={updateIsSemitonesToggleSelected}
               />
-
             </div>
-            {/* <div className="interval-show-table-box"> */}
-           {/*  <div className="interval-buttons"> */}
-              {/* <button className="interval-show-table-button" onClick={showIntervalTable}>
-                SHOW TABLE
-              </button> */}
-             {/*  <MyButton width="120px" height="40px" toggle actionOnClick={showIntervalTable} text="SHOW TABLE"></MyButton> */}
-           {/*  </div> */}
           </div>
 
-          {/* <my-keyboard></my-keyboard> */}
           <MyKeyboard notes={[currentInterval.note1, currentInterval.note2]}></MyKeyboard>
 
-          {/* <div className={pressedShowTableButton ? "interval-table-container" : "hidden-interval-table-container"}>
-            <div className="interval-table-box">
-              <div className="interval-table-column">{Object.entries(someIntervals).map((interval, index, intervals) => index < (intervals.length/2) && <span key={uniqueKey()}> {`${interval[0]}`}</span>)}</div>
-              <div className="interval-table-column">{Object.entries(someIntervals).map((interval, index, intervals) => index < (intervals.length/2) && <span key={uniqueKey()}> {`${interval[1]}`}</span>)}</div>
-            </div>
-            <div className="interval-table-box">
-              <div className="interval-table-column">{Object.entries(someIntervals).map((interval, index, intervals) => index >= (intervals.length/2) && <span key={uniqueKey()}> {`${interval[0]}`}</span>)}</div>
-              <div className="interval-table-column">{Object.entries(someIntervals).map((interval, index, intervals) => index >= (intervals.length/2) && <span key={uniqueKey()}> {`${interval[1]}`}</span>)}</div>
-            </div>
-          </div> */}
         </div>
       </div>
     </>

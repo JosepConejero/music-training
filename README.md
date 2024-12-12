@@ -3,7 +3,7 @@
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
-- altura de la pantalla se sale un poco por abajo
+- altura de la pantalla se sale un poco por abajo (modificar los tama)
 - podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente 
   en react con useState
 
@@ -33,6 +33,7 @@
 - convertir funcionalidades de intervalspage y staffpracticepage en hooks
 - clave de sol también para los intervalos
 - modificar el complete-intervals para que con map y filter genere arrays con menos valores
+- añadir lista de presets para practicar los intervalos
 
 
 # VSC

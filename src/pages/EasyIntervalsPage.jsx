@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import "./pages.css";
 import { completeIntervals } from "../pagesHelpers/complete-intervals";
@@ -9,6 +9,7 @@ import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 import { MyIntervalButtons2 } from "../lit-react-components/MyIntervalButtons2";
 import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
 import { useToggleValue } from "../hooks/useToggleValue";
+import { createEasyIntervals } from "../pagesHelpers/get-easy-intervals";
 
 export const EasyIntervalsPage = () => {
   const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
@@ -56,6 +57,12 @@ export const EasyIntervalsPage = () => {
     }
     setIntervalsSelection(getIntervalsBySemitones(allintervals, optionsRange[item])) ;
   }
+
+useEffect(() => {
+  console.log(createEasyIntervals());
+
+}, [])
+
 
   return (
     <>

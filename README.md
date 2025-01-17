@@ -3,12 +3,12 @@
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
-- altura de la pantalla se sale un poco por abajo
-- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro como fuera del componente
+- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente 
+  en react con useState
 
 
 # TAREAS SIGUIENTES
-- ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y cuando se pulsen las flechas, que se actualice
+- ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y con las flechas se selecciona un intervalo
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
 - dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
 - dibujar el play, stop y flechas de la pestaña staff y añadirlos
@@ -32,6 +32,7 @@
 - convertir funcionalidades de intervalspage y staffpracticepage en hooks
 - clave de sol también para los intervalos
 - modificar el complete-intervals para que con map y filter genere arrays con menos valores
+- añadir lista de presets para practicar los intervalos
 
 
 # VSC

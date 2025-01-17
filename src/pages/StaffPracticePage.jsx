@@ -130,7 +130,6 @@ const isTrumpet = (note)=>{
       <main className="staff-practice">
         <span className="title">STAFF PRACTICE</span>
         <div className="container-row-center">
-          {/* <my-staff nota1={activeNote} ></my-staff> */}
           <MyStaff nota1={activeNote} onClick={showSolution}/>
           <MySharpFlatShowedButtons 
             isSiSharpKindShowed={isSiSharpKindShowed} 

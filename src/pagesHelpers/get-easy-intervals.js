@@ -1,7 +1,7 @@
 /*
 export const easyIntervals = [
-{note1: "do4", note2: "dos4", textNote: "do - do#", flat: false, sharp: true, natural: true, direction: "+"},
-
+{note1: "do4", note2: "dos4", textNote: "do - do#", flat: false, sharp: true,  natural: false, direction: "+"},
+{note1: "do4", note2: "re4",  textNote: "do - re",  flat: false, sharp: false, natural: true,  direction: "+"},
 
 
 

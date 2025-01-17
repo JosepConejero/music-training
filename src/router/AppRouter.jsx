@@ -4,6 +4,7 @@ import { StaffPracticePage } from "../pages/StaffPracticePage";
 import { IntervalsPage } from "../pages/IntervalsPage";
 import { RythmsPage } from "../pages/RythmsPage";
 import { ChordsPage } from "../pages/ChordsPage";
+import { EasyIntervalsPage } from "../pages/EasyIntervalsPage";
 
 export const AppRouter = () => {
   return (
@@ -12,6 +13,7 @@ export const AppRouter = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/staff-practice" element={<StaffPracticePage />} />
         <Route path="/intervals" element={<IntervalsPage />} />
+        <Route path="/easy-intervals" element={<EasyIntervalsPage />} />
         <Route path="/rythms" element={<RythmsPage />} />
         <Route path="/chords" element={<ChordsPage />} />
         <Route path="/*" element={<Navigate to="/" />} />

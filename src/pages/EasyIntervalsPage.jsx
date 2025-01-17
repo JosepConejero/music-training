@@ -83,6 +83,9 @@ export const EasyIntervalsPage = () => {
             
             <div className="interval-view-ask-box">
               <p className="interval-view-ask-text">
+                {currentInterval.note1 + " - " + currentInterval.note2}
+              </p>
+              <p className="interval-view-ask-text">
                 {isSolutionShowed ? currentInterval.name : ""}
               </p>
               <p className="interval-view-ask-text">

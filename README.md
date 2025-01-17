@@ -5,6 +5,8 @@
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
 - podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente 
   en react con useState
+- error cuando subo a 12 el botón de intervals, no aparece bien; y si después subo y bajo, se descuadra, aparece una cosa en el botón y 
+  el número de semitonos o teclas sale incorrecto
 
 
 # TAREAS SIGUIENTES

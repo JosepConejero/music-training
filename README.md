@@ -35,6 +35,7 @@
 - clave de sol también para los intervalos
 - modificar el complete-intervals para que con map y filter genere arrays con menos valores
 - añadir lista de presets para practicar los intervalos
+- añadir menú hamburguesa para la versión móvil
 
 
 # VSC

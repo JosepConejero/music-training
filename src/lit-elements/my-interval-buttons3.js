@@ -1,23 +1,18 @@
 import { LitElement, css, html } from "lit";
 import "./my-button";
 
-export class MyIntervalButtons2 extends LitElement {
+export class MyIntervalButtons3 extends LitElement {
     static properties = {
       height: {type: Number},
       width: {type: Number}, 
-      //isSharpShowed: {type: Boolean},
-      //isFlatShowed: {type: Boolean},
-      //showNext: {type: Function},
-      //isSharpShowedAction: {type: Function},
-      //isFlatShowedAction: {type: Function},
       isShowingModePressed: {type: Boolean},
       isShowingModePressedAction: {type: Function},
       isSemitonesToggleSelected: {type: Boolean},
       isSemitonesToggleSelectedAction: {type: Function},
-      isLessThan8Showed: {type: Boolean},
-      isLessThan8ShowedAction: {type: Function},
-/*       inputText: {type: String},
-      inputTextAction: {type: Function}, */
+      isPlusShowed: {type: Boolean},
+      isPlusShowedAction: {type: Function},
+      isMinusShowed: {type: Boolean},
+      isMinusShowedAction: {type: Function},
     };
   
     // Define scoped styles right with your component, in plain CSS
@@ -51,18 +46,12 @@ export class MyIntervalButtons2 extends LitElement {
       // Declare reactive properties
       this.height = "80px";
       this.width = "300px";
-      //this.isSharpShowed = true;
-      //this.isFlatShowed = true;
       this.isShowingModePressed = true;
       this.isSemitonesToggleSelected = true;
-      this.isLessThan8Showed = true;
+      this.isPlusShowed = true;
+      this.isMinusShowed = true;
     } 
   
-/* actuar (){
-  console.log(this.inputText);
- if (this.inputTextAction) this.inputTextAction();
-} */
-
     // Render the UI as a function of component state
     render() {
       const sizeValues = html`<style> 
@@ -84,30 +73,16 @@ export class MyIntervalButtons2 extends LitElement {
             </div> 
  
             <div class="div-button">
-                <my-button ?pressedButton=${this.isLessThan8Showed} toggle text="less than 8" @click=${this.isLessThan8ShowedAction}></my-button>
+                <my-button ?pressedButton=${this.isPlusShowed} toggle text="+" @click=${this.isPlusShowedAction}></my-button>
             </div>
 
             <div class="div-button">
-               <button></button> <!-- ESTE BUTTON ES PARA BORRAR DESPUÉS -->
+               <my-button ?pressedButton=${this.isMinusShowed} toggle text="-" @click=${this.isMinusShowedAction}></my-button>
             </div>
 
         </div>
       `;
     }
   }
-  customElements.define("my-interval-buttons2", MyIntervalButtons2);
+  customElements.define("my-interval-buttons3", MyIntervalButtons3);
   
-
-
-/* 
-
-  <div class="div-button">
-  <my-button text="NEXT" @click=${this.showNext}></my-button>
-</div>
-<div class="div-button">
-  <my-button ?pressedButton=${this.isSharpShowed} toggle text="sharp" @click=${this.isSharpShowedAction}></my-button>
-</div>
-<div class="div-button">
-  <my-button ?pressedButton=${this.isFlatShowed} toggle text="flat" @click=${this.isFlatShowedAction}></my-button>
-</div>
-*/

@@ -1,6 +1,6 @@
 import { createComponent } from "@lit/react";
 import React from "react";
-import { MyInternalButtons as MySharpFlatShowedButtonsReact } from "../lit-elements/my-sharp-flat-showed-buttons";
+import { MyIntervalButtons as MySharpFlatShowedButtonsReact } from "../lit-elements/my-sharp-flat-showed-buttons";
 
 
 export const MySharpFlatShowedButtons = createComponent({

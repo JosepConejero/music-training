@@ -74,6 +74,8 @@ const basicNotes = [
             semitones: resta, 
             keysInBetween: resta-1
           });
+/*           console.log(basicNotes[index].textNote + " - " + basicNotes[i].textNote);
+          console.log(basicNotes[i].textNote + " - " + basicNotes[index].textNote); */
         }
       };
     };

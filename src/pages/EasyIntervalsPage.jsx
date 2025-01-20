@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import "./pages.css";
-import { completeIntervals } from "../pagesHelpers/complete-intervals";
 import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
 import { MyKeyboard } from "../lit-react-components/MyKeyboard";
@@ -12,10 +11,13 @@ import { MyIntervalButtons3 } from "../lit-react-components/MyIntervalButtons3";
 import { MyEasyIntervalsButtons } from "../lit-react-components/MyEasyIntervalsButtons";
 
 export const EasyIntervalsPage = () => {
-  //const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
-  //se podría usar un useRef para calcular los intervalos una sola vez con createEasyIntervals();
-  const [currentInterval, setCurrentInterval] = useState(createEasyIntervals()[3]); 
-  const [intervalsSelection, setIntervalsSelection] = useState(updateIntervalsSelection(createEasyIntervals(), ["do"]));
+
+  const intervalRef = useRef(createEasyIntervals());
+  const filteredNotesRef = useRef([{noteUp: "do", noteDown: "DO"}]);
+
+  const [currentInterval, setCurrentInterval] = useState(intervalRef.current[4]); 
+  const [intervalsSelection, setIntervalsSelection] = useState([]);
+  //const [filteredNotes, setFilteredNotes] = useState()
 
   const {value: isSharpShowed, updateToggleValue: updateIsSharpShowed} = useToggleValue(false);
   const {value: isFlatShowed, updateToggleValue: updateIsFlatShowed} = useToggleValue(false);
@@ -33,31 +35,49 @@ export const EasyIntervalsPage = () => {
   const {value: isMiShowed, updateToggleValue: updateIsMiShowed} = useToggleValue(false);
   const {value: isFaShowed, updateToggleValue: updateIsFaShowed} = useToggleValue(false);
 
-  const optionsRange = ["all", "do", "dos", "re", "res", "mi", "fa", "fas", "sol", "sols", "la", "las", "si"] ;
-  const [selectedNotes, setSelectedNotes] = useState(["do"]);
-
-  const updateNotes = (num)=>{
-    setSelectedNotes(num);
-    updateIntervalsSelection(completeIntervals, num);
+  const getIntervalsByNotes = (allintervals, notes)=>{ //notes ==> [{noteUp: "do", noteDown: "DO"},{....}]
+    let intervalsSelection = [];
+    intervalsSelection = allintervals.filter((interval)=> {
+        let result = false;
+        notes.forEach((pair)=>{
+            if (pair.noteUp === interval.note1WithoutNumber || pair.noteDown === interval.note1WithoutNumber) result = true;
+          })
+        return result;
+      });
+    return intervalsSelection;
   }
 
   const showNextIntervalAnswer = () => {
     setCurrentInterval(randomEasyInterval(intervalsSelection, isSharpShowed, isFlatShowed, isNaturalShowed, isPlusShowed, isMinusShowed)); 
   };
 
+  const updateisDoShowedAction = ()=> {
+    updateIsDoShowed();
+    //console.log("hecho", isDoShowed);//sustituir por useRef
+    //const newValue = {};
+    //setIntervalsSelection((value)=>newValue);
+    //console.log(intervalsSelection);
+    
+    //[{noteUp: "do", noteDown: "DO"}]
+    //comprueba si [{noteUp: "do", noteDown: "DO"}] es el único que hay, y entonces no lo quita
+    //POR CIERTO, DA UN ERROR CUANDO LE PULSO # Y b Y LE QUITO NATURAL PERO ESTÁ EN DO NATURAL
+  };
+
+ /*  const optionsRange = ["all", "do", "dos", "re", "res", "mi", "fa", "fas", "sol", "sols", "la", "las", "si"] ;
+  const [selectedNotes, setSelectedNotes] = useState(["do"]);
+
+  const updateNotes = (num)=>{
+    setSelectedNotes(num);
+    updateIntervalsSelection(completeIntervals, num);
+  } */
+
+
   const setNumberInterval = () => isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
+ 
+  useEffect(() => {
+    setIntervalsSelection(getIntervalsByNotes(intervalRef.current, [{noteUp: "do", noteDown: "DO"}]));
+  }, [])
 
-  const getIntervalsBySemitones = (allIntervals, semitones) => {
-    return allIntervals.filter((note) => note.semitones === +semitones);
-  }
-
-  const updateIntervalsSelection = (allintervals, notes)=>{
-    /* if (optionsRange[item]==="all") {
-      setIntervalsSelection(allintervals);
-      return;
-    } */
-    setIntervalsSelection(getIntervalsBySemitones(allintervals, optionsRange[item])) ;
-  }
 
   return (
     <>
@@ -78,7 +98,10 @@ export const EasyIntervalsPage = () => {
                 </div>
 
                 <div className="horizontal-block">
-                    <MyEasyIntervalsButtons/>
+                    <MyEasyIntervalsButtons
+                      isDoShowed={isDoShowed}
+                      isDoShowedAction={updateisDoShowedAction}
+                    />
                     
                 </div>
             </div>

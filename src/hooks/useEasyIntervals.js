@@ -4,7 +4,6 @@ import { randomEasyInterval } from "../pagesHelpers/random-easy-interval";
 
 export const useEasyIntervals = (initialEasyIntervals) => {
     
-    
     const filteredNotesRef = useRef([{noteUp: "do", noteDown: "DO"}]);
 
     const [currentInterval, setCurrentInterval] = useState(initialEasyIntervals[4]); 
@@ -68,6 +67,8 @@ export const useEasyIntervals = (initialEasyIntervals) => {
     const updateIsSiShowed = ()=>{ setIsSiShowed((prevState => !prevState))};
 
     const getIntervalsByNotes = (allintervals, notes)=>{ //notes ==> [{noteUp: "do", noteDown: "DO"},{....}]
+        if (notes.length === 0) return [];
+
         let intervalsSelection = [];
         intervalsSelection = allintervals.filter((interval)=> {
             let result = false;
@@ -76,15 +77,20 @@ export const useEasyIntervals = (initialEasyIntervals) => {
               })
             return result;
           });
-          console.log(intervalsSelection);
         return intervalsSelection;
       }
     
     const showNextIntervalAnswer = () => {
-        setCurrentInterval(randomEasyInterval(intervalsSelection, isSharpShowed, isFlatShowed, isNaturalShowed, isPlusShowed, isMinusShowed)); 
+        if (!isSharpShowed && !isFlatShowed && !isNaturalShowed) return;
+        if (!isPlusShowed && !isMinusShowed) return;
+        if (intervalsSelection.length===0) return;
+
+        setCurrentInterval(randomEasyInterval(intervalsSelection, currentInterval, 
+                                              isSharpShowed, isFlatShowed, isNaturalShowed, 
+                                              isPlusShowed, isMinusShowed)); 
     };
 
-    const updateisDoShowedAction = ()=> {
+    const updateIsDoShowedAction = ()=> {
         if (isDoShowed) {
             const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "do" && nota.noteDown === "DO");
             if (index !== -1) filteredNotesRef.current.splice(index, 1);
@@ -94,12 +100,10 @@ export const useEasyIntervals = (initialEasyIntervals) => {
             filteredNotesRef.current.push({noteUp: "do", noteDown: "DO"});
             setIsDoShowed(true);
         };
-        //filteredNotesRef.current.push({noteUp: "do", noteDown: "DO"});
         setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
-        console.log(filteredNotesRef.current);
     };
 
-  const updateisDosShowedAction = ()=>{
+  const updateIsDosShowedAction = ()=>{
     if (isDosShowed) {
         const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "do\u{266f}" && nota.noteDown === "DO\u{266f}");
         if (index !== -1) filteredNotesRef.current.splice(index, 1);
@@ -109,13 +113,10 @@ export const useEasyIntervals = (initialEasyIntervals) => {
         filteredNotesRef.current.push({noteUp: "do\u{266f}", noteDown: "DO\u{266f}"});
         setIsDosShowed(true);
     };
-
-    //setIntervalsSelection(filteredNotesRef.current);
     setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
-    console.log(filteredNotesRef.current);
    }
 
-   const updateisReShowedAction = ()=>{
+   const updateIsReShowedAction = ()=>{
     if (isReShowed) {
         const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "re" && nota.noteDown === "RE");
         if (index !== -1) filteredNotesRef.current.splice(index, 1);
@@ -125,13 +126,125 @@ export const useEasyIntervals = (initialEasyIntervals) => {
         filteredNotesRef.current.push({noteUp: "re", noteDown: "RE"});
         setIsReShowed(true);
     };
-    
-    //setIntervalsSelection(filteredNotesRef.current);
     setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
-    console.log(filteredNotesRef.current);
    }
 
+   const updateIsResShowedAction = ()=>{
+    if (isResShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "re\u{266f}" && nota.noteDown === "RE\u{266f}");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsResShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "re\u{266f}", noteDown: "RE\u{266f}"});
+        setIsResShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
 
+   const updateIsMiShowedAction = ()=>{
+    if (isMiShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "mi" && nota.noteDown === "MI");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsMiShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "mi", noteDown: "MI"});
+        setIsMiShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsFaShowedAction = ()=>{
+    if (isFaShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "fa" && nota.noteDown === "FA");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsFaShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "fa", noteDown: "FA"});
+        setIsFaShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsFasShowedAction = ()=>{
+    if (isFasShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "fa\u{266f}" && nota.noteDown === "FA\u{266f}");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsFasShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "fa\u{266f}", noteDown: "FA\u{266f}"});
+        setIsFasShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsSolShowedAction = ()=>{
+    if (isSolShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "sol" && nota.noteDown === "SOL");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsSolShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "sol", noteDown: "SOL"});
+        setIsSolShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsSolsShowedAction = ()=>{
+    if (isSolsShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "sol\u{266f}" && nota.noteDown === "SOL\u{266f}");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsSolsShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "sol\u{266f}", noteDown: "SOL\u{266f}"});
+        setIsSolsShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsLaShowedAction = ()=>{
+    if (isLaShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "la" && nota.noteDown === "LA");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsLaShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "la", noteDown: "LA"});
+        setIsLaShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsLasShowedAction = ()=>{
+    if (isLasShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "la\u{266f}" && nota.noteDown === "LA\u{266f}");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsLasShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "la\u{266f}", noteDown: "LA\u{266f}"});
+        setIsLasShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
+
+   const updateIsSiShowedAction = ()=>{
+    if (isSiShowed) {
+        const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "si" && nota.noteDown === "SI");
+        if (index !== -1) filteredNotesRef.current.splice(index, 1);
+        setIsSiShowed(false);
+    }
+    else {
+        filteredNotesRef.current.push({noteUp: "si", noteDown: "SI"});
+        setIsSiShowed(true);
+    };
+    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
+   }
 
    useEffect(() => {
     setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, [{noteUp: "do", noteDown: "DO"}]));
@@ -195,26 +308,20 @@ export const useEasyIntervals = (initialEasyIntervals) => {
         isLaBlocked, setIsLaBlocked,
         isLasBlocked, setIsLasBlocked,
         isSiBlocked, setIsSiBlocked,
-        updateisDoShowedAction,
-        updateisDosShowedAction,
-        updateisReShowedAction,
+        updateIsDoShowedAction,
+        updateIsDosShowedAction,
+        updateIsReShowedAction,
+        updateIsResShowedAction,
+        updateIsMiShowedAction,
+        updateIsFaShowedAction,
+        updateIsFasShowedAction,
+        updateIsSolShowedAction,
+        updateIsSolsShowedAction,
+        updateIsLaShowedAction,
+        updateIsLasShowedAction,
+        updateIsSiShowedAction,
 
         showNextIntervalAnswer,
     }
 }
-
-
-
-
-
-
-/* const {value: isSharpShowed, updateToggleValue: updateIsSharpShowed} = useToggleValue(false);
-const {value: isFlatShowed, updateToggleValue: updateIsFlatShowed} = useToggleValue(false);
-const {value: isNaturalShowed, updateToggleValue: updateIsNaturalShowed} = useToggleValue(true);
-const {value: isSolutionShowed, updateToggleValue: showSolution} = useToggleValue(false);
-const {value: isShowingModePressed, updateToggleValue: updateIsShowingModePressed} = useToggleValue(false);
-const {value: isSemitonesToggleSelected, updateToggleValue: updateIsSemitonesToggleSelected} = useToggleValue(false);
-const {value: isPlusShowed, updateToggleValue: updateIsPlusShowed} = useToggleValue(true);
-const {value: isMinusShowed, updateToggleValue: updateIsMinusShowed} = useToggleValue(false); */
-
 

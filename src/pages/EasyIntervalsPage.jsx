@@ -1,11 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Navbar } from "../components/Navbar";
 import "./pages.css";
 import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
 import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 import { createEasyIntervals } from "../pagesHelpers/get-easy-intervals";
-import { randomEasyInterval } from "../pagesHelpers/random-easy-interval";
 import { MyIntervalButtons3 } from "../lit-react-components/MyIntervalButtons3";
 import { MyEasyIntervalsButtons } from "../lit-react-components/MyEasyIntervalsButtons";
 import { useEasyIntervals } from "../hooks/useEasyIntervals";
@@ -14,8 +13,7 @@ export const EasyIntervalsPage = () => {
 
   const intervalRef = useRef(createEasyIntervals());
 
-  const {  currentInterval, setCurrentInterval, 
-           intervalsSelection, setIntervalsSelection,
+  const {  currentInterval,  
            isSharpShowed, 
            isFlatShowed, 
            isNaturalShowed, 
@@ -32,33 +30,30 @@ export const EasyIntervalsPage = () => {
            updateIsSemitonesToggleSelected,
            updateIsPlusShowed,
            updateIsMinusShowed,
-           isDoShowed, setIsDoShowed,
-           isDosShowed, setIsDosShowed,
-           isReShowed, setIsReShowed,
-           isResShowed, setIsResShowed,
-           isMiShowed, setIsMiShowed,
-           isFaShowed, setIsFaShowed,
-           isFasShowed, setIsFasShowed,
-           isSolShowed, setIsSolShowed,
-           isSolsShowed, setIsSolsShowed,
-           isLaShowed, setIsLaShowed,
-           isLasShowed, setIsLasShowed,
-           isSiShowed, setIsSiShowed,
-           updateIsDoShowed,
-           updateIsDosShowed,
-           updateIsReShowed,
-           updateIsResShowed,
-           updateIsMiShowed,
-           updateIsFaShowed,
-           updateIsFasShowed,
-           updateIsSolShowed,
-           updateIsSolsShowed,
-           updateIsLaShowed,
-           updateIsLasShowed,
-           updateIsSiShowed,
-           updateisDoShowedAction,
-           updateisDosShowedAction,
-           updateisReShowedAction,
+           isDoShowed, 
+           isDosShowed, 
+           isReShowed, 
+           isResShowed,
+           isMiShowed,
+           isFaShowed,
+           isFasShowed,
+           isSolShowed,
+           isSolsShowed,
+           isLaShowed,
+           isLasShowed,
+           isSiShowed,
+           updateIsDoShowedAction,
+           updateIsDosShowedAction,
+           updateIsReShowedAction,
+           updateIsResShowedAction,
+           updateIsMiShowedAction,
+           updateIsFaShowedAction,
+           updateIsFasShowedAction,
+           updateIsSolShowedAction,
+           updateIsSolsShowedAction,
+           updateIsLaShowedAction,
+           updateIsLasShowedAction,
+           updateIsSiShowedAction,
 
            showNextIntervalAnswer,
         } = useEasyIntervals(intervalRef.current);
@@ -88,13 +83,31 @@ export const EasyIntervalsPage = () => {
 
                 <div className="horizontal-block">
                     <MyEasyIntervalsButtons
-                      isDoShowed={isDoShowed}
                    //   isDoBlocked={isDoBlocked}
-                      isDoShowedAction={updateisDoShowedAction}
+                      isDoShowed={isDoShowed}
+                      isDoShowedAction={updateIsDoShowedAction}
                       isDosShowed={isDosShowed}
-                      isDosShowedAction={updateisDosShowedAction}
+                      isDosShowedAction={updateIsDosShowedAction}
                       isReShowed={isReShowed}
-                      isReShowedAction={updateisReShowedAction}
+                      isReShowedAction={updateIsReShowedAction}
+                      isResShowed={isResShowed}
+                      isResShowedAction={updateIsResShowedAction}
+                      isMiShowed={isMiShowed}
+                      isMiShowedAction={updateIsMiShowedAction}
+                      isFaShowed={isFaShowed}
+                      isFaShowedAction={updateIsFaShowedAction}
+                      isFasShowed={isFasShowed}
+                      isFasShowedAction={updateIsFasShowedAction}
+                      isSolShowed={isSolShowed}
+                      isSolShowedAction={updateIsSolShowedAction}
+                      isSolsShowed={isSolsShowed}
+                      isSolsShowedAction={updateIsSolsShowedAction}
+                      isLaShowed={isLaShowed}
+                      isLaShowedAction={updateIsLaShowedAction}
+                      isLasShowed={isLasShowed}
+                      isLasShowedAction={updateIsLasShowedAction}
+                      isSiShowed={isSiShowed}
+                      isSiShowedAction={updateIsSiShowedAction}
                     />
                     
                 </div>
@@ -103,13 +116,20 @@ export const EasyIntervalsPage = () => {
             <div className="interval-view-ask-box">
               <p className="interval-view-ask-text">
                 {currentInterval.note1WithoutNumber}&nbsp;&nbsp;&nbsp;{"-->"}&nbsp;&nbsp;&nbsp;
-                {currentInterval.note2WithoutNumber}
+                {isShowingModePressed 
+                              ? currentInterval.direction + setNumberInterval() 
+                              : currentInterval.note2WithoutNumber
+                }
               </p>
               <p className="interval-view-ask-text">
                 {isSolutionShowed 
-                    ? (isSemitonesToggleSelected 
-                          ? currentInterval.semitones + " semitones"
-                          : currentInterval.keysInBetween + " keys" )
+                    ? (isShowingModePressed 
+                              ? currentInterval.note2WithoutNumber 
+                              : (isSemitonesToggleSelected 
+                                              ? currentInterval.semitones + " semitones" 
+                                              : currentInterval.keysInBetween + " keys" 
+                                )
+                      )
                     : ""}                
               </p>
 

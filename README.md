@@ -1,5 +1,6 @@
 # Errores para corregir
 
+- en la pestaña intervals, no muestra bien el número central en el botón de tres botones
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia

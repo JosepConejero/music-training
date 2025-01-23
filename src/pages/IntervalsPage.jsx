@@ -20,7 +20,7 @@ export const IntervalsPage = () => {
   const {value: isSolutionShowed, updateToggleValue: showSolution} = useToggleValue(false);
   const {value: isLessThan8Showed, updateToggleValue: updateIsLessThan8Showed} = useToggleValue(true);
   const {value: isShowingModePressed, updateToggleValue: updateIsShowingModePressed} = useToggleValue(false);
-  const {value: isSemitonesToggleSelected, updateToggleValue: updateIsSemitonesToggleSelected} = useToggleValue(true);
+  const {value: isSemitonesToggleSelected, updateToggleValue: updateIsSemitonesToggleSelected} = useToggleValue(false);
 
   const optionsRange = isSemitonesToggleSelected 
             ? ["all", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"] 

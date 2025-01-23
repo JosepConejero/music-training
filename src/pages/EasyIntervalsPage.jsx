@@ -58,8 +58,7 @@ export const EasyIntervalsPage = () => {
            showNextIntervalAnswer,
         } = useEasyIntervals(intervalRef.current);
 
-  //comprueba si [{noteUp: "do", noteDown: "DO"}] es el único que hay, y entonces no lo quita
-  //POR CIERTO, DA UN ERROR CUANDO LE PULSO # Y b Y LE QUITO NATURAL PERO ESTÁ EN DO NATURAL
+  //POSIBLE MEJORA: SI SOLO HAY UN BOTÓN PULSADO, NO LO DESPULSA
 
   const setNumberInterval = () => isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
  
@@ -172,14 +171,3 @@ export const EasyIntervalsPage = () => {
   );
 };
 
-
-
-/* activateAction={()=>updateIntervalsSelection(completeIntervals, selectedItemIndex)}  */
-/* <MyThreeButtons
-activateAction={()=>{}}
-updateItemIndex={updateItemIndex} 
-textItems={optionsRange} 
-selectedItemIndex={selectedItemIndex}
-height="180px"
-width="100px"            
-/>                 */

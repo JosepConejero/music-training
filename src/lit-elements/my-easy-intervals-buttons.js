@@ -80,6 +80,7 @@ export class MyEasyIntervalsButtons extends LitElement {
 
       .div-button {
         height: 33.3%;
+        width: 60px;
       }
 
       `;
@@ -87,8 +88,8 @@ export class MyEasyIntervalsButtons extends LitElement {
      constructor() {
       super();
       // Declare reactive properties
-      this.height = "200px";
-      this.width = "100px";
+      this.height = "260px";
+      this.width = "140px";
 
       this.isDoShowed = true;
       this.isDosShowed = false;

@@ -10,6 +10,7 @@
 
 
 # TAREAS SIGUIENTES
+- cambiar la función generadora de los easy intervals para que en los intervalos de bajada '-' no me salte de octava para unos intervalos
 - ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y con las flechas se selecciona un intervalo
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
 - dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time

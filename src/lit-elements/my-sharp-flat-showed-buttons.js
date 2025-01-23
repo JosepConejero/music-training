@@ -1,7 +1,7 @@
 import { LitElement, css, html } from "lit";
 import "../lit-elements/my-button";
 
-export class MyInternalButtons extends LitElement {
+export class MyIntervalButtons extends LitElement {
     static properties = {
       height: {type: Number},
       width: {type: Number}, 
@@ -74,5 +74,5 @@ export class MyInternalButtons extends LitElement {
       `;
     }
   }
-  customElements.define("my-sharp-flat-showed-buttons", MyInternalButtons);
+  customElements.define("my-sharp-flat-showed-buttons", MyIntervalButtons);
   

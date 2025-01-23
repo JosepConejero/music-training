@@ -5,9 +5,12 @@
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
 - podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente 
   en react con useState
+- error cuando subo a 12 el botón de intervals, no aparece bien; y si después subo y bajo, se descuadra, aparece una cosa en el botón y 
+  el número de semitonos o teclas sale incorrecto
 
 
 # TAREAS SIGUIENTES
+- cambiar la función generadora de los easy intervals para que en los intervalos de bajada '-' no me salte de octava para unos intervalos
 - ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y con las flechas se selecciona un intervalo
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
 - dibujos del "play", el "stop" y las flechas de "arriba" y "abajo" en los botones de time
@@ -33,6 +36,7 @@
 - clave de sol también para los intervalos
 - modificar el complete-intervals para que con map y filter genere arrays con menos valores
 - añadir lista de presets para practicar los intervalos
+- añadir menú hamburguesa para la versión móvil
 
 
 # VSC

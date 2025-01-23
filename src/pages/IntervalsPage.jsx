@@ -3,7 +3,7 @@ import { Navbar } from "../components/Navbar";
 import "./pages.css";
 import { completeIntervals } from "../pagesHelpers/complete-intervals";
 import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
-import { randomInterval } from "../pagesHelpers/random-Interval";
+import { randomInterval } from "../pagesHelpers/random-interval";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
 import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 import { MyIntervalButtons2 } from "../lit-react-components/MyIntervalButtons2";
@@ -64,7 +64,7 @@ export const IntervalsPage = () => {
           <p className="title">INTERVALS PRACTICE</p>
         </div>
 
-        <div className="bloque-vertical">
+        <div className="screen-width vertical-block">
             <div className="interval-view-container"> 
                 <div onClick={showSolution}>
                   <MyIntervals showingMode={isShowingModePressed} showingModeText={currentInterval.direction + setNumberInterval()} nota1={currentInterval.note1} nota2={currentInterval.note2}/>

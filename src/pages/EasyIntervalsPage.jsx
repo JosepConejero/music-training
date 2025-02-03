@@ -132,26 +132,34 @@ export const EasyIntervalsPage = () => {
                 </div>
             </div>
             
-            <div className="interval-view-ask-box">
-              <p className="interval-view-ask-text">
-                {currentInterval.note1WithoutNumber}&nbsp;&nbsp;&nbsp;{"-->"}&nbsp;&nbsp;&nbsp;
-                {isShowingModePressed 
-                              ? currentInterval.direction + setNumberInterval() 
-                              : currentInterval.note2WithoutNumber
-                }
-              </p>
-              <p className="interval-view-ask-text">
-                {isSolutionShowed 
-                    ? (isShowingModePressed 
-                              ? currentInterval.note2WithoutNumber 
-                              : (isSemitonesToggleSelected 
-                                              ? currentInterval.semitones + " semitones" 
-                                              : currentInterval.keysInBetween + " keys" 
-                                )
-                      )
-                    : ""}                
-              </p>
-
+              <div className="horizontal-block wide-fix">
+                  <div className="wide-33">
+                  <my-button text="favorites"></my-button>
+                  <my-button text="play"></my-button>
+                  </div>
+                  <div className="vertical block wide-66">
+                      <p className="interval-view-ask-text">
+                                      {currentInterval.note1WithoutNumber}&nbsp;&nbsp;&nbsp;{"-->"}&nbsp;&nbsp;&nbsp;
+                                      {isShowingModePressed 
+                                                    ? currentInterval.direction + setNumberInterval() 
+                                                    : currentInterval.note2WithoutNumber
+                                      }
+                      </p>
+                      <p className="interval-view-ask-text">
+                                      {isSolutionShowed 
+                                          ? (isShowingModePressed 
+                                                    ? currentInterval.note2WithoutNumber 
+                                                    : (isSemitonesToggleSelected 
+                                                                    ? currentInterval.semitones + " semitones" 
+                                                                    : currentInterval.keysInBetween + " keys" 
+                                                      )
+                                            )
+                                          : ""}                
+                      </p>
+                  </div>
+                  <div className="wide-33">
+                    <my-button text="favorite"></my-button>
+                  </div>
             </div>
 
           <div className="interval-buttons-container">

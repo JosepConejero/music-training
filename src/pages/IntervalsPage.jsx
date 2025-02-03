@@ -80,7 +80,7 @@ export const IntervalsPage = () => {
                 />                
             </div>
             
-            <div className="interval-view-ask-box">
+            <div className="">
               <p className="interval-view-ask-text">
                 {isSolutionShowed ? currentInterval.name : ""}
               </p>

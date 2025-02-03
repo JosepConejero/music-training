@@ -76,3 +76,15 @@
     margin-bottom: 1em;
     gap: 0.3em;
 }
+
+.wide-33 {
+  width: 33.3%;
+}
+
+.wide-66 {
+    width: 66.6%;
+}
+
+.wide-fix {
+  width: 100%;
+}

@@ -217,7 +217,7 @@ export class MyEasyIntervalsButtons extends LitElement {
                 <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="si" @click=${this.isSiShowedAction}></my-button>
             </div>
             <div class="div-button">
-                <my-button ?pressedButton=${false} ?toggle=${true} text="all" @click=${()=>{}}></my-button>             
+                <my-button ?pressedButton=${false} ?disabled=${true} ?toggle=${true} text="all" @click=${()=>{}}></my-button>             
             </div>
         </div>
         </div>

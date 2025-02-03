@@ -32,27 +32,37 @@ export const EasyIntervalsPage = () => {
            updateIsMinusShowed,
            isDoShowed, 
            isDosShowed, 
+           isRebShowed, 
            isReShowed, 
            isResShowed,
+           isMibShowed,
            isMiShowed,
            isFaShowed,
            isFasShowed,
+           isSolbShowed,
            isSolShowed,
            isSolsShowed,
+           isLabShowed,
            isLaShowed,
            isLasShowed,
+           isSibShowed,
            isSiShowed,
            updateIsDoShowedAction,
            updateIsDosShowedAction,
+           updateIsRebShowedAction,
            updateIsReShowedAction,
            updateIsResShowedAction,
+           updateIsMibShowedAction,
            updateIsMiShowedAction,
            updateIsFaShowedAction,
            updateIsFasShowedAction,
+           updateIsSolbShowedAction,
            updateIsSolShowedAction,
            updateIsSolsShowedAction,
+           updateIsLabShowedAction,
            updateIsLaShowedAction,
            updateIsLasShowedAction,
+           updateIsSibShowedAction,
            updateIsSiShowedAction,
 
            showNextIntervalAnswer,
@@ -87,24 +97,34 @@ export const EasyIntervalsPage = () => {
                       isDoShowedAction={updateIsDoShowedAction}
                       isDosShowed={isDosShowed}
                       isDosShowedAction={updateIsDosShowedAction}
+                      isRebShowed={isRebShowed}
+                      isRebShowedAction={updateIsRebShowedAction}
                       isReShowed={isReShowed}
                       isReShowedAction={updateIsReShowedAction}
                       isResShowed={isResShowed}
                       isResShowedAction={updateIsResShowedAction}
+                      isMibShowed={isMibShowed}
+                      isMibShowedAction={updateIsMibShowedAction}
                       isMiShowed={isMiShowed}
                       isMiShowedAction={updateIsMiShowedAction}
                       isFaShowed={isFaShowed}
                       isFaShowedAction={updateIsFaShowedAction}
                       isFasShowed={isFasShowed}
                       isFasShowedAction={updateIsFasShowedAction}
+                      isSolbShowed={isSolbShowed}
+                      isSolbShowedAction={updateIsSolbShowedAction}
                       isSolShowed={isSolShowed}
                       isSolShowedAction={updateIsSolShowedAction}
                       isSolsShowed={isSolsShowed}
                       isSolsShowedAction={updateIsSolsShowedAction}
+                      isLabShowed={isLabShowed}
+                      isLabShowedAction={updateIsLabShowedAction}
                       isLaShowed={isLaShowed}
                       isLaShowedAction={updateIsLaShowedAction}
                       isLasShowed={isLasShowed}
                       isLasShowedAction={updateIsLasShowedAction}
+                      isSibShowed={isSibShowed}
+                      isSibShowedAction={updateIsSibShowedAction}
                       isSiShowed={isSiShowed}
                       isSiShowedAction={updateIsSiShowedAction}
                     />

@@ -88,3 +88,8 @@
 .wide-fix {
   width: 100%;
 }
+
+.height-fix {
+  height: 30px;
+  margin-bottom: 3px;
+}

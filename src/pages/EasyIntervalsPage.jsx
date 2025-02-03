@@ -134,8 +134,12 @@ export const EasyIntervalsPage = () => {
             
               <div className="horizontal-block wide-fix">
                   <div className="wide-33">
-                  <my-button text="favorites"></my-button>
-                  <my-button text="play"></my-button>
+                    <div className="height-fix">
+                       <my-button text="favorites"></my-button>
+                    </div>
+                    <div className="height-fix">
+                       <my-button text="play"></my-button>
+                    </div>
                   </div>
                   <div className="vertical block wide-66">
                       <p className="interval-view-ask-text">

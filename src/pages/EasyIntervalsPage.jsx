@@ -8,10 +8,17 @@ import { createEasyIntervals } from "../pagesHelpers/get-easy-intervals";
 import { MyIntervalButtons3 } from "../lit-react-components/MyIntervalButtons3";
 import { MyEasyIntervalsButtons } from "../lit-react-components/MyEasyIntervalsButtons";
 import { useEasyIntervals } from "../hooks/useEasyIntervals";
+import { useAudio } from "../hooks/useAudio";
+import { MyButton } from "../lit-react-components/MyButton";
 
 export const EasyIntervalsPage = () => {
 
   const intervalRef = useRef(createEasyIntervals());
+
+  const {audioRef: audioRef1, playNote: playNote1} = useAudio();
+  const {audioRef: audioRef2, playNote: playNote2} = useAudio();
+  
+  const nIntervId = useRef();
 
   const {  currentInterval,  
            isSharpShowed, 
@@ -72,9 +79,34 @@ export const EasyIntervalsPage = () => {
 
   const setNumberInterval = () => isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
  
+  const timeHandler = () => {
+    if (!nIntervId.current) {
+      nIntervId.current = setInterval(() => {
+        //console.log("aparece");
+        playNote2(currentInterval.note2);
+        clearInterval(nIntervId.current);
+        nIntervId.current = null;
+  
+      }, 1000);
+
+    } else {
+      clearInterval(nIntervId.current);
+      nIntervId.current = null;
+    }
+  };
+
+  const playNotes = ()=>{
+    //console.log(currentInterval);
+    playNote1(currentInterval.note1);
+    timeHandler();
+    
+  }
+
   return (
     <>
       <Navbar />
+      <audio ref={audioRef1}></audio>
+      <audio ref={audioRef2}></audio>
       <div className="intervals-main-container">
         <div>
           <p className="title">EASY INTERVALS PRACTICE</p>
@@ -138,7 +170,7 @@ export const EasyIntervalsPage = () => {
                        <my-button text="favorites"></my-button>
                     </div>
                     <div className="height-fix">
-                       <my-button text="play"></my-button>
+                       <MyButton text="play" actionOnClick={()=>playNotes(currentInterval)}></MyButton>
                     </div>
                   </div>
                   <div className="vertical block wide-66">

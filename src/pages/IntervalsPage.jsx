@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import "./pages.css";
 import { completeIntervals } from "../pagesHelpers/complete-intervals";
@@ -9,10 +9,17 @@ import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 import { MyIntervalButtons2 } from "../lit-react-components/MyIntervalButtons2";
 import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
 import { useToggleValue } from "../hooks/useToggleValue";
+import { useAudio } from "../hooks/useAudio";
+import { MyButton } from "../lit-react-components/MyButton";
 
 export const IntervalsPage = () => {
   const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
   const [intervalsSelection, setIntervalsSelection] = useState(completeIntervals);
+
+  const {audioRef: audioRef1, playNote: playNote1} = useAudio();
+  const {audioRef: audioRef2, playNote: playNote2} = useAudio();
+  
+  const nIntervId = useRef();
 
   const {value: isSharpShowed, updateToggleValue: updateIsSharpShowed} = useToggleValue(true);
   const {value: isFlatShowed, updateToggleValue: updateIsFlatShowed} = useToggleValue(true);
@@ -56,9 +63,34 @@ export const IntervalsPage = () => {
     setIntervalsSelection(getIntervalsBySemitones(allintervals, optionsRange[item])) ;
   }
 
+  const timeHandler = () => {
+    if (!nIntervId.current) {
+      nIntervId.current = setInterval(() => {
+        //console.log("aparece");
+        playNote2(currentInterval.note2);
+        clearInterval(nIntervId.current);
+        nIntervId.current = null;
+  
+      }, 1000);
+
+    } else {
+      clearInterval(nIntervId.current);
+      nIntervId.current = null;
+    }
+  };
+
+  const playNotes = ()=>{
+    //console.log(currentInterval);
+    playNote1(currentInterval.note1);
+    timeHandler();
+    
+  }
+
   return (
     <>
       <Navbar />
+      <audio ref={audioRef1}></audio>
+      <audio ref={audioRef2}></audio>
       <div className="intervals-main-container">
         <div>
           <p className="title">INTERVALS PRACTICE</p>
@@ -80,17 +112,20 @@ export const IntervalsPage = () => {
                 />                
             </div>
             
-            <div className="">
-              <p className="interval-view-ask-text">
-                {isSolutionShowed ? currentInterval.name : ""}
-              </p>
-              <p className="interval-view-ask-text">
-                {isSolutionShowed 
-                    ? (isSemitonesToggleSelected 
-                          ? currentInterval.semitones + " semitones"
-                          : currentInterval.keysInBetween + " piano keys in between" )
-                    : ""}
-              </p>
+            <div className="horizontal-block wide-fix">
+              <MyButton className="wide-20 tall-60" actionOnClick={()=>playNotes(currentInterval)} text="PLAY"></MyButton>
+              <div className="vertical-block wide-80">
+                <p className="interval-view-ask-text">
+                  {isSolutionShowed ? currentInterval.name : ""}
+                </p>
+                <p className="interval-view-ask-text">
+                  {isSolutionShowed 
+                      ? (isSemitonesToggleSelected 
+                            ? currentInterval.semitones + " semitones"
+                            : currentInterval.keysInBetween + " piano keys in between" )
+                      : ""}
+                </p>
+              </div>
             </div>
 
           <div className="interval-buttons-container">

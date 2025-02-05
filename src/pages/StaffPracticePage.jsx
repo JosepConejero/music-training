@@ -11,6 +11,7 @@ import { MySharpFlatShowedButtons } from "../lit-react-components/MySharpFlatSho
 import { siSharpNotesKind, flatNotes, sharpNotes, naturalNotes } from "../staffHandlers/selectable-notes";
 import { MyStaff } from "../lit-react-components/MyStaff";
 import { useToggleValue } from "../hooks/useToggleValue";
+import { useAudio } from "../hooks/useAudio";
 
 
 export const StaffPracticePage = () => {
@@ -22,6 +23,8 @@ export const StaffPracticePage = () => {
   const speed = useRef(2000);
   const nIntervId = useRef();
   
+  const {audioRef, playNote} = useAudio();
+
   const {value: isSolutionShowed, updateToggleValue: showSolution} = useToggleValue(false);
   const {value: isOneOctavePressed, updateToggleValue: updateIsOneOctavePressed} = useToggleValue(false);
   const {value: isSiSharpKindShowed, updateToggleValue: updateIsSiSharpKindShowed} = useToggleValue(false);
@@ -124,8 +127,11 @@ const isTrumpet = (note)=>{
 }
 
 
+
+
   return (
     <div className="staff-practice-page-container">
+      <audio ref={audioRef}></audio>
       <Navbar />
       <main className="staff-practice">
         <span className="title">STAFF PRACTICE</span>
@@ -143,8 +149,11 @@ const isTrumpet = (note)=>{
           />
         </div>
         <div className="container-span">
-          <span className={isSolutionShowed ? "answer" : "hidden-answer"}>{graphicNotes[activeNote]}</span>
-          {isSolutionShowed && isTrumpet(activeNote) && <my-trumpet-pistons pistons={pistons[activeNote]}></my-trumpet-pistons> }
+          <button className="wide-button tall-60" onClick={()=>playNote(activeNote)}>PLAY</button>
+          <div className="horizontal-block wide-solution">
+            <span className={isSolutionShowed ? "answer" : "hidden-answer"}>{graphicNotes[activeNote]}</span>
+            {isSolutionShowed && isTrumpet(activeNote) && <my-trumpet-pistons pistons={pistons[activeNote]}></my-trumpet-pistons> }
+          </div>
         </div>
         <StaffControls buttonHandlers={buttonHandlers}/>
       </main>
@@ -153,37 +162,3 @@ const isTrumpet = (note)=>{
   );
 };
 
-
-
-  /* const [isSolutionShowed, setIsAnswerVisible] = useState(false);*/
- // const [isOneOctavePressed, setIsOneOctavePressed] = useState(false);
-  /*const [isSiSharpKindShowed, setIsSiSharpKindShowed] = useState(false);
-  const [isSharpShowed, setIsSharpShowed] = useState(true);
-  const [isFlatShowed, setIsFlatShowed] = useState(true);
-  const [isNaturalNotesShowed, setIsNaturalNotesShowed] = useState(true);
- */
-
-  
-/*   const showSolution = () => {
-    setIsAnswerVisible((prevState) => !prevState);
-  }; */
-
-/*   const updateIsSiSharpKindShowed = () => {
-    setIsSiSharpKindShowed((prevState)=> !prevState);
-    
-  } */
-
-/*   const updateIsSharpShowed = () => {
-    setIsSharpShowed((prevState)=> !prevState);
-    
-  }
-
-  const updateIsFlatShowed = () => {
-    setIsFlatShowed((prevState)=> !prevState);
-    
-  } */
-
-/*   const updateIsNaturalNotesShowed = () => {
-    setIsNaturalNotesShowed((prevState)=> !prevState);
-    
-  } */

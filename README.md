@@ -1,5 +1,6 @@
 # Errores para corregir
 
+- en la pestaña intervals, no muestra bien el número central en el botón de tres botones
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
@@ -10,6 +11,7 @@
 
 
 # TAREAS SIGUIENTES
+- el código del botón ALL en EasyIntervalsPage todavía no está implementado
 - cambiar la función generadora de los easy intervals para que en los intervalos de bajada '-' no me salte de octava para unos intervalos
 - ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y con las flechas se selecciona un intervalo
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)
@@ -37,6 +39,7 @@
 - modificar el complete-intervals para que con map y filter genere arrays con menos valores
 - añadir lista de presets para practicar los intervalos
 - añadir menú hamburguesa para la versión móvil
+- hacer un modal genérico con opciones para que devuelva todas esas opciones al cerrar
 
 
 # VSC

@@ -174,7 +174,7 @@ console.log("isdoshowed");
                 </div>
             </div>
             
-            <div className="interval-view-ask-box">
+            <div className="">
               <p className="interval-view-ask-text">
                 {currentInterval.note1WithoutNumber}&nbsp;&nbsp;&nbsp;{"-->"}&nbsp;&nbsp;&nbsp;
                 {currentInterval.note2WithoutNumber}

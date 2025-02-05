@@ -82,6 +82,14 @@
   min-height: 80px;
 }
 
+.wide-button {
+  width: 50px;
+}
+
+.wide-solution {
+  width: 200px;
+}
+
 span {
   min-width: 80px;
   /* border: 1px solid black; */

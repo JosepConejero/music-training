@@ -5,6 +5,7 @@ export const Navbar = () => {
   return (
     <>
       <main className="navbar-up">
+        <button className="hamburger">PULSA</button>
         <Link to="/">MAIN</Link>
         <Link to="/staff-practice">STAFF</Link>
         <Link to="/intervals">INTERVALS</Link>

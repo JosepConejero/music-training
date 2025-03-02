@@ -24,7 +24,7 @@ export const Navbar = () => {
         <Link to="/">MAIN</Link>
         <Link to="/staff-practice">STAFF</Link>
         <Link to="/intervals">INTERVALS</Link>
-        <Link to="/easy-intervals">E.I.</Link>
+        <Link to="/easy-intervals">EASY INTERVALS</Link>
         <Link to="/rythms">RYTHMS</Link>
         <Link to="/chords">CHORDS</Link>
       </main>

@@ -1,18 +1,24 @@
 .menu {
     position: absolute;
     top: 50px;
+    /* left: -200px; */
     left: 0px;
     background-color: #fff;
     border: 1px solid #ddd;
     /* border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     width: 50%;
+    /* transition: left 2s; */
     /* height: calc(100vh - 50px); */
     height: 320px;
     z-index: 20000;
-    transition: width 2s;
   }
   
+.menu-extended {
+  left: 0px;
+  transition: left 2s;
+}
+
   .fondo {
     position: absolute;
     /* top: 50px; */

@@ -1,0 +1,56 @@
+.menu {
+    position: absolute;
+    top: 50px;
+    left: -200px;
+    transition: left 2s ease; 
+    /* left: 0px; */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    /* border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    width: 50%;
+    /* height: calc(100vh - 50px); */
+    height: 320px;
+    z-index: 20000;
+  }
+  
+.expanded {
+  left: 0px;
+
+   /* transition: left 2s;  */
+}
+
+.merdaputa {
+  left: -200px;
+  /* transition: left 2s;  */
+}
+
+  .fondo {
+    position: absolute;
+    /* top: 50px; */
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    /* height: calc(100vh - 50px); */
+    height: 100%;
+    background-color: grey;
+    opacity: 0.5;
+    z-index: 19000;
+  
+  }
+  
+  .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu li {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .menu a{
+    text-decoration: none;
+    color: #003838;
+  }

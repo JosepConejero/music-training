@@ -1,6 +1,6 @@
 # Errores para corregir
 
-- no funciona la transición del menú hamburguesa
+- no funciona la transición del menú hamburguesa / en la versión PC, q cn pse x encima el ratón se haga + gd
 - en la pestaña intervals, no muestra bien el número central en el botón de tres botones
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)

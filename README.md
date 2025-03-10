@@ -1,16 +1,20 @@
 # Errores para corregir
 
+- no funciona la transición del menú hamburguesa
 - en la pestaña intervals, no muestra bien el número central en el botón de tres botones
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
 - from - to -> cuando sale el foco se resetean los valores por defecto, no hay permanencia
-- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente 
+- podría ser que estuviera duplicando el estado de los botones toggle tanto dentro del componente lit como fuera del componente
   en react con useState
-- error cuando subo a 12 el botón de intervals, no aparece bien; y si después subo y bajo, se descuadra, aparece una cosa en el botón y 
+- error cuando subo a 12 el botón de intervals, no aparece bien; y si después subo y bajo, se descuadra, aparece una cosa en el botón y
   el número de semitonos o teclas sale incorrecto
 
-
 # TAREAS SIGUIENTES
+
+- crear un modal con parámetros de las notas aleatorias
+- que aparezca la nota anterior (y que pueda reproducirse)
+- que me genere un array con todos los intervalos desordenados y que excluya los que yo le diga.
 - el código del botón ALL en EasyIntervalsPage todavía no está implementado
 - cambiar la función generadora de los easy intervals para que en los intervalos de bajada '-' no me salte de octava para unos intervalos
 - ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y con las flechas se selecciona un intervalo
@@ -41,11 +45,11 @@
 - añadir menú hamburguesa para la versión móvil
 - hacer un modal genérico con opciones para que devuelva todas esas opciones al cerrar
 
-
 # VSC
+
 - autocorrección CSS
 - que muestre la branch en la terminal
- 
 
 # Funcionalidades para añadir
+
 - app para dibujar svg's

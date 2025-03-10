@@ -1,4 +1,4 @@
-import { /* useRef,  */useState } from "react";
+import { /* useRef,  */ useState } from "react";
 //import { uniqueKey } from "../helpers/uniqueKey";
 //import { distancia } from "../staffHandlers/distances";
 import "../lit-elements/my-buttons";
@@ -8,22 +8,21 @@ import { MyButton } from "../lit-react-components/MyButton";
 
 export const StaffControls = ({ buttonHandlers }) => {
   const [togglePlay, setTogglePlay] = useState(false);
-  const { showNextNote, /* isOneOctavePressed,*/ updateIsOneOctavePressed, setSpeed, timeHandler, showSolution, 
-         /* isSolutionShowed,  *//* currentSpeed,  */resetInterval } = buttonHandlers;
+  const { showNextNote, isOneOctavePressed, updateIsOneOctavePressed, setSpeed, timeHandler, showSolution, /* isSolutionShowed,  */ /* currentSpeed,  */ resetInterval } = buttonHandlers;
   //const fromSelection = useRef(0);
   //const toSelection = useRef(80);
 
   //const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines", "Voice", "Selection" ];
-  const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines" ];
+  const optionsRange = ["5 + 8 lines", "5 + 4 lines", "trumpet", "5 lines"];
   const [selectedItemIndex, setSelectedItemIndex] = useState(2);
-  const timeRange = ["0.5 s.", "1 s.", "1.5 s.", "2 s." ];
+  const timeRange = ["0.5 s.", "1 s.", "1.5 s.", "2 s."];
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(2);
 
   /* const handleOneOctaveToggle = () => {
     setIsOneOctavePressed((prevState) => !prevState);
   }; */
 
- /*  const onFromSelectChange = ({ target }) => {
+  /*  const onFromSelectChange = ({ target }) => {
     // fromSelection.current = Object.keys(distancia)[target.value];
     fromSelection.current = target.value;
     target.value = toSelection.current;
@@ -40,41 +39,40 @@ export const StaffControls = ({ buttonHandlers }) => {
     // target.value = 19; //
   }; */
 
-  const updateItemIndex = (num)=>{
+  const updateItemIndex = (num) => {
     setSelectedItemIndex(num);
-  }
+  };
 
-  const updateTimeIndex = (num)=>{
+  const updateTimeIndex = (num) => {
     setSelectedTimeIndex(num);
-  }
-
+  };
 
   const showNoteAction = {
-    0: ()=>showNextNote(0, 80),
-    1: ()=>showNextNote(12, 68),
-    2: ()=>showNextNote(16, 69), //trumpet
-    3: ()=>showNextNote(24, 56), // 5 líneas
+    0: () => showNextNote(0, 80),
+    1: () => showNextNote(12, 68),
+    2: () => showNextNote(16, 69), //trumpet
+    3: () => showNextNote(24, 56), // 5 líneas
     /* 4: ()=>showNextNote(12, 68), //voice
     5: ()=>showNextNote(fromSelection.current, toSelection.current), */
   };
 
   const setSpeedAction = {
-    0: ()=>setSpeed(500),
-    1: ()=>setSpeed(1000),
-    2: ()=>setSpeed(1500),
-    3: ()=>setSpeed(2000),
-  }
+    0: () => setSpeed(500),
+    1: () => setSpeed(1000),
+    2: () => setSpeed(1500),
+    3: () => setSpeed(2000),
+  };
 
   const setTimeHandlerAction = {
-    0: ()=>timeHandler(0, 80),
-    1: ()=>timeHandler(12, 68),
-    2: ()=>timeHandler(16, 69), //trumpet
-    3: ()=>timeHandler(24, 56), // 5 líneas
+    0: () => timeHandler(0, 80),
+    1: () => timeHandler(12, 68),
+    2: () => timeHandler(16, 69), //trumpet
+    3: () => timeHandler(24, 56), // 5 líneas
     /* 4: ()=>timeHandler(12, 68), //voice
     5: ()=>timeHandler(fromSelection.current, toSelection.current), */
-  }
+  };
 
-  const showTimedNoteAction = (speed, timeHandler) =>{
+  const showTimedNoteAction = (speed, timeHandler) => {
     if (togglePlay) {
       resetInterval();
       setTogglePlay(false);
@@ -83,39 +81,30 @@ export const StaffControls = ({ buttonHandlers }) => {
       setTimeHandlerAction[timeHandler]();
       setTogglePlay(true);
     }
-    
-  }
+  };
 
-  const stopAction = ()=>{
+  const stopAction = () => {
     resetInterval();
     setTogglePlay(false);
-  }
+  };
 
   return (
     <>
       <div className="controls">
-
         <div>
-          <MyThreeButtons
-              activateAction={showNoteAction[selectedItemIndex]} 
-              updateItemIndex={updateItemIndex} 
-              textItems={optionsRange} 
-              selectedItemIndex={selectedItemIndex}
-              height="180px"
-              width="100px"
-          />
+          <MyThreeButtons activateAction={showNoteAction[selectedItemIndex]} updateItemIndex={updateItemIndex} textItems={optionsRange} selectedItemIndex={selectedItemIndex} height="180px" width="100px" />
         </div>
 
         <div>
-        <MyThreeButtons
-              activateAction={()=>showTimedNoteAction(selectedTimeIndex,selectedItemIndex)}
-              stopAction={stopAction}
-              updateItemIndex={updateTimeIndex} 
-              textItems={timeRange} 
-              selectedItemIndex={selectedTimeIndex}
-              height="180px"
-              width="100px"
-              autoUpdate
+          <MyThreeButtons
+            activateAction={() => showTimedNoteAction(selectedTimeIndex, selectedItemIndex)}
+            stopAction={stopAction}
+            updateItemIndex={updateTimeIndex}
+            textItems={timeRange}
+            selectedItemIndex={selectedTimeIndex}
+            height="180px"
+            width="100px"
+            autoUpdate
           />
         </div>
 
@@ -124,27 +113,20 @@ export const StaffControls = ({ buttonHandlers }) => {
           less than 8
           </button> */}
           <div>
-            <MyButton toggle actionOnClick={updateIsOneOctavePressed} text="less than 8"></MyButton>
+            <MyButton toggle pressedButton={isOneOctavePressed} actionOnClick={updateIsOneOctavePressed} text="less than 8"></MyButton>
           </div>
 
-         {/*  <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
+          {/*  <button className={isAnswerVisible ? "selectedButtonAnswer" : "buttonAnswer"} onClick={showAnswer}>
             answer
           </button> */}
           <div>
             <MyButton toggle actionOnClick={showSolution} text="answer"></MyButton>
           </div>
         </div>
-
-      
       </div>
-      
-      
     </>
   );
 };
-
-
-
 
 /* <span className="fromTo">
           <span> from</span>

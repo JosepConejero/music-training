@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Navbar } from "../components/Navbar";
 //import "../lit-elements/my-modal-1";
-import { MyModal1 } from "../lit-react-components/MyModal1";
+import { MyModal0 } from "../lit-react-components/MyModal0";
+import { easyIntervalsConfiguration } from "../pagesHelpers/easy-intervals-configuration";
 
-const initialValue = { a: 0, b: "valor inicial" };
+const initialValue = easyIntervalsConfiguration;
 
 export const ChordsPage = () => {
   const [value, setValue] = useState(initialValue);
@@ -13,23 +14,21 @@ export const ChordsPage = () => {
 
   const handleClick = () => {
     //console.log(valor.current);
-    console.log(value);
+    //console.log(value);
   };
 
-  const changeValue = () => {
+  /*   const changeValue = () => {
     //valor.current = { a: 10000, b: "valor cambiado" };
     setValue({ a: 5, b: "valor cambiado" });
-  };
+  }; */
 
-  const updateExternalProps = (value) => {
+  const updateConfiguration = (value) => {
     setValue(value);
-    //console.log("este valor es value: ", value);
     hideModal();
   };
 
   const showModal = () => {
-    //setIsVisibleModal(true);
-    setIsVisibleModal((value) => !value);
+    setIsVisibleModal(true);
   };
 
   const hideModal = () => {
@@ -42,9 +41,9 @@ export const ChordsPage = () => {
       <div>CHORDS PAGE</div>
       <div>UNDER CONSTRUCTION</div>
       <button onClick={handleClick}>MOSTRAR VALOR</button>
-      <button onClick={changeValue}>CAMBIAR VALOR</button>
+      {/* <button onClick={changeValue}>CAMBIAR VALOR</button> */}
       <button onClick={showModal}>MOSTRAR MODAL</button>
-      <MyModal1 visible={isVisibleModal} configuration={value} updateExternalProps={updateExternalProps} />
+      <MyModal0 visible={isVisibleModal} configuration={value} updateConfiguration={updateConfiguration} actionOnHide={hideModal} />
     </>
   );
 };

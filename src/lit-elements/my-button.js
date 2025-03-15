@@ -49,7 +49,7 @@ export class MyModal1 extends LitElement {
   buttonAppearance() {
     if (this.disabled) return "disabledButton";
     if (this.pressedButton) return "pressedButton";
-    else return "unpressedButton";
+    return "unpressedButton";
   }
 
   constructor() {

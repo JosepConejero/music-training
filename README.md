@@ -1,5 +1,7 @@
 # Errores para corregir
 
+- arreglar la pulsación de las opciones del menú para que abarque todo lo ancho de la opción; si no se pulsa sobre el texto exclusivamente,
+  desaparece el menú pero no se selecciona nada
 - no funciona la transición del menú hamburguesa / en la versión PC, q cn pse x encima el ratón se haga + gd
 - en la pestaña intervals, no muestra bien el número central en el botón de tres botones
 - less than 8 no funciona por un sostenido

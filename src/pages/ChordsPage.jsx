@@ -42,7 +42,7 @@ export const ChordsPage = () => {
       <div>UNDER CONSTRUCTION</div>
       <button onClick={handleClick}>MOSTRAR VALOR</button>
       {/* <button onClick={changeValue}>CAMBIAR VALOR</button> */}
-      <button onClick={showModal}>MOSTRAR MODAL</button>
+      {/* <button onClick={showModal}>MOSTRAR MODAL</button> */}
       <MyModal0 visible={isVisibleModal} configuration={value} updateConfiguration={updateConfiguration} actionOnHide={hideModal} />
     </>
   );

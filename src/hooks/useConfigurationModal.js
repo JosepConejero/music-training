@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useState, useRef } from "react";
 
 export const useConfigurationModal = (initialConfiguration, isConfigurationRight) => {

@@ -1,28 +1,28 @@
 import { useState } from "react";
 import { Navbar } from "../components/Navbar";
 //import "../lit-elements/my-modal-1";
-import { MyModal0 } from "../lit-react-components/MyModal0";
-import { easyIntervalsConfiguration } from "../pagesHelpers/easy-intervals-configuration";
+//import { MyModal0 } from "../lit-react-components/MyModal0";
+//import { easyIntervalsConfiguration } from "../pagesHelpers/easy-intervals-configuration";
 
-const initialValue = easyIntervalsConfiguration;
+//const initialValue = easyIntervalsConfiguration;
 
 export const ChordsPage = () => {
-  const [value, setValue] = useState(initialValue);
+  // const [value, setValue] = useState(initialValue);
   //const valor = useRef(initialValue);
-  const [isVisibleModal, setIsVisibleModal] = useState(false);
+  // const [isVisibleModal, setIsVisibleModal] = useState(false);
   //const isVisibleModal = useRef(false);
 
-  const handleClick = () => {
-    //console.log(valor.current);
-    //console.log(value);
-  };
+  // const handleClick = () => {
+  //   //console.log(valor.current);
+  //   //console.log(value);
+  // };
 
   /*   const changeValue = () => {
     //valor.current = { a: 10000, b: "valor cambiado" };
     setValue({ a: 5, b: "valor cambiado" });
   }; */
 
-  const updateConfiguration = (value) => {
+  /* const updateConfiguration = (value) => {
     setValue(value);
     hideModal();
   };
@@ -33,17 +33,17 @@ export const ChordsPage = () => {
 
   const hideModal = () => {
     setIsVisibleModal(false);
-  };
+  }; */
 
   return (
     <>
       <Navbar />
       <div>CHORDS PAGE</div>
       <div>UNDER CONSTRUCTION</div>
-      <button onClick={handleClick}>MOSTRAR VALOR</button>
+      {/* <button onClick={handleClick}>MOSTRAR VALOR</button> */}
       {/* <button onClick={changeValue}>CAMBIAR VALOR</button> */}
       {/* <button onClick={showModal}>MOSTRAR MODAL</button> */}
-      <MyModal0 visible={isVisibleModal} configuration={value} updateConfiguration={updateConfiguration} actionOnHide={hideModal} />
+      {/* <MyModal0 visible={isVisibleModal} configuration={value} updateConfiguration={updateConfiguration} actionOnHide={hideModal} /> */}
     </>
   );
 };

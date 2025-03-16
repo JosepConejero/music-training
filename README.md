@@ -1,6 +1,9 @@
 # Errores para corregir
 
-- no funciona la transición del menú hamburguesa
+- arreglar la pulsación de las opciones del menú para que abarque todo lo ancho de la opción; si no se pulsa sobre el texto exclusivamente,
+  desaparece el menú pero no se selecciona nada
+- cambiar el color de los botones "all", cambiar el color de los botones all, difficult, cancel y ok
+- no funciona la transición del menú hamburguesa / en la versión PC, q cn pse x encima el ratón se haga + gd
 - en la pestaña intervals, no muestra bien el número central en el botón de tres botones
 - less than 8 no funciona por un sostenido
 - from - to -> validaciones (si la6 la6, bucle infinito)
@@ -12,10 +15,9 @@
 
 # TAREAS SIGUIENTES
 
+- botón "reiniciar" en la pestaña easy-intervals
 - crear un modal con parámetros de las notas aleatorias
 - que aparezca la nota anterior (y que pueda reproducirse)
-- que me genere un array con todos los intervalos desordenados y que excluya los que yo le diga.
-- el código del botón ALL en EasyIntervalsPage todavía no está implementado
 - cambiar la función generadora de los easy intervals para que en los intervalos de bajada '-' no me salte de octava para unos intervalos
 - ERROR EN EL BOTÓN DE LOS INTERVALOS CUANDO FLAT, SHARP Y NATURAL ESTÁN DESPULSADOS y con las flechas se selecciona un intervalo
 - botón de los intervalos para escoger qué distancia practicar (o si practicar todas)

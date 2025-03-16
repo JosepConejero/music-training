@@ -2,15 +2,14 @@ import { useRef, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import "./pages.css";
 import { completeIntervals } from "../pagesHelpers/complete-intervals";
-import { MyIntervalButtons } from "../lit-react-components/MyIntervalButtons";
 import { randomInterval } from "../pagesHelpers/random-interval";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
 import { MyKeyboard } from "../lit-react-components/MyKeyboard";
-import { MyIntervalButtons2 } from "../lit-react-components/MyIntervalButtons2";
 import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
 import { useToggleValue } from "../hooks/useToggleValue";
 import { useAudio } from "../hooks/useAudio";
 import { MyButton } from "../lit-react-components/MyButton";
+import { My4GenericButtons } from "../lit-react-components/My4GenericButtons";
 
 export const IntervalsPage = () => {
   const [currentInterval, setCurrentInterval] = useState(completeIntervals[486]); // do4 - re4
@@ -66,7 +65,6 @@ export const IntervalsPage = () => {
   const timeHandler = () => {
     if (!nIntervId.current) {
       nIntervId.current = setInterval(() => {
-        //console.log("aparece");
         playNote2(currentInterval.note2);
         clearInterval(nIntervId.current);
         nIntervId.current = null;
@@ -80,7 +78,6 @@ export const IntervalsPage = () => {
   };
 
   const playNotes = ()=>{
-    //console.log(currentInterval);
     playNote1(currentInterval.note1);
     timeHandler();
     
@@ -130,27 +127,39 @@ export const IntervalsPage = () => {
 
           <div className="interval-buttons-container">
             <div className="interval-buttons">
-              <MyIntervalButtons 
+              {/* <MyIntervalButtons  */}
+              <My4GenericButtons 
                     height="80px" 
                     width="350px" 
-                    showNext={showNextIntervalAnswer}
+                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer, text: "NEXT"}}
+                    button2Config={{defaultActivation: isSharpShowed, toggle: true, actionOnClick: updateIsSharpShowed, text: "\u{266f}"}}
+                    button3Config={{defaultActivation: isFlatShowed, toggle: true, actionOnClick: updateIsFlatShowed, text: "\u{266d}"}}
+                    button4Config={{defaultActivation: isNaturalShowed, toggle: true, actionOnClick: updateIsNaturalShowed, text: "natural"}}
+
+/*                     showNext={showNextIntervalAnswer}
                     isSharpShowed={isSharpShowed}
                     isSharpShowedAction={updateIsSharpShowed}
                     isFlatShowed={isFlatShowed}
                     isFlatShowedAction={updateIsFlatShowed}
                     isNaturalShowed={isNaturalShowed}
-                    isNaturalShowedAction={updateIsNaturalShowed}
+                    isNaturalShowedAction={updateIsNaturalShowed} */
               />
               
-              <MyIntervalButtons2 
+              {/* <MyIntervalButtons2 */} 
+              <My4GenericButtons 
                     height="80px" 
                     width="350px" 
-                    isShowingModePressed={isShowingModePressed}
+                    button1Config={{defaultActivation: isShowingModePressed, toggle: true, actionOnClick: updateIsShowingModePressed, text: "mode"}}
+                    button2Config={{defaultActivation: isSemitonesToggleSelected, toggle: true, actionOnClick: updateIsSemitonesToggleSelected, text: "pk / st"}}
+                    button3Config={{defaultActivation: isLessThan8Showed, toggle: true, actionOnClick: updateIsLessThan8Showed, text: "less than 8"}}
+                   /*  button4Config={{defaultActivation: isNaturalShowed, toggle: true, actionOnClick: updateIsNaturalShowed, text: "natural"}} */
+
+/*                     isShowingModePressed={isShowingModePressed}
                     isShowingModePressedAction={updateIsShowingModePressed}
                     isLessThan8Showed={isLessThan8Showed}
                     isLessThan8ShowedAction={updateIsLessThan8Showed}
                     isSemitonesToggleSelected={isSemitonesToggleSelected}
-                    isSemitonesToggleSelectedAction={updateIsSemitonesToggleSelected}
+                    isSemitonesToggleSelectedAction={updateIsSemitonesToggleSelected} */
               />
             </div>
           </div>

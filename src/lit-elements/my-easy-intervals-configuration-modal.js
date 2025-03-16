@@ -6,15 +6,17 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
   static properties = {
     // actionOnClick: { type: Function },
     // actionOnShow: { type: Function }, 
-    actionOnHide: { type: Function },
+    actionOnHideWithUpdate: { type: Function },
+    actionOnHideWithoutUpdate: { type: Function },
 
-    configuration: { type: Object }, //, reflect: true
+    //oldConfiguration: { type: Object, state: true }, //, reflect: true
+    configuration: { type: Object, state: true }, //, reflect: true
+    //newConfiguration: { type: Object }, //, reflect: true
     updateConfiguration: { type: Function },
 
     visible: { type: Boolean },
     height: { type: Number },
     width: { type: Number },
-   // disabled: { type: Boolean },
   };
 
   // Define scoped styles right with your component, in plain CSS
@@ -43,7 +45,7 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
     }
 
     .hidden {
-      visibility: hidden;
+      display: none;
     }
 
     .container {
@@ -53,7 +55,7 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
       background-color: grey;
       top: 0;
       left: 0;
-      z-index: 80000;
+      z-index: 50000;
       opacity: 0.6;
     }
 
@@ -65,7 +67,7 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
       background-color: white;
       border: 1px solid grey;
       border-radius: 5px;
-      z-index: 90000;
+      z-index: 50001;
     }
 
     .background {
@@ -73,20 +75,9 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
     }
   `;
 
-  handleAction() {
-   // console.log(this.configuration);
-    this.updateConfiguration(this.configuration);
-  }
-
-  handleAction1() {
-    this.configuration = { a: 1, b: "modificación 1 (dentro del lit element)" };
-  }
-  handleAction2() {
-    this.configuration = { a: 2, b: "modificación 2 (dentro del lit element)" };
-  }
-  handleAction3() {
-    this.configuration = { a: 3, b: "modificación 3 (dentro del lit element)" };
-  }
+/*   handleAction() {
+    this.updateConfiguration(this.newConfiguration);
+  } */
 
   constructor() {
     super();
@@ -94,10 +85,7 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
     this.height = "730px";
     this.width = "370px";
     this.visible = false;
-   // this.configuration = easyIntervalsConfiguration;
-    //this.disabled = false;
-    //this.configuration = { a: 9999, b: "por defecto dentro del lit element" };
-    //this.updateConfiguration = () => {      console.log("no le he pasado nada al final");    };
+    
   }
 
   // Render the UI as a function of component state
@@ -108,32 +96,27 @@ export class MyEasyIntervalsConfigurationModal extends LitElement {
         width: ${this.width};
       }
     </style>`;
-
-     //console.log(JSON.stringify(this.configuration));
-
-    //<button class="${this.buttonAppearance()} size" @click="${this.handleAction}" ?disabled=${this.disabled}>${this.text}</button>
+   
     return html`
       ${sizeValues}
       <div
         class="${this.visible ? "container" : "hidden"}"
         @click="${() => {
-          this.actionOnHide();
+          this.actionOnHideWithoutUpdate();
         }}"
       ></div>
       <div class="${this.visible ? "modal size" : "hidden"}">
         <my-easy-intervals-configuration-buttons 
-            actionOnHide="${this.actionOnHide}" 
+            .actionOnHideWithUpdate="${this.actionOnHideWithUpdate}" 
+            .actionOnHideWithoutUpdate="${this.actionOnHideWithoutUpdate}" 
             .configuration="${this.configuration}"
-            updateConfiguration="${this.updateConfiguration}"
-        ></my-easy-intervals-configuration-buttons>
-        <!-- <button class="unpressedButton" @click="${this.handleAction1}">devolver 1</button>
-          <button class="unpressedButton" @click="${this.handleAction2}">devolver 2</button>
-          <button class="unpressedButton" @click="${this.handleAction3}">devolver 3</button>
-          <button class="unpressedButton" @click="${this.handleAction}">mostrar confituración</button>-->
-      </div>
-    `;
-  }
-}
-customElements.define("my-easy-intervals-configuration-modal", MyEasyIntervalsConfigurationModal);
-
-//<div class="${this.visible ? "background" : "hidden"}"></div>
+            .updateConfiguration="${this.updateConfiguration}"
+            ></my-easy-intervals-configuration-buttons>
+            </div>
+            `;
+          }
+        }
+        customElements.define("my-easy-intervals-configuration-modal", MyEasyIntervalsConfigurationModal);
+        
+        
+        /* .newConfiguration="${this.newConfiguration}" */

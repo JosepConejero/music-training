@@ -1,20 +1,25 @@
-import { useEffect, useRef, useState } from "react";
-import { randomEasyInterval } from "../pagesHelpers/random-easy-interval";
+import { useEffect, useState } from "react";
+//import { randomEasyInterval } from "../pagesHelpers/random-easy-interval";
 
 
 export const useEasyIntervals = (initialEasyIntervals) => {
     
-    const filteredNotesRef = useRef([{noteUp: "do", noteDown: "DO"}]);
-
-    const [currentInterval, setCurrentInterval] = useState(initialEasyIntervals[4]); 
-    const [intervalsSelection, setIntervalsSelection] = useState([]);
+    //const filteredNotesRef = useRef([{noteUp: "do", noteDown: "DO"}]);
     
-    const [isSharpShowed, setIsSharpShowed] = useState(false);
-    const [isFlatShowed, setIsFlatShowed] = useState(false);
-    const [isNaturalShowed, setIsNaturalShowed] = useState(true);
+    const [currentInterval, setCurrentInterval] = useState(initialEasyIntervals[4]); ////
+   // const [intervalsSelection, setIntervalsSelection] = useState([]);
+    
     const [isSolutionShowed, setIsSolutionShowed] = useState(false);
     const [isShowingModePressed, setIsShowingModePressed] = useState(false);
     const [isSemitonesToggleSelected, setIsSemitonesToggleSelected] = useState(false);
+    const updateIsShowingModePressed = ()=>{ setIsShowingModePressed((prevState => !prevState))};
+    const updateIsSemitonesToggleSelected = ()=>{ setIsSemitonesToggleSelected((prevState => !prevState))};
+    
+    const showSolution = ()=>{ setIsSolutionShowed((prevState => !prevState))};
+    
+/*     const [isSharpShowed, setIsSharpShowed] = useState(false);
+    const [isFlatShowed, setIsFlatShowed] = useState(false);
+    const [isNaturalShowed, setIsNaturalShowed] = useState(true);
     const [isPlusShowed, setIsPlusShowed] = useState(true);
     const [isMinusShowed, setIsMinusShowed] = useState(false);
     
@@ -56,13 +61,10 @@ export const useEasyIntervals = (initialEasyIntervals) => {
 
     const updateIsSharpShowed = ()=>{ setIsSharpShowed((prevState)=>!prevState); }
     const updateIsFlatShowed = ()=>{ setIsFlatShowed((prevState => !prevState))};
-    const updateIsNaturalShowed = ()=>{ setIsNaturalShowed((prevState => !prevState))};
-    const showSolution = ()=>{ setIsSolutionShowed((prevState => !prevState))};
-    const updateIsShowingModePressed = ()=>{ setIsShowingModePressed((prevState => !prevState))};
-    const updateIsSemitonesToggleSelected = ()=>{ setIsSemitonesToggleSelected((prevState => !prevState))};
+    const updateIsNaturalShowed = ()=>{ setIsNaturalShowed((prevState => !prevState))}; 
     const updateIsPlusShowed = ()=>{ setIsPlusShowed((prevState => !prevState))};
     const updateIsMinusShowed = ()=>{ setIsMinusShowed((prevState => !prevState))};
-
+    
     const updateIsDoShowed = ()=>{ setIsDoShowed((prevState => !prevState))};
     const updateIsDosShowed = ()=>{ setIsDosShowed((prevState => !prevState))};
     const updateIsRebShowed = ()=>{ setIsRebShowed((prevState => !prevState))};
@@ -80,8 +82,9 @@ export const useEasyIntervals = (initialEasyIntervals) => {
     const updateIsLasShowed = ()=>{ setIsLasShowed((prevState => !prevState))};
     const updateIsSibShowed = ()=>{ setIsSibShowed((prevState => !prevState))};
     const updateIsSiShowed = ()=>{ setIsSiShowed((prevState => !prevState))};
+    */
 
-    const getIntervalsByNotes = (allintervals, notes)=>{ //notes ==> [{noteUp: "do", noteDown: "DO"},{....}]
+    /* const getIntervalsByNotes = (allintervals, notes)=>{ //notes ==> [{noteUp: "do", noteDown: "DO"},{....}]
         if (notes.length === 0) return [];
 
         let intervalsSelection = [];
@@ -93,9 +96,9 @@ export const useEasyIntervals = (initialEasyIntervals) => {
             return result;
           });
         return intervalsSelection;
-      }
+      } */
     
-    const showNextIntervalAnswer = () => {
+    /* const showNextIntervalAnswer = () => {
         if (!isSharpShowed && !isFlatShowed && !isNaturalShowed) return;
         if (!isPlusShowed && !isMinusShowed) return;
         if (intervalsSelection.length===0) return;
@@ -103,9 +106,9 @@ export const useEasyIntervals = (initialEasyIntervals) => {
         setCurrentInterval(randomEasyInterval(intervalsSelection, currentInterval, 
                                               isSharpShowed, isFlatShowed, isNaturalShowed, 
                                               isPlusShowed, isMinusShowed)); 
-    };
+    }; */
 
-    const updateIsDoShowedAction = ()=> {
+    /* const updateIsDoShowedAction = ()=> {
         if (isDoShowed) {
             const index = filteredNotesRef.current.findIndex(nota => nota.noteUp === "do" && nota.noteDown === "DO");
             if (index !== -1) filteredNotesRef.current.splice(index, 1);
@@ -324,32 +327,34 @@ export const useEasyIntervals = (initialEasyIntervals) => {
         setIsSiShowed(true);
     };
     setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, filteredNotesRef.current));
-   }
+   } */
 
    useEffect(() => {
-    setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, [{noteUp: "do", noteDown: "DO"}]));
+    //setIntervalsSelection(getIntervalsByNotes(initialEasyIntervals, [{noteUp: "do", noteDown: "DO"}]));
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
 
     return {
         currentInterval,
         setCurrentInterval,
-        intervalsSelection,
-        setIntervalsSelection,
-        isSharpShowed, setIsSharpShowed,
+        //intervalsSelection,
+        //setIntervalsSelection,
+        isSolutionShowed, //setIsSolutionShowed,
+        isShowingModePressed, //setIsShowingModePressed,
+        isSemitonesToggleSelected, //setIsSemitonesToggleSelected,
+        showSolution,
+        updateIsShowingModePressed,
+        updateIsSemitonesToggleSelected,
+        // showNextIntervalAnswer,
+        
+     /* isSharpShowed, setIsSharpShowed,
         isFlatShowed, setIsFlatShowed,
         isNaturalShowed, setIsNaturalShowed,
-        isSolutionShowed, setIsSolutionShowed,
-        isShowingModePressed, setIsShowingModePressed,
-        isSemitonesToggleSelected, setIsSemitonesToggleSelected,
         isPlusShowed, setIsPlusShowed,
         isMinusShowed, setIsMinusShowed,
         updateIsSharpShowed,
         updateIsFlatShowed,
         updateIsNaturalShowed,
-        showSolution,
-        updateIsShowingModePressed,
-        updateIsSemitonesToggleSelected,
         updateIsPlusShowed,
         updateIsMinusShowed,
         isDoShowed, setIsDoShowed,
@@ -419,9 +424,7 @@ export const useEasyIntervals = (initialEasyIntervals) => {
         updateIsLaShowedAction,
         updateIsLasShowedAction,
         updateIsSibShowedAction,
-        updateIsSiShowedAction,
-
-        showNextIntervalAnswer,
+        updateIsSiShowedAction, */
     }
 }
 

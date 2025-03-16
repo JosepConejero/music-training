@@ -1,13 +1,13 @@
 export let easyIntervalsConfiguration = {
-  //do: true,    do_s: true,    do_b: true,    do_n: true,   do_up: true,   do_down: true,
-  do: true,    do_s: false,    do_b: false,    do_n: true,   do_up: true,   do_down: false,
+  do: true,    do_s: true,    do_b: true,    do_n: true,   do_up: true,   do_down: true,
+  //do: true,    do_s: false,    do_b: false,    do_n: true,   do_up: true,   do_down: false,
   dos: false,  dos_s: false,  dos_b: false,  dos_n: true,  dos_up: true,  dos_down: false,
   reb: false,  reb_s: false,  reb_b: false,  reb_n: true,  reb_up: true,  reb_down: false,
-  //re: true,    re_s: true,    re_b: true,    re_n: true,   re_up: true,   re_down: true,
+  re: true,    re_s: true,    re_b: true,    re_n: true,   re_up: true,   re_down: true,
   res: false,  res_s: false,  res_b: false,  res_n: true,  res_up: true,  res_down: false,
   mib: false,  mib_s: false,  mib_b: false,  mib_n: true,  mib_up: true,  mib_down: false,
   //mi: true,    mi_s: false,   mi_b: false,   mi_n: true,   mi_up: true,   mi_down: true,
-  mi: true,    mi_s: false,   mi_b: false,   mi_n: true,   mi_up: true,   mi_down: false,
+  mi: true,    mi_s: false,   mi_b: false,   mi_n: true,   mi_up: true,   mi_down: true,
   fa: false,   fa_s: false,   fa_b: false,   fa_n: true,   fa_up: true,   fa_down: false,
   fas: false,  fas_s: false,  fas_b: false,  fas_n: true,  fas_up: true,  fas_down: false,
   solb: false, solb_s: false, solb_b: false, solb_n: true, solb_up: true, solb_down: false,
@@ -18,6 +18,7 @@ export let easyIntervalsConfiguration = {
   las: false,  las_s: false,  las_b: false,  las_n: true,  las_up: true,  las_down: false,
   sib: false,  sib_s: false,  sib_b: false,  sib_n: true,  sib_up: true,  sib_down: false,
   si: false,   si_s: false,   si_b: false,   si_n: true,   si_up: true,   si_down: false,
+  difficult: false,
 };
 
 const getSelectedNotes1FromConfiguration = (configuration)=>{
@@ -46,8 +47,8 @@ const getSelectedNotes1FromConfiguration = (configuration)=>{
 };
 
 
-const isConfigurationRight = (easyIntervalsConfiguration) => {
-  const c = easyIntervalsConfiguration;
+export const isConfigurationRight = (configuration) => {
+  const c = configuration;
   const result = true;
 
   if ((c.do  === false) && (c.dos  === false) && (c.reb === false) && (c.re  === false) && (c.res  === false) &&
@@ -96,6 +97,12 @@ export const filteredEasyIntervals = (intervals, configuration) =>{
          ) 
              {
                filteredResult.push(interval);
+               // esto es para difficult
+               //  if (configuration.difficult = true) {
+               //    if (interval.difficult) filteredResult.push(interval); 
+               //  } else {
+               //    filteredResult.push(interval);
+               //  }
              }
     }
 

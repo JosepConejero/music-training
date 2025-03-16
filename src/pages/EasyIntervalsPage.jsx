@@ -1,101 +1,49 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Navbar } from "../components/Navbar";
 import "./pages.css";
 import { MyIntervals } from "../lit-react-components/MyIntervals";
 import { MyKeyboard } from "../lit-react-components/MyKeyboard";
-import { completeEasyIntervals } from "../pagesHelpers/complete-easy-intervals";
-import { useEasyIntervals } from "../hooks/useEasyIntervals";
-import { useAudio } from "../hooks/useAudio";
-import { easyIntervalsConfiguration, filteredEasyIntervals, unsortedIntervals } from "../pagesHelpers/easy-intervals-configuration";
+import { easyIntervalsConfiguration, filteredEasyIntervals, unsortedIntervals, isConfigurationRight } from "../pagesHelpers/easy-intervals-configuration";
 import { My4GenericButtons } from "../lit-react-components/My4GenericButtons";
 import { useConfigurationModal } from "../hooks/useConfigurationModal";
 import { MyEasyIntervalsConfigurationModal } from "../lit-react-components/MyEasyIntervalsConfigurationModal";
+import { completeEasyIntervals } from "../pagesHelpers/complete-easy-intervals";
+import { useAudio } from "../hooks/useAudio";
 
 export const EasyIntervalsPage = () => {
 
-  const configurationRef = useRef(easyIntervalsConfiguration);
-  //const [configuration, setConfiguration] = useState(configurationRef.current);
-  const {configuration, isVisibleModal, updateConfiguration, hideModal, showModal} = useConfigurationModal(configurationRef.current)
-  const intervalRef = useRef(unsortedIntervals(filteredEasyIntervals(completeEasyIntervals, configurationRef.current)));
-  const [intervals, setIntervals] = useState(intervalRef.current);
+  const { configuration, oldConfiguration, configurationRef, isVisibleModal, 
+          updateConfiguration, hideModalWithUpdade, hideModalWithoutUpdade, 
+          showModal } = useConfigurationModal(easyIntervalsConfiguration, isConfigurationRight);
+         
+  const intervalsRef = useRef(unsortedIntervals(filteredEasyIntervals(completeEasyIntervals, configurationRef.current)));
+  const [intervals, setIntervals] = useState(intervalsRef.current);
   const [index, setIndex] = useState(0);
   const indexRef = useRef(0);
   const nIntervId = useRef();
+  const [currentInterval, setCurrentInterval] = useState(intervalsRef.current[0]);
+
+  const [isSolutionShowed, setIsSolutionShowed] = useState(false);
+  const [isShowingModePressed, setIsShowingModePressed] = useState(false);
+  const [isSemitonesToggleSelected, setIsSemitonesToggleSelected] = useState(false);
+
+  const updateIsShowingModePressed = ()=>{ setIsShowingModePressed((prevState => !prevState))};
+  const updateIsSemitonesToggleSelected = ()=>{ setIsSemitonesToggleSelected((prevState => !prevState))};
+  const showSolution = ()=>{ setIsSolutionShowed((prevState => !prevState))};
+
 
   const {audioRef: audioRef1, playNote: playNote1} = useAudio();
   const {audioRef: audioRef2, playNote: playNote2} = useAudio();
-  
-  
-
-  const {  currentInterval,  
-           isSharpShowed, 
-           isFlatShowed, 
-           isNaturalShowed, 
-           isSolutionShowed, 
-           isShowingModePressed, 
-           isSemitonesToggleSelected, 
-           isPlusShowed, 
-           isMinusShowed, 
-           updateIsSharpShowed,
-           updateIsFlatShowed,
-           updateIsNaturalShowed,
-           showSolution,
-           updateIsShowingModePressed,
-           updateIsSemitonesToggleSelected,
-           updateIsPlusShowed,
-           updateIsMinusShowed,
-           isDoShowed, 
-           isDosShowed, 
-           isRebShowed, 
-           isReShowed, 
-           isResShowed,
-           isMibShowed,
-           isMiShowed,
-           isFaShowed,
-           isFasShowed,
-           isSolbShowed,
-           isSolShowed,
-           isSolsShowed,
-           isLabShowed,
-           isLaShowed,
-           isLasShowed,
-           isSibShowed,
-           isSiShowed,
-           updateIsDoShowedAction,
-           updateIsDosShowedAction,
-           updateIsRebShowedAction,
-           updateIsReShowedAction,
-           updateIsResShowedAction,
-           updateIsMibShowedAction,
-           updateIsMiShowedAction,
-           updateIsFaShowedAction,
-           updateIsFasShowedAction,
-           updateIsSolbShowedAction,
-           updateIsSolShowedAction,
-           updateIsSolsShowedAction,
-           updateIsLabShowedAction,
-           updateIsLaShowedAction,
-           updateIsLasShowedAction,
-           updateIsSibShowedAction,
-           updateIsSiShowedAction,
-
-           showNextIntervalAnswer,
-           setCurrentInterval,
-        } = useEasyIntervals(intervalRef.current);
-
-  //POSIBLE MEJORA: SI SOLO HAY UN BOTÓN PULSADO, NO LO DESPULSA
 
   const setNumberInterval = () => isSemitonesToggleSelected ? currentInterval.semitones : currentInterval.keysInBetween;
- 
+  
   const timeHandler = () => {
     if (!nIntervId.current) {
       nIntervId.current = setInterval(() => {
-        //console.log("aparece");
         playNote2(currentInterval.note2);
         clearInterval(nIntervId.current);
         nIntervId.current = null;
-  
       }, 1000);
 
     } else {
@@ -109,8 +57,7 @@ export const EasyIntervalsPage = () => {
     timeHandler();
   };
 
-  const showNextIntervalAnswer_temp = ()=>{
-
+  const showNextIntervalAnswer = ()=>{
     if (index < intervals.length-1) {
       setIndex(value=>value + 1);
       indexRef.current = indexRef.current + 1;
@@ -119,27 +66,26 @@ export const EasyIntervalsPage = () => {
       indexRef.current = 0;
     }
     setCurrentInterval(intervals[indexRef.current]);
-    console.log(indexRef.current+1 + " / " + intervals.length, intervals[indexRef.current].note2WithLetters);
-
   };
 
   const restartIntervals = () => {
-    intervalRef.current = unsortedIntervals(filteredEasyIntervals(completeEasyIntervals, configurationRef.current));
+    const intervalsRef = unsortedIntervals(filteredEasyIntervals(completeEasyIntervals, configuration));
+    setIntervals(intervalsRef);
     setIndex(0);
     indexRef.current = 0;
-    setCurrentInterval(intervals[indexRef.current]);
+    setCurrentInterval(intervalsRef[indexRef.current]);
   };
 
+  useEffect(() => {
+    setCurrentInterval(intervals[0]);
+  }, [])        
 
   useEffect(() => {
-    //console.log(filteredEasyIntervals(completeEasyIntervals, easyIntervalsConfiguration));
-    //filteredEasyIntervals(completeEasyIntervals, easyIntervalsConfiguration);
-    //const a = [1,2,3,4,5];
-    //console.log(unsortedIntervals(filteredEasyIntervals(completeEasyIntervals, easyIntervalsConfiguration)));
-    setCurrentInterval(intervals[0]);
-    console.log(indexRef.current+1 + " / " + intervals.length);
-    
-  }, [])
+    if (JSON.stringify(configuration)!==JSON.stringify(oldConfiguration)) {
+      //console.log("no son iguales");
+      restartIntervals();
+    }
+  }, [configuration]) 
   
 
   return (
@@ -162,46 +108,9 @@ export const EasyIntervalsPage = () => {
                   />
                 </div>
 
-                <div className="horizontal-block">
-                 {/*    <MyEasyIntervalsButtons
-                   //   isDoBlocked={isDoBlocked}
-                      isDoShowed={isDoShowed}
-                      isDoShowedAction={updateIsDoShowedAction}
-                      isDosShowed={isDosShowed}
-                      isDosShowedAction={updateIsDosShowedAction}
-                      isRebShowed={isRebShowed}
-                      isRebShowedAction={updateIsRebShowedAction}
-                      isReShowed={isReShowed}
-                      isReShowedAction={updateIsReShowedAction}
-                      isResShowed={isResShowed}
-                      isResShowedAction={updateIsResShowedAction}
-                      isMibShowed={isMibShowed}
-                      isMibShowedAction={updateIsMibShowedAction}
-                      isMiShowed={isMiShowed}
-                      isMiShowedAction={updateIsMiShowedAction}
-                      isFaShowed={isFaShowed}
-                      isFaShowedAction={updateIsFaShowedAction}
-                      isFasShowed={isFasShowed}
-                      isFasShowedAction={updateIsFasShowedAction}
-                      isSolbShowed={isSolbShowed}
-                      isSolbShowedAction={updateIsSolbShowedAction}
-                      isSolShowed={isSolShowed}
-                      isSolShowedAction={updateIsSolShowedAction}
-                      isSolsShowed={isSolsShowed}
-                      isSolsShowedAction={updateIsSolsShowedAction}
-                      isLabShowed={isLabShowed}
-                      isLabShowedAction={updateIsLabShowedAction}
-                      isLaShowed={isLaShowed}
-                      isLaShowedAction={updateIsLaShowedAction}
-                      isLasShowed={isLasShowed}
-                      isLasShowedAction={updateIsLasShowedAction}
-                      isSibShowed={isSibShowed}
-                      isSibShowedAction={updateIsSibShowedAction}
-                      isSiShowed={isSiShowed}
-                      isSiShowedAction={updateIsSiShowedAction}
-                    /> */}
+               {/*  <div className="horizontal-block">
                     
-                </div>
+                </div> */}
             </div>
             
               <div className="horizontal-block wide-fix">
@@ -212,6 +121,7 @@ export const EasyIntervalsPage = () => {
                     <div className="height-fix">
                        <MyButton text="play" actionOnClick={()=>playNotes(currentInterval)}></MyButton>
                     </div> */}
+                    <div className="interval-counter">{ indexRef.current+1 + " / " + intervals.length }</div>
                   </div>
                   <div className="vertical block wide-66">
                       <p className="interval-view-ask-text">
@@ -240,42 +150,20 @@ export const EasyIntervalsPage = () => {
 
           <div className="interval-buttons-container">
             <div className="interval-buttons">
-              {/* <MyIntervalButtons  */}
               <My4GenericButtons 
                     height="80px" 
                     width="350px"
-                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer_temp, text: "NEXT"}}
+                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer, text: "NEXT"}}
                     button2Config={{defaultActivation: false, toggle: false, actionOnClick: showModal, text: "config"}}
+                    button3Config={{defaultActivation: false, toggle: false, actionOnClick: restartIntervals, text: "reinic"}}
                     button4Config={{defaultActivation: false, toggle: false, actionOnClick: () => playNotes(currentInterval), text: "PLAY"}}
-                    
-                    /* button2Config={{defaultActivation: isSharpShowed, toggle: true, actionOnClick: updateIsSharpShowed, text: "\u{266f}"}}
-                    button3Config={{defaultActivation: isFlatShowed, toggle: true, actionOnClick: updateIsFlatShowed, text: "\u{266d}"}}
-                    button4Config={{defaultActivation: isNaturalShowed, toggle: true, actionOnClick: updateIsNaturalShowed, text: "natural"}} */
-                    /* showNext={showNextIntervalAnswer_temp} 
-                    isSharpShowed={isSharpShowed}
-                    isSharpShowedAction={updateIsSharpShowed} 
-                    isFlatShowed={isFlatShowed}
-                    isFlatShowedAction={updateIsFlatShowed}
-                    isNaturalShowed={isNaturalShowed}
-                    isNaturalShowedAction={updateIsNaturalShowed}*/
                     />
               
-         {/*      <MyIntervalButtons3  */}
               <My4GenericButtons 
                     height="80px" 
                     width="350px" 
                     button1Config={{defaultActivation: isShowingModePressed, toggle: true, actionOnClick: updateIsShowingModePressed, text: "mode"}}
                     button2Config={{defaultActivation: isSemitonesToggleSelected, toggle: true, actionOnClick: updateIsSemitonesToggleSelected, text: "pk / st"}}
-                   /*  button3Config={{defaultActivation: isPlusShowed, toggle: true, actionOnClick: updateIsPlusShowed, text: "+"}}
-                    button4Config={{defaultActivation: isMinusShowed, toggle: true, actionOnClick: updateIsMinusShowed, text: "-"}} */
-/*                     isShowingModePressed={isShowingModePressed}
-                    isShowingModePressedAction={updateIsShowingModePressed}
-                    isSemitonesToggleSelected={isSemitonesToggleSelected}
-                    isSemitonesToggleSelectedAction={updateIsSemitonesToggleSelected}
-                    isPlusShowed={isPlusShowed}
-                    isPlusShowedAction={updateIsPlusShowed} 
-                    isMinusShowed={isMinusShowed}
-                    isMinusShowedAction={updateIsMinusShowed}  */
               />
 
             </div>
@@ -288,7 +176,8 @@ export const EasyIntervalsPage = () => {
           visible={isVisibleModal} 
           configuration={configuration} 
           updateConfiguration={updateConfiguration} 
-          actionOnHide={hideModal} 
+          actionOnHideWithUpdate={hideModalWithUpdade} 
+          actionOnHideWithoutUpdate={hideModalWithoutUpdade} 
       />
     </>
   );

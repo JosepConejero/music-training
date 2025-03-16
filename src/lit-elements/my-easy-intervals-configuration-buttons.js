@@ -5,78 +5,14 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
     static properties = {
       height: {type: Number},
       width: {type: Number}, 
-
-/*       isDoShowed: {type: Boolean}, 
-      isDoShowedAction: {type: Function},
-
-      isDosShowed: {type: Boolean}, 
-      isDosShowedAction: {type: Function},
-
-      isRebShowed: {type: Boolean}, 
-      isRebShowedAction: {type: Function},
-
-      isReShowed: {type: Boolean}, 
-      isReShowedAction: {type: Function},
-
-      isResShowed: {type: Boolean}, 
-      isResShowedAction: {type: Function},
-
-      isMibShowed: {type: Boolean}, 
-      isMibShowedAction: {type: Function},
-
-      isMiShowed: {type: Boolean}, 
-      isMiShowedAction: {type: Function},
-
-      isFaShowed: {type: Boolean}, 
-      isFaShowedAction: {type: Function},
-
-      isFasShowed: {type: Boolean}, 
-      isFasShowedAction: {type: Function},
-
-      isSolbShowed: {type: Boolean}, 
-      isSolbShowedAction: {type: Function},
-
-      isSolShowed: {type: Boolean}, 
-      isSolShowedAction: {type: Function},
-
-      isSolsShowed: {type: Boolean}, 
-      isSolsShowedAction: {type: Function},
-
-      isLabShowed: {type: Boolean}, 
-      isLabShowedAction: {type: Function},
-
-      isLaShowed: {type: Boolean}, 
-      isLaShowedAction: {type: Function},
-
-      isLasShowed: {type: Boolean}, 
-      isLasShowedAction: {type: Function},
-
-      isSibShowed: {type: Boolean}, 
-      isSibShowedAction: {type: Function}, 
-
-      isSiShowed: {type: Boolean}, 
-      isSiShowedAction: {type: Function}, 
-
-      isDoBlocked: {type: Boolean}, 
-      isDosBlocked: {type: Boolean}, 
-      isRebBlocked: {type: Boolean}, 
-      isReBlocked: {type: Boolean}, 
-      isResBlocked: {type: Boolean}, 
-      isMibBlocked: {type: Boolean}, 
-      isMiBlocked: {type: Boolean}, 
-      isFaBlocked: {type: Boolean}, 
-      isFasBlocked: {type: Boolean}, 
-      isSolbBlocked: {type: Boolean}, 
-      isSolBlocked: {type: Boolean}, 
-      isSolsBlocked: {type: Boolean}, 
-      isLabBlocked: {type: Boolean}, 
-      isLaBlocked: {type: Boolean}, 
-      isLasBlocked: {type: Boolean}, 
-      isSibBlocked: {type: Boolean}, 
-      isSiBlocked: {type: Boolean},  */
      
-      actionOnHide: { type: Function },
-      configuration: { type: Object },
+      actionOnHideWithUpdate: { type: Function },
+      actionOnHideWithoutUpdate: { type: Function },
+      //oldConfiguration: { type: Object, state: true },
+      configuration: { type: Object, state: true },
+      //newConfiguration: { type: Object, state: true },
+    //   oldConfiguration: { type: Object},
+    //   newConfiguration: { type: Object},
       updateConfiguration: { type: Function },
     };
   
@@ -89,13 +25,21 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
   
       .supercontainer {
         display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+      }
+        
+      .container {
+        display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         gap: 0.1em; 
-      
+        /*background-color: green;*/
+        margin-top: 0.3em;
+        height: 100%
       }
 
-      .container {
+      .column {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -107,6 +51,19 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         width: 45px;
       }
 
+      .div-bottom-buttons {
+        height: 200%;
+        width: 80px;
+      }
+
+      .bottom-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        /*background-color: red;*/
+        margin-top: 1em;
+      }
+
       `;
   
      constructor() {
@@ -114,522 +71,559 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
       // Declare reactive properties
       //this.height = "500px";
       //this.width = "380px";
-      this.height = "100%";
+      this.height = "95%";
       this.width = "100%";
-
-/*       this.isDoShowed = true;
-      this.isDosShowed = false;
-      this.isRebShowed = false;
-      this.isReShowed = false;
-      this.isResShowed = false;
-      this.isMibShowed = false;
-      this.isMiShowed = false;
-      this.isFaShowed = false;
-      this.isFasShowed = false;
-      this.isSolbShowed = false;
-      this.isSolShowed = false;
-      this.isSolsShowed = false;
-      this.isLabShowed = false;
-      this.isLaShowed = false;
-      this.isLasShowed = false;
-      this.isSibShowed = false;
-      this.isSiShowed = false;
-
-      this.isDoBlocked = false;
-      this.isDosBlocked = false;
-      this.isRebBlocked = false;
-      this.isReBlocked = false;
-      this.isResBlocked = false;
-      this.isMibBlocked = false;
-      this.isMiBlocked = false;
-      this.isFaBlocked = false;
-      this.isFasBlocked = false;
-      this.isSolbBlocked = false;
-      this.isSolBlocked = false;
-      this.isSolsBlocked = false;
-      this.isLabBlocked = false;
-      this.isLaBlocked = false;
-      this.isLasBlocked = false;
-      this.isSibBlocked = false;
-      this.isSiBlocked = false; */
-
+      //this.newConfiguration = {...this.oldConfiguration};
+      //console.log(this.oldConfiguration);
+    //   console.log("entra en constructor");
+      //console.log(this.newConfiguration);
     } 
-  
+
+    handleAllNotes () {
+      let isAnyFalse = false;
+      ["do", "dos", "reb", "re", "res", "mib", "mi", "fa", "fas", "solb", "sol", "sols", "lab", "la", "las", "sib", "si"].forEach((note)=>{
+        ["", "_s", "_b", "_n", "_up", "_down"].forEach((option)=>{
+          if (this.configuration[`${note}${option}`] === false) isAnyFalse = true;
+        });
+      });
+
+      if (isAnyFalse) {
+        ["do", "dos", "reb", "re", "res", "mib", "mi", "fa", "fas", "solb", "sol", "sols", "lab", "la", "las", "sib", "si"].forEach((note)=>{
+          ["", "_s", "_b", "_n", "_up", "_down"].forEach((option)=>{
+            this.configuration[`${note}${option}`] = true;
+          });
+        });
+      } else {
+        ["do", "dos", "reb", "re", "res", "mib", "mi", "fa", "fas", "solb", "sol", "sols", "lab", "la", "las", "sib", "si"].forEach((note)=>{
+          ["", "_s", "_b", "_n", "_up", "_down"].forEach((option)=>{
+            this.configuration[`${note}${option}`] = false;
+          });
+        });
+      }
+
+      this.requestUpdate(); 
+    }
+
+    handleAllSingleNote (note) {
+        //console.log(this.newConfiguration[note]);
+        const toggleAll_do = this.configuration[note] && this.configuration[`${note}_s`] && 
+                             this.configuration[`${note}_b`] && this.configuration[`${note}_n`] && 
+                             this.configuration[`${note}_up`] && this.configuration[`${note}_down`];
+        if (toggleAll_do) {
+            this.configuration[note] = false;
+            this.configuration[`${note}_s`] = false;
+            this.configuration[`${note}_b`] = false;
+            this.configuration[`${note}_n`] = true;
+            this.configuration[`${note}_up`] = true;
+            this.configuration[`${note}_down`] = false;
+        } else {
+            this.configuration[note] = true;
+            this.configuration[`${note}_s`] = true;
+            this.configuration[`${note}_b`] = true;
+            this.configuration[`${note}_n`] = true;
+            this.configuration[`${note}_up`] = true;
+            this.configuration[`${note}_down`] = true;
+        }
+        
+        this.requestUpdate();
+        //console.log(this.newConfiguration);
+    }
+
+    handleClickOnOptions (option){
+       this.configuration[option] = !this.configuration[option];
+       this.requestUpdate();
+    }
+
+    handleAllColumn (column) {
+        const toggleAll_column = this.configuration[`do${column}`] && 
+                                 this.configuration[`dos${column}`] && 
+                                 this.configuration[`reb${column}`] && 
+                                 this.configuration[`re${column}`] && 
+                                 this.configuration[`res${column}`] && 
+                                 this.configuration[`mib${column}`] && 
+                                 this.configuration[`mi${column}`] && 
+                                 this.configuration[`fa${column}`] && 
+                                 this.configuration[`fas${column}`] && 
+                                 this.configuration[`solb${column}`] && 
+                                 this.configuration[`sol${column}`] && 
+                                 this.configuration[`sols${column}`] && 
+                                 this.configuration[`lab${column}`] && 
+                                 this.configuration[`la${column}`] && 
+                                 this.configuration[`las${column}`] && 
+                                 this.configuration[`sib${column}`] && 
+                                 this.configuration[`si${column}`];
+        if (toggleAll_column) {
+            this.configuration[`do${column}`] = false;
+            this.configuration[`dos${column}`] = false;
+            this.configuration[`reb${column}`] = false;
+            this.configuration[`re${column}`] = false;
+            this.configuration[`res${column}`] = false;
+            this.configuration[`mib${column}`] = false;
+            this.configuration[`mi${column}`] = false;
+            this.configuration[`fa${column}`] = false;
+            this.configuration[`fas${column}`] = false;
+            this.configuration[`solb${column}`] = false;
+            this.configuration[`sol${column}`] = false;
+            this.configuration[`sols${column}`] = false;
+            this.configuration[`lab${column}`] = false;
+            this.configuration[`la${column}`] = false;
+            this.configuration[`las${column}`] = false;
+            this.configuration[`sib${column}`] = false;
+            this.configuration[`si${column}`] = false;
+        } else {
+            this.configuration[`do${column}`] = true;
+            this.configuration[`dos${column}`] = true;
+            this.configuration[`reb${column}`] = true;
+            this.configuration[`re${column}`] = true;
+            this.configuration[`res${column}`] = true;
+            this.configuration[`mib${column}`] = true;
+            this.configuration[`mi${column}`] = true;
+            this.configuration[`fa${column}`] = true;
+            this.configuration[`fas${column}`] = true;
+            this.configuration[`solb${column}`] = true;
+            this.configuration[`sol${column}`] = true;
+            this.configuration[`sols${column}`] = true;
+            this.configuration[`lab${column}`] = true;
+            this.configuration[`la${column}`] = true;
+            this.configuration[`las${column}`] = true;
+            this.configuration[`sib${column}`] = true;
+            this.configuration[`si${column}`] = true;
+        }
+        this.requestUpdate();
+        
+    }
+
+
     allColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                 <div class="div-button">
                          
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("do")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("dos")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("reb")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("re")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("res")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("mib")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("mi")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("fa")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("fas")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("solb")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sol")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sols")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("lab")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("la")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("las")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sib")}></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${this.handleAll_do}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("si")}></my-button>
                 </div>
-
-                <div class="div-button">
-    
-                </div>
-                <div class="div-button">
-    
-                </div>
-    
             </div>    
         `;
     }
 
     noteColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${()=>{}}></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("") }></my-button>             
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.configuration.do} toggle text="do" @click=${()=>this.configuration.do = !this.configuration.do}></my-button>
+                    <my-button ?pressedButton=${this.configuration.do} toggle text="do" @click=${ ()=>this.handleClickOnOptions("do") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.configuration.dos} ?toggle=${!this.isDosBlocked} text="do#" @click=${this.isDosShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.dos} toggle text="do#" @click=${ ()=>this.handleClickOnOptions("dos") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isRebShowed} ?toggle=${!this.isRebBlocked} text="re\u{266d}" @click=${this.isRebShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.reb} toggle text="re\u{266d}" @click=${ ()=>this.handleClickOnOptions("reb") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isReShowed} ?toggle=${!this.isReBlocked} text="re" @click=${this.isReShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.re} toggle text="re" @click=${ ()=>this.handleClickOnOptions("re") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isResShowed} ?toggle=${!this.isResBlocked} text="re#" @click=${this.isResShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.res} toggle text="re#" @click=${ ()=>this.handleClickOnOptions("res") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMibShowed} ?toggle=${!this.isMibBlocked} text="mi\u{266d}" @click=${this.isMibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mib} toggle text="mi\u{266d}" @click=${ ()=>this.handleClickOnOptions("mib") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMiShowed} ?toggle=${!this.isMiBlocked} text="mi" @click=${this.isMiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mi} toggle text="mi" @click=${ ()=>this.handleClickOnOptions("mi") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFaShowed} ?toggle=${!this.isFaBlocked} text="fa" @click=${this.isFaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fa} toggle text="fa" @click=${ ()=>this.handleClickOnOptions("fa") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFasShowed} ?toggle=${!this.isFasBlocked} text="fa#" @click=${this.isFasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fas} toggle text="fa#" @click=${ ()=>this.handleClickOnOptions("fas") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolbShowed} ?toggle=${!this.isSolbBlocked} text="sol\u{266d}" @click=${this.isSolbShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.solb} toggle text="sol\u{266d}" @click=${ ()=>this.handleClickOnOptions("solb") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolShowed} ?toggle=${!this.isSolBlocked} text="sol" @click=${this.isSolShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sol} toggle text="sol" @click=${ ()=>this.handleClickOnOptions("sol") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolsShowed} ?toggle=${!this.isSolsBlocked} text="sol#" @click=${this.isSolsShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sols} toggle text="sol#" @click=${ ()=>this.handleClickOnOptions("sols") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLabShowed} ?toggle=${!this.isLabBlocked} text="la\u{266d}" @click=${this.isLabShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.lab} toggle text="la\u{266d}" @click=${ ()=>this.handleClickOnOptions("lab") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLaShowed} ?toggle=${!this.isLaBlocked} text="la" @click=${this.isLaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.la} toggle text="la" @click=${ ()=>this.handleClickOnOptions("la") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLasShowed} ?toggle=${!this.isLasBlocked} text="la#" @click=${this.isLasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.las} toggle text="la#" @click=${ ()=>this.handleClickOnOptions("las") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSibShowed} ?toggle=${!this.isSibBlocked} text="si\u{266d}" @click=${this.isSibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sib} toggle text="si\u{266d}" @click=${ ()=>this.handleClickOnOptions("sib") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="si" @click=${this.isSiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.si} toggle text="si" @click=${ ()=>this.handleClickOnOptions("si") }></my-button>
                 </div>
-                <div class="div-button">
-
-                </div>
-                <div class="div-button">
-
-                </div>
-
             </div>    
         `;
     }
 
     sharpColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${()=>{}}></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_s") }></my-button>             
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDoShowed} ?toggle=${!this.isDoBlocked} text="\u{266f}" @click=${this.isDoShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.do_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("do_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDosShowed} ?toggle=${!this.isDosBlocked} text="\u{266f}" @click=${this.isDosShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.dos_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("dos_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isRebShowed} ?toggle=${!this.isRebBlocked} text="\u{266f}" @click=${this.isRebShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.reb_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("reb_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isReShowed} ?toggle=${!this.isReBlocked} text="\u{266f}" @click=${this.isReShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.re_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("re_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isResShowed} ?toggle=${!this.isResBlocked} text="\u{266f}" @click=${this.isResShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.res_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("res_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMibShowed} ?toggle=${!this.isMibBlocked} text="\u{266f}" @click=${this.isMibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mib_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("mib_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMiShowed} ?toggle=${!this.isMiBlocked} text="\u{266f}" @click=${this.isMiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mi_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("mi_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFaShowed} ?toggle=${!this.isFaBlocked} text="\u{266f}" @click=${this.isFaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fa_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("fa_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFasShowed} ?toggle=${!this.isFasBlocked} text="\u{266f}" @click=${this.isFasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fas_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("fas_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolbShowed} ?toggle=${!this.isSolbBlocked} text="\u{266f}" @click=${this.isSolbShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.solb_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("solb_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolShowed} ?toggle=${!this.isSolBlocked} text="\u{266f}" @click=${this.isSolShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sol_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("sol_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolsShowed} ?toggle=${!this.isSolsBlocked} text="\u{266f}" @click=${this.isSolsShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sols_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("sols_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLabShowed} ?toggle=${!this.isLabBlocked} text="\u{266f}" @click=${this.isLabShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.lab_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("lab_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLaShowed} ?toggle=${!this.isLaBlocked} text="\u{266f}" @click=${this.isLaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.la_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("la_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLasShowed} ?toggle=${!this.isLasBlocked} text="\u{266f}" @click=${this.isLasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.las_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("las_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSibShowed} ?toggle=${!this.isSibBlocked} text="\u{266f}" @click=${this.isSibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sib_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("sib_s") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="\u{266f}" @click=${this.isSiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.si_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("si_s") }></my-button>
                 </div>
-                <div class="div-button">
-
-                </div>
-                <div class="div-button">
-
-                </div>
-
             </div>    
         `;
     }
 
     flatColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${()=>{}}></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_b") }></my-button>             
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDoShowed} ?toggle=${!this.isDoBlocked} text="\u{266d}" @click=${this.isDoShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.do_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("do_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDosShowed} ?toggle=${!this.isDosBlocked} text="\u{266d}" @click=${this.isDosShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.dos_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("dos_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isRebShowed} ?toggle=${!this.isRebBlocked} text="\u{266d}" @click=${this.isRebShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.reb_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("reb_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isReShowed} ?toggle=${!this.isReBlocked} text="\u{266d}" @click=${this.isReShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.re_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("re_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isResShowed} ?toggle=${!this.isResBlocked} text="\u{266d}" @click=${this.isResShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.res_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("res_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMibShowed} ?toggle=${!this.isMibBlocked} text="\u{266d}" @click=${this.isMibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mib_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("mib_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMiShowed} ?toggle=${!this.isMiBlocked} text="\u{266d}" @click=${this.isMiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mi_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("mi_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFaShowed} ?toggle=${!this.isFaBlocked} text="\u{266d}" @click=${this.isFaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fa_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("fa_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFasShowed} ?toggle=${!this.isFasBlocked} text="\u{266d}" @click=${this.isFasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fas_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("fas_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolbShowed} ?toggle=${!this.isSolbBlocked} text="\u{266d}" @click=${this.isSolbShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.solb_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("solb_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolShowed} ?toggle=${!this.isSolBlocked} text="\u{266d}" @click=${this.isSolShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sol_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("sol_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolsShowed} ?toggle=${!this.isSolsBlocked} text="\u{266d}" @click=${this.isSolsShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sols_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("sols_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLabShowed} ?toggle=${!this.isLabBlocked} text="\u{266d}" @click=${this.isLabShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.lab_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("lab_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLaShowed} ?toggle=${!this.isLaBlocked} text="\u{266d}" @click=${this.isLaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.la_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("la_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLasShowed} ?toggle=${!this.isLasBlocked} text="\u{266d}" @click=${this.isLasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.las_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("las_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSibShowed} ?toggle=${!this.isSibBlocked} text="\u{266d}" @click=${this.isSibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sib_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("sib_b") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="\u{266d}" @click=${this.isSiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.si_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("si_b") }></my-button>
                 </div>
-                <div class="div-button">
-
-                </div>
-                <div class="div-button">
-
-                </div>
-
             </div>    
         `;
     }
 
     naturalColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${()=>{}}></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_n") }></my-button>             
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDoShowed} ?toggle=${!this.isDoBlocked} text="nat" @click=${this.isDoShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.do_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("do_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDosShowed} ?toggle=${!this.isDosBlocked} text="nat" @click=${this.isDosShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.dos_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("dos_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isRebShowed} ?toggle=${!this.isRebBlocked} text="nat" @click=${this.isRebShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.reb_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("reb_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isReShowed} ?toggle=${!this.isReBlocked} text="nat" @click=${this.isReShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.re_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("re_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isResShowed} ?toggle=${!this.isResBlocked} text="nat" @click=${this.isResShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.res_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("res_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMibShowed} ?toggle=${!this.isMibBlocked} text="nat" @click=${this.isMibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mib_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("mib_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMiShowed} ?toggle=${!this.isMiBlocked} text="nat" @click=${this.isMiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mi_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("mi_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFaShowed} ?toggle=${!this.isFaBlocked} text="nat" @click=${this.isFaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fa_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("fa_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFasShowed} ?toggle=${!this.isFasBlocked} text="nat" @click=${this.isFasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fas_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("fas_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolbShowed} ?toggle=${!this.isSolbBlocked} text="nat" @click=${this.isSolbShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.solb_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("solb_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolShowed} ?toggle=${!this.isSolBlocked} text="nat" @click=${this.isSolShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sol_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("sol_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolsShowed} ?toggle=${!this.isSolsBlocked} text="nat" @click=${this.isSolsShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sols_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("sols_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLabShowed} ?toggle=${!this.isLabBlocked} text="nat" @click=${this.isLabShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.lab_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("lab_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLaShowed} ?toggle=${!this.isLaBlocked} text="nat" @click=${this.isLaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.la_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("la_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLasShowed} ?toggle=${!this.isLasBlocked} text="nat" @click=${this.isLasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.las_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("las_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSibShowed} ?toggle=${!this.isSibBlocked} text="nat" @click=${this.isSibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sib_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("sib_n") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="nat" @click=${this.isSiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.si_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("si_n") }></my-button>
                 </div>
-                <div class="div-button">
-
-                </div>
-                <div class="div-button">
-
-                </div>
-
             </div>    
         `;
     }
 
     upColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                  <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${()=>{}}></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_up") }></my-button>             
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDoShowed} ?toggle=${!this.isDoBlocked} text="+" @click=${this.isDoShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.do_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("do_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDosShowed} ?toggle=${!this.isDosBlocked} text="+" @click=${this.isDosShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.dos_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("dos_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isRebShowed} ?toggle=${!this.isRebBlocked} text="+" @click=${this.isRebShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.reb_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("reb_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isReShowed} ?toggle=${!this.isReBlocked} text="+" @click=${this.isReShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.re_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("re_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isResShowed} ?toggle=${!this.isResBlocked} text="+" @click=${this.isResShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.res_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("res_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMibShowed} ?toggle=${!this.isMibBlocked} text="+" @click=${this.isMibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mib_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("mib_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMiShowed} ?toggle=${!this.isMiBlocked} text="+" @click=${this.isMiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mi_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("mi_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFaShowed} ?toggle=${!this.isFaBlocked} text="+" @click=${this.isFaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fa_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("fa_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFasShowed} ?toggle=${!this.isFasBlocked} text="+" @click=${this.isFasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fas_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("fas_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolbShowed} ?toggle=${!this.isSolbBlocked} text="+" @click=${this.isSolbShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.solb_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("solb_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolShowed} ?toggle=${!this.isSolBlocked} text="+" @click=${this.isSolShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sol_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("sol_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolsShowed} ?toggle=${!this.isSolsBlocked} text="+" @click=${this.isSolsShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sols_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("sols_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLabShowed} ?toggle=${!this.isLabBlocked} text="+" @click=${this.isLabShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.lab_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("lab_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLaShowed} ?toggle=${!this.isLaBlocked} text="+" @click=${this.isLaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.la_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("la_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLasShowed} ?toggle=${!this.isLasBlocked} text="+" @click=${this.isLasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.las_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("las_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSibShowed} ?toggle=${!this.isSibBlocked} text="+" @click=${this.isSibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sib_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("sib_up") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="+" @click=${this.isSiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.si_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("si_up") }></my-button>
                 </div>
-                <div class="div-button">
-
-                </div>
-                <div class="div-button">
-
-                </div>
-
             </div>    
         `;
     }
 
     downColumn(){
         return html`
-            <div class="container">
+            <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${()=>{}}></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_down") }></my-button>             
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDoShowed} ?toggle=${!this.isDoBlocked} text="-" @click=${this.isDoShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.do_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("do_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isDosShowed} ?toggle=${!this.isDosBlocked} text="-" @click=${this.isDosShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.dos_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("dos_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isRebShowed} ?toggle=${!this.isRebBlocked} text="-" @click=${this.isRebShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.reb_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("reb_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isReShowed} ?toggle=${!this.isReBlocked} text="-" @click=${this.isReShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.re_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("re_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isResShowed} ?toggle=${!this.isResBlocked} text="-" @click=${this.isResShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.res_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("res_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMibShowed} ?toggle=${!this.isMibBlocked} text="-" @click=${this.isMibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mib_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("mib_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isMiShowed} ?toggle=${!this.isMiBlocked} text="-" @click=${this.isMiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.mi_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("mi_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFaShowed} ?toggle=${!this.isFaBlocked} text="-" @click=${this.isFaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fa_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("fa_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isFasShowed} ?toggle=${!this.isFasBlocked} text="-" @click=${this.isFasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.fas_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("fas_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolbShowed} ?toggle=${!this.isSolbBlocked} text="-" @click=${this.isSolbShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.solb_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("solb_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolShowed} ?toggle=${!this.isSolBlocked} text="-" @click=${this.isSolShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sol_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("sol_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSolsShowed} ?toggle=${!this.isSolsBlocked} text="-" @click=${this.isSolsShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sols_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("sols_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLabShowed} ?toggle=${!this.isLabBlocked} text="-" @click=${this.isLabShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.lab_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("lab_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLaShowed} ?toggle=${!this.isLaBlocked} text="-" @click=${this.isLaShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.la_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("la_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isLasShowed} ?toggle=${!this.isLasBlocked} text="-" @click=${this.isLasShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.las_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("las_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSibShowed} ?toggle=${!this.isSibBlocked} text="-" @click=${this.isSibShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.sib_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("sib_down") }></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button ?pressedButton=${this.isSiShowed} ?toggle=${!this.isSiBlocked} text="-" @click=${this.isSiShowedAction}></my-button>
+                    <my-button ?pressedButton=${this.configuration.si_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("si_down") }></my-button>
                 </div>
-                <div class="div-button">
-
-                </div>
-                <div class="div-button">
-
-                </div>
-
             </div>    
         `;
+    }
+
+    handleDifficultNotes () {
+      this.configuration.difficult = !this.configuration.difficult;
+      this.requestUpdate(); 
     }
 
     // Render the UI as a function of component state
@@ -640,19 +634,36 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
           width: ${this.width};  
         }
       </style>`;
-
- //console.log(JSON.stringify(this.configuration));
-
+      //this.newConfiguration = {...this.oldConfiguration};
+      //console.log(JSON.stringify(this.oldConfiguration));
+    //   console.log(JSON.stringify(this.newConfiguration));
+    //   console.log("entra en render");
       return html`
         ${sizeValues} 
         <div class="supercontainer size">
-            ${this.allColumn()}
-            ${this.noteColumn()}
-            ${this.sharpColumn()}
-            ${this.flatColumn()}
-            ${this.naturalColumn()}
-            ${this.upColumn()}
-            ${this.downColumn()}
+            <div class="container">
+                ${this.allColumn()}
+                ${this.noteColumn()}
+                ${this.sharpColumn()}
+                ${this.flatColumn()}
+                ${this.naturalColumn()}
+                ${this.upColumn()}
+                ${this.downColumn()}
+            </div>
+            <div class="bottom-buttons">
+                <div class="div-bottom-buttons">
+                    <my-button text="all" @click=${ this.handleAllNotes }></my-button>
+                </div>  
+                <div class="div-bottom-buttons">
+                    <my-button ?pressedButton=${this.configuration.difficult} text="difficult" toggle @click=${ this.handleDifficultNotes }></my-button>
+                </div>  
+                <div class="div-bottom-buttons">
+                    <my-button text="cancel" @click=${ this.actionOnHideWithoutUpdate }></my-button>
+                </div>  
+                <div class="div-bottom-buttons">
+                    <my-button text="ok" @click=${ ()=>this.updateConfiguration(this.configuration) }></my-button>
+                </div>  
+            </div>
         </div>
       `;
     }

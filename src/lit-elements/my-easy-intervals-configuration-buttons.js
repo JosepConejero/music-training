@@ -201,55 +201,55 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
                          
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("do")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("do")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("dos")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("dos")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("reb")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("reb")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("re")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("re")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("res")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("res")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("mib")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("mib")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("mi")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("mi")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("fa")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("fa")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("fas")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("fas")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("solb")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("solb")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sol")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sol")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sols")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sols")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("lab")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("lab")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("la")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("la")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("las")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("las")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sib")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("sib")} icon="right-arrow"></my-button>
                 </div>
                 <div class="div-button">
-                    <my-button text="all" @click=${()=>this.handleAllSingleNote("si")}></my-button>
+                    <my-button text="all" @click=${()=>this.handleAllSingleNote("si")} icon="right-arrow"></my-button>
                 </div>
             </div>    
         `;
@@ -259,7 +259,7 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         return html`
             <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("") }></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("") } icon="down-arrow"></my-button>             
                 </div>
                 <div class="div-button">
                     <my-button ?pressedButton=${this.configuration.do} toggle text="do" @click=${ ()=>this.handleClickOnOptions("do") }></my-button>
@@ -320,7 +320,7 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         return html`
             <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_s") }></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_s") } icon="down-arrow"></my-button>             
                 </div>
                 <div class="div-button">
                     <my-button ?pressedButton=${this.configuration.do_s} toggle text="\u{266f}" @click=${ ()=>this.handleClickOnOptions("do_s") }></my-button>
@@ -381,7 +381,7 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         return html`
             <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_b") }></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_b") } icon="down-arrow"></my-button>             
                 </div>
                 <div class="div-button">
                     <my-button ?pressedButton=${this.configuration.do_b} toggle text="\u{266d}" @click=${ ()=>this.handleClickOnOptions("do_b") }></my-button>
@@ -442,7 +442,7 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         return html`
             <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_n") }></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_n") } icon="down-arrow"></my-button>             
                 </div>
                 <div class="div-button">
                     <my-button ?pressedButton=${this.configuration.do_n} toggle text="nat" @click=${ ()=>this.handleClickOnOptions("do_n") }></my-button>
@@ -503,7 +503,7 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         return html`
             <div class="column">
                  <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_up") }></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_up") } icon="down-arrow"></my-button>             
                 </div>
                 <div class="div-button">
                     <my-button ?pressedButton=${this.configuration.do_up} toggle text="+" @click=${ ()=>this.handleClickOnOptions("do_up") }></my-button>
@@ -564,7 +564,7 @@ export class MyEasyIntervalsConfigurationButtons extends LitElement {
         return html`
             <div class="column">
                 <div class="div-button">
-                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_down") }></my-button>             
+                    <my-button ?pressedButton=${false} text="all" @click=${ ()=>this.handleAllColumn("_down") } icon="down-arrow"></my-button>             
                 </div>
                 <div class="div-button">
                     <my-button ?pressedButton=${this.configuration.do_down} toggle text="-" @click=${ ()=>this.handleClickOnOptions("do_down") }></my-button>

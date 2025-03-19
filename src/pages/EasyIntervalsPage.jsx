@@ -124,7 +124,7 @@ export const EasyIntervalsPage = () => {
                     <div className="interval-counter">{ indexRef.current+1 + " / " + intervals.length }</div>
                   </div>
                   <div className="vertical block wide-66">
-                      <p className="interval-view-ask-text">
+                      <p className="interval-view-ask-text" onClick={showSolution}>
                                       {currentInterval.note1WithoutNumber}&nbsp;&nbsp;&nbsp;{"-->"}&nbsp;&nbsp;&nbsp;
                                       {isShowingModePressed 
                                                     ? currentInterval.direction + setNumberInterval() 
@@ -153,16 +153,16 @@ export const EasyIntervalsPage = () => {
               <My4GenericButtons 
                     height="80px" 
                     width="350px"
-                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer, text: "NEXT"}}
-                    button2Config={{defaultActivation: false, toggle: false, actionOnClick: showModal, text: "config"}}
-                    button3Config={{defaultActivation: false, toggle: false, actionOnClick: restartIntervals, text: "reinic"}}
-                    button4Config={{defaultActivation: false, toggle: false, actionOnClick: () => playNotes(currentInterval), text: "PLAY"}}
+                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer, text: "NEXT", icon: "next"}}
+                    button2Config={{defaultActivation: false, toggle: false, actionOnClick: showModal, text: "config", icon: "gear"}}
+                    button3Config={{defaultActivation: false, toggle: false, actionOnClick: restartIntervals, text: "reinic", icon: "refresh"}}
+                    button4Config={{defaultActivation: false, toggle: false, actionOnClick: () => playNotes(currentInterval), text: "PLAY", icon:"play"}}
                     />
               
               <My4GenericButtons 
                     height="80px" 
                     width="350px" 
-                    button1Config={{defaultActivation: isShowingModePressed, toggle: true, actionOnClick: updateIsShowingModePressed, text: "mode"}}
+                    button1Config={{defaultActivation: isShowingModePressed, toggle: true, actionOnClick: updateIsShowingModePressed, text: "mode", icon: "mode"}}
                     button2Config={{defaultActivation: isSemitonesToggleSelected, toggle: true, actionOnClick: updateIsSemitonesToggleSelected, text: "pk / st"}}
               />
 

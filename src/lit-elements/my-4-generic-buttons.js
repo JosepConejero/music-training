@@ -60,26 +60,30 @@ export class My4GenericButtons extends LitElement {
         <div class="container size">
             <div class="div-button">
               ${this.button1Config ? html`
-               <my-button text=${this.button1Config.text} ?pressedButton=${this.button1Config.defaultActivation} ?disabled=${this.button1Config.disabled}
-                          ?toggle=${this.button1Config.toggle} @click=${this.button1Config.actionOnClick}></my-button> 
+               <my-button icon=${this.button1Config.icon} text=${this.button1Config.text} ?pressedButton=${this.button1Config.defaultActivation} 
+                          ?disabled=${this.button1Config.disabled} ?toggle=${this.button1Config.toggle} 
+                          @click=${this.button1Config.actionOnClick}></my-button> 
                 ` : ""}
             </div>
             <div class="div-button">
               ${this.button2Config ? html`
-               <my-button text=${this.button2Config.text} ?pressedButton=${this.button2Config.defaultActivation} ?disabled=${this.button2Config.disabled}
-                          ?toggle=${this.button2Config.toggle} @click=${this.button2Config.actionOnClick}></my-button>
+               <my-button icon=${this.button2Config.icon} text=${this.button2Config.text} ?pressedButton=${this.button2Config.defaultActivation} 
+                          ?disabled=${this.button2Config.disabled} ?toggle=${this.button2Config.toggle} 
+                          @click=${this.button2Config.actionOnClick}></my-button>
                 ` : ""}
             </div>
             <div class="div-button">
               ${this.button3Config ? html`
-               <my-button text=${this.button3Config.text} ?pressedButton=${this.button3Config.defaultActivation} ?disabled=${this.button3Config.disabled}
-                          ?toggle=${this.button3Config.toggle} @click=${this.button3Config.actionOnClick}></my-button>
+               <my-button icon=${this.button3Config.icon} text=${this.button3Config.text} ?pressedButton=${this.button3Config.defaultActivation} 
+                          ?disabled=${this.button3Config.disabled} ?toggle=${this.button3Config.toggle} 
+                          @click=${this.button3Config.actionOnClick}></my-button>
                 ` : ""}
             </div>
             <div class="div-button">
               ${this.button4Config ? html`
-               <my-button text=${this.button4Config.text} ?pressedButton=${this.button4Config.defaultActivation} ?disabled=${this.button4Config.disabled}
-                          ?toggle=${this.button4Config.toggle} @click=${this.button4Config.actionOnClick}></my-button>
+               <my-button icon=${this.button4Config.icon} text=${this.button4Config.text} ?pressedButton=${this.button4Config.defaultActivation} 
+                          ?disabled=${this.button4Config.disabled} ?toggle=${this.button4Config.toggle} 
+                          @click=${this.button4Config.actionOnClick}></my-button>
                 ` : ""}
             </div>
             
@@ -88,4 +92,6 @@ export class My4GenericButtons extends LitElement {
     }
   }
   customElements.define("my-4-generic-buttons", My4GenericButtons);
+  
+
   

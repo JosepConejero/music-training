@@ -110,7 +110,7 @@ export const IntervalsPage = () => {
             </div>
             
             <div className="horizontal-block wide-fix">
-              <MyButton className="wide-20 tall-60" actionOnClick={()=>playNotes(currentInterval)} text="PLAY"></MyButton>
+              <MyButton className="wide-20 tall-60" actionOnClick={()=>playNotes(currentInterval)} text="PLAY" icon="play"></MyButton>
               <div className="vertical-block wide-80">
                 <p className="interval-view-ask-text">
                   {isSolutionShowed ? currentInterval.name : ""}
@@ -131,7 +131,7 @@ export const IntervalsPage = () => {
               <My4GenericButtons 
                     height="80px" 
                     width="350px" 
-                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer, text: "NEXT"}}
+                    button1Config={{defaultActivation: false, toggle: false, actionOnClick: showNextIntervalAnswer, text: "NEXT", icon: "next"}}
                     button2Config={{defaultActivation: isSharpShowed, toggle: true, actionOnClick: updateIsSharpShowed, text: "\u{266f}"}}
                     button3Config={{defaultActivation: isFlatShowed, toggle: true, actionOnClick: updateIsFlatShowed, text: "\u{266d}"}}
                     button4Config={{defaultActivation: isNaturalShowed, toggle: true, actionOnClick: updateIsNaturalShowed, text: "natural"}}

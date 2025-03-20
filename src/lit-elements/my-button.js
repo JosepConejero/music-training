@@ -98,9 +98,17 @@ export class MyModal1 extends LitElement {
             case "next":
               return html`
                 <span>
-                  <svg width="54" height="54" viewBox="0 0 24 24" fill="none" transform="rotate(0)">
+                  <svg width="54" height="54" viewBox="0 0 24 24" fill="none">
                   <g><path d="M8.293 5.707a1 1 0 0 1 1.414-1.414l6.647 6.646a1.5 1.5 0 0 1 0 2.122l-6.647 6.646a1 1 0 0 
                   1-1.414-1.414L14.586 12 8.293 5.707z" fill=${this.iconColor}></path></g></svg>
+                </span> 
+              `;
+            case "previous":
+              return html`
+                <span>
+                  <svg width="54" height="54" viewBox="0 0 24 24" fill="none">
+                  <g><path d="M15.707 18.293a1 1 0 0 1-1.414 1.414l-6.647-6.646a1.5 1.5 0 0 1 0-2.122l6.647-6.646a1 1 0 1 
+                  1 1.414 1.414L9.414 12l6.293 6.293z" fill=${this.iconColor}></path></g></svg>
                 </span> 
               `;
             case "next2":

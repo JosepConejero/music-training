@@ -68,6 +68,17 @@ export const EasyIntervalsPage = () => {
     setCurrentInterval(intervals[indexRef.current]);
   };
 
+  const showPreviousIntervalAnswer = ()=>{
+    if (index > 0) {
+      setIndex(value=>value - 1);
+      indexRef.current = indexRef.current - 1;
+    } else {
+      setIndex(intervals.length-1);
+      indexRef.current = intervals.length-1;
+    }
+    setCurrentInterval(intervals[indexRef.current]);
+  };
+
   const restartIntervals = () => {
     const intervalsRef = unsortedIntervals(filteredEasyIntervals(completeEasyIntervals, configuration));
     setIntervals(intervalsRef);
@@ -164,6 +175,7 @@ export const EasyIntervalsPage = () => {
                     width="350px" 
                     button1Config={{defaultActivation: isShowingModePressed, toggle: true, actionOnClick: updateIsShowingModePressed, text: "mode", icon: "mode"}}
                     button2Config={{defaultActivation: isSemitonesToggleSelected, toggle: true, actionOnClick: updateIsSemitonesToggleSelected, text: "pk / st"}}
+                    button3Config={{defaultActivation: false, toggle: false, actionOnClick: showPreviousIntervalAnswer, text: "PREV", icon:"previous"}}
               />
 
             </div>

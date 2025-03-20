@@ -8,7 +8,6 @@ import { MyKeyboard } from "../lit-react-components/MyKeyboard";
 import { MyThreeButtons } from "../lit-react-components/MyThreeButtons";
 import { useToggleValue } from "../hooks/useToggleValue";
 import { useAudio } from "../hooks/useAudio";
-import { MyButton } from "../lit-react-components/MyButton";
 import { My4GenericButtons } from "../lit-react-components/My4GenericButtons";
 
 export const IntervalsPage = () => {
@@ -110,7 +109,7 @@ export const IntervalsPage = () => {
             </div>
             
             <div className="horizontal-block wide-fix">
-              <MyButton className="wide-20 tall-60" actionOnClick={()=>playNotes(currentInterval)} text="PLAY" icon="play"></MyButton>
+              {/* <MyButton className="wide-20 tall-60" actionOnClick={()=>playNotes(currentInterval)} text="PLAY" icon="play"></MyButton> */}
               <div className="vertical-block wide-80">
                 <p className="interval-view-ask-text">
                   {isSolutionShowed ? currentInterval.name : ""}
@@ -152,6 +151,7 @@ export const IntervalsPage = () => {
                     button1Config={{defaultActivation: isShowingModePressed, toggle: true, actionOnClick: updateIsShowingModePressed, text: "mode"}}
                     button2Config={{defaultActivation: isSemitonesToggleSelected, toggle: true, actionOnClick: updateIsSemitonesToggleSelected, text: "pk / st"}}
                     button3Config={{defaultActivation: isLessThan8Showed, toggle: true, actionOnClick: updateIsLessThan8Showed, text: "less than 8"}}
+                    button4Config={{defaultActivation: false, toggle: false, actionOnClick: () => playNotes(currentInterval), text: "PLAY", icon:"play"}}
                    /*  button4Config={{defaultActivation: isNaturalShowed, toggle: true, actionOnClick: updateIsNaturalShowed, text: "natural"}} */
 
 /*                     isShowingModePressed={isShowingModePressed}
